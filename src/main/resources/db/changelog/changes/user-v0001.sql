@@ -5,7 +5,7 @@ CREATE TABLE USER_MASTER
 	DEF_LOCN_NBR integer not null default 0,
     USER_NAME character varying(50),
     AUTH_TYPE character varying(50),
-    AUTH_TOKEN character varying(50),
+    AUTH_TOKEN text,
     FIRST_NAME character varying(50),
     LAST_NAME character varying(50),
     MIDDLE_NAME character varying(50),

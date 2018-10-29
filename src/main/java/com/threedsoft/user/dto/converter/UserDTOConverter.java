@@ -7,9 +7,10 @@ import org.springframework.stereotype.Component;
 
 import com.threedsoft.user.db.User;
 import com.threedsoft.user.dto.requests.UserCreationRequestDTO;
+import com.threedsoft.user.dto.responses.FieldResource;
 import com.threedsoft.user.dto.responses.MenuResource;
+import com.threedsoft.user.dto.responses.RecordResource;
 import com.threedsoft.user.dto.responses.ScreenResource;
-import com.threedsoft.user.dto.responses.SearchFieldResource;
 import com.threedsoft.user.dto.responses.UserResourceDTO;
 import com.threedsoft.user.util.UserConstants;
 
@@ -71,49 +72,253 @@ public class UserDTOConverter {
 		return null;
 	}
 
+/*	private MenuResource createSampleOrderMenu(String busName, Integer locnNbr) {
+		MenuResource orderMenu = new MenuResource();
+		orderMenu.setMenuName("Orders");
+		List<ScreenResource> screenResourceList = new ArrayList();
+
+		ScreenResource orderPlannerScreen = new ScreenResource("InventoryMaintenance", "Inventory Maintenance","Item Inventory", "RW", null, null);
+		String invnListUrl = "https://orderplanner.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order";
+		String invnGetRecordUrl = "https://inventory.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order/{id}";
+		String invnAddRecordUrl = "https://inventory.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order";
+		String updateRecordUrl = "https://inventory.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
+		String deleteRecordUrl = "https://inventory.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
+		RecordResource orderHdrResource = new RecordResource("Orderplanner", "Planned Orders", invnListUrl, invnGetRecordUrl, invnAddRecordUrl, updateRecordUrl, deleteRecordUrl, null, null, null, null, null);
+		
+		List<FieldResource> searchFieldList = new ArrayList(); 
+		searchFieldList.add(new FieldResource("orderNbr", "Order Nbr", "N","N","string","10",""));
+		searchFieldList.add(new FieldResource("batchNbr","Batch Nbr", "N","N","string","10", ""));
+		
+		List<FieldResource> listDisplayFieldList = new ArrayList();
+		listDisplayFieldList.add(new FieldResource("id","id","Y","N","int","0",""));
+		listDisplayFieldList.add(new FieldResource("busName","Company","Y","N","int","0",""));
+		listDisplayFieldList.add(new FieldResource("locnNbr","Division","Y","N","int","0",""));
+		listDisplayFieldList.add(new FieldResource("company","Company","Y","N","int","0",""));
+		listDisplayFieldList.add(new FieldResource("division","Division","Y","N","int","0",""));
+		listDisplayFieldList.add(new FieldResource("orderNbr","Company","Y","N","int","0",""));
+		listDisplayFieldList.add(new FieldResource("batchNbr","Division","N","N","int","0",""));
+		listDisplayFieldList.add(new FieldResource("orderDttm","Order Date/Time","Y","N","string","20",""));
+		listDisplayFieldList.add(new FieldResource("deliveryDttm","deliveryDttm","N","N","string","20",""));
+		listDisplayFieldList.add(new FieldResource("deliveryType","Delivery Type","N","N","int","0",""));
+		
+		orderHdrResource.setSearchFieldList(searchFieldList);
+		orderHdrResource.setListDisplayFieldList(listDisplayFieldList);
+		orderHdrResource.setAddRecordFieldList(listDisplayFieldList);
+		orderHdrResource.setUpdateRecordFieldList(listDisplayFieldList);
+		orderPlannerScreen.setHdrResource(orderHdrResource);
+		List<RecordResource> dtlResources = new ArrayList();
+		dtlResources.add(getOrderDetailResource(busName, locnNbr));
+		orderPlannerScreen.setDtlResources(dtlResources);
+		screenResourceList.add(orderPlannerScreen);
+		orderMenu.setScreenResourceList(screenResourceList);
+		return orderMenu;
+	
+	}*/
 	private MenuResource createSampleOrderMenu(String busName, Integer locnNbr) {
 		MenuResource orderMenu = new MenuResource();
 		orderMenu.setMenuName("Orders");
-		List<ScreenResource> orderScreenResourceList = new ArrayList();
-		List<SearchFieldResource> orderPlannerSearchFieldList = new ArrayList(); 
-		orderPlannerSearchFieldList.add(new SearchFieldResource("orderNbr", ""));
-		orderPlannerSearchFieldList.add(new SearchFieldResource("id",""));
-		orderPlannerSearchFieldList.add(new SearchFieldResource("statCode",""));
+		List<ScreenResource> screenResourceList = new ArrayList();
+
+		ScreenResource orderPlannerScreen = new ScreenResource("OrderPlannerMaintenance", "Order Planner Maintenance","Order Planning", "RW", null, null);
+		String invnListUrl = "https://orderplanner.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order";
+		String invnGetRecordUrl = "https://inventory.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order/{id}";
+		String invnAddRecordUrl = "https://inventory.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order";
+		String updateRecordUrl = "https://inventory.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
+		String deleteRecordUrl = "https://inventory.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
+		RecordResource orderHdrResource = new RecordResource("Orderplanner", "Planned Orders", invnListUrl, invnGetRecordUrl, invnAddRecordUrl, updateRecordUrl, deleteRecordUrl, null, null, null, null, null, null);
 		
-		List<String> displayFieldList = new ArrayList();
-		displayFieldList.add("id");
-		displayFieldList.add("orderNbr");
-		displayFieldList.add("statCode");
-		List<String> updateFieldList = new ArrayList();
-		updateFieldList.add("statCode");
-		ScreenResource orderPlannerScreenResource= new ScreenResource("Order Planner", "RW", "https://orderplanner.the3dsoft.com:8080/orderplanner/v1/"+busName+"/" + locnNbr + "/order", "", "",
-				"", orderPlannerSearchFieldList, displayFieldList, displayFieldList, displayFieldList, updateFieldList);
-		orderMenu.setScreenResourceList(orderScreenResourceList);
-		orderScreenResourceList.add(orderPlannerScreenResource);
+		List<FieldResource> fieldList = new ArrayList();
+		fieldList.add(new FieldResource("id","id","Y","N","int","0",""));
+		fieldList.add(new FieldResource("busName","Company","Y","N","int","0",""));
+		fieldList.add(new FieldResource("locnNbr","Division","Y","N","int","0",""));
+		fieldList.add(new FieldResource("company","Company","Y","N","int","0",""));
+		fieldList.add(new FieldResource("division","Division","Y","N","int","0",""));
+		fieldList.add(new FieldResource("orderNbr","Company","Y","N","int","0",""));
+		fieldList.add(new FieldResource("batchNbr","Division","N","N","int","0",""));
+		fieldList.add(new FieldResource("orderDttm","Order Date/Time","Y","N","string","20",""));
+		fieldList.add(new FieldResource("deliveryDttm","deliveryDttm","N","N","string","20",""));
+		fieldList.add(new FieldResource("deliveryType","Delivery Type","N","N","int","0",""));
+
+		List<String> searchFieldList = new ArrayList(); 
+		searchFieldList.add("orderNbr");
+		searchFieldList.add("batchNbr");
+		
+		List<String> listDisplayFieldList = new ArrayList();
+		listDisplayFieldList.add("id");
+		listDisplayFieldList.add("busName");
+		listDisplayFieldList.add("locnNbr");
+		listDisplayFieldList.add("company");
+		listDisplayFieldList.add("division");
+		listDisplayFieldList.add("orderNbr");
+		listDisplayFieldList.add("batchNbr");
+		listDisplayFieldList.add("orderDttm");
+		listDisplayFieldList.add("deliveryDttm");
+		listDisplayFieldList.add("deliveryType");
+		
+		orderHdrResource.setFieldList(fieldList);
+		orderHdrResource.setSearchFieldList(searchFieldList);
+		orderHdrResource.setListDisplayFieldList(listDisplayFieldList);
+		orderHdrResource.setAddRecordFieldList(listDisplayFieldList);
+		orderHdrResource.setUpdateRecordFieldList(listDisplayFieldList);
+		orderPlannerScreen.setHdrResource(orderHdrResource);
+		List<RecordResource> dtlResources = new ArrayList();
+		dtlResources.add(getOrderDetailResource(busName, locnNbr));
+		orderPlannerScreen.setDtlResources(dtlResources);
+		screenResourceList.add(orderPlannerScreen);
+		orderMenu.setScreenResourceList(screenResourceList);
 		return orderMenu;
+	
+	}	
+	public RecordResource getOrderDetailResource(String busName, Integer locnNbr) {
+		String invnListUrl = "https://orderplanner.the3dsoft.com/orderplanner/dtl/v1/"+busName+"/" + locnNbr + "/order";
+		String invnGetRecordUrl = "https://inventory.the3dsoft.com/orderplanner/dtl/v1/"+busName+"/" + locnNbr + "/order/{id}";
+		String invnAddRecordUrl = "https://inventory.the3dsoft.com/orderplanner/dtl/v1/"+busName+"/" + locnNbr + "/order";
+		String updateRecordUrl = "https://inventory.the3dsoft.com/orderplanner/dtl/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
+		String deleteRecordUrl = "https://inventory.the3dsoft.com/orderplanner/dtl/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
+		RecordResource orderDtlResource = new RecordResource("OrderDtl", "Planned Order Details", invnListUrl, invnGetRecordUrl, invnAddRecordUrl, updateRecordUrl, deleteRecordUrl, null, null, null, null, null, null);
+		
+		List<FieldResource> fieldList = new ArrayList();
+		fieldList.add(new FieldResource("id","id","Y","N","int","0",""));
+		fieldList.add(new FieldResource("busName","Company","Y","N","int","0",""));
+		fieldList.add(new FieldResource("locnNbr","Division","Y","N","int","0",""));
+		fieldList.add(new FieldResource("company","Company","Y","N","int","0",""));
+		fieldList.add(new FieldResource("division","Division","Y","N","int","0",""));
+		fieldList.add(new FieldResource("orderNbr","Company","Y","N","int","0",""));
+		fieldList.add(new FieldResource("batchNbr","Division","N","N","int","0",""));
+		fieldList.add(new FieldResource("orderDttm","Order Date/Time","Y","N","string","20",""));
+		fieldList.add(new FieldResource("deliveryDttm","deliveryDttm","N","N","string","20",""));
+		fieldList.add(new FieldResource("deliveryType","Delivery Type","N","N","int","0",""));
+
+		List<String> searchFieldList = new ArrayList(); 
+		searchFieldList.add("orderNbr");
+		searchFieldList.add("batchNbr");
+		
+		List<String> listDisplayFieldList = new ArrayList();
+		listDisplayFieldList.add("id");
+		listDisplayFieldList.add("busName");
+		listDisplayFieldList.add("locnNbr");
+		listDisplayFieldList.add("company");
+		listDisplayFieldList.add("division");
+		listDisplayFieldList.add("orderNbr");
+		listDisplayFieldList.add("batchNbr");
+		listDisplayFieldList.add("orderDttm");
+		listDisplayFieldList.add("deliveryDttm");
+		listDisplayFieldList.add("deliveryType");
+		
+		orderDtlResource.setFieldList(fieldList);
+		orderDtlResource.setSearchFieldList(searchFieldList);
+		orderDtlResource.setListDisplayFieldList(listDisplayFieldList);
+		orderDtlResource.setAddRecordFieldList(listDisplayFieldList);
+		orderDtlResource.setUpdateRecordFieldList(listDisplayFieldList);
+		return orderDtlResource;
+
 	}
 	
 	private MenuResource createSampleInventoryMenu(String busName, Integer locnNbr) {
 		MenuResource inventoryMenu = new MenuResource();
 		inventoryMenu.setMenuName("Inventory");
 		List<ScreenResource> screenResourceList = new ArrayList();
-		List<SearchFieldResource> searchFieldList = new ArrayList(); 
-		searchFieldList.add(new SearchFieldResource("locnBrcd", ""));
-		searchFieldList.add(new SearchFieldResource("itemBrcd",""));
+
+		ScreenResource inventoryScreen = new ScreenResource("InventoryMaintenance", "Inventory Maintenance","Item Inventory", "RW", null, null);
+		String invnListUrl = "https://inventory.the3dsoft.com/inventory/v1/"+busName+"/" + locnNbr + "/inventory";
+		String invnGetRecordUrl = "https://inventory.the3dsoft.com/inventory/v1/"+busName+"/" + locnNbr + "/inventory/{id}";
+		String invnAddRecordUrl = "https://inventory.the3dsoft.com/inventory/v1/"+busName+"/" + locnNbr + "/inventory";
+		String updateRecordUrl = "https://inventory.the3dsoft.com/inventory/v1/"+busName+"/" + locnNbr + "/inventory"+"/{id}";
+		String deleteRecordUrl = "https://inventory.the3dsoft.com/inventory/v1/"+busName+"/" + locnNbr + "/inventory"+"/{id}";
+		RecordResource inventoryHdrResource = new RecordResource("Inventory", "Inventory", invnListUrl, invnGetRecordUrl, invnAddRecordUrl, updateRecordUrl, deleteRecordUrl, null, null, null, null, null, null);
 		
-		List<String> displayFieldList = new ArrayList();
-		displayFieldList.add("id");
-		displayFieldList.add("locnBrcd");
-		displayFieldList.add("itemBrcd");
-		displayFieldList.add("qty");
-		List<String> updateFieldList = new ArrayList();
-		updateFieldList.add("qty");
-		ScreenResource screenResource= new ScreenResource("Inventory Availability", "RW", "https://inventory.the3dsoft.com:8080/inventory/v1/"+busName+"/" + locnNbr + "/inventory", "", "",
-				"", searchFieldList, displayFieldList, displayFieldList, displayFieldList, updateFieldList);
+		List<FieldResource> fieldList = new ArrayList();
+		fieldList.add(new FieldResource("id","id","N","N","int","0",""));
+		fieldList.add(new FieldResource("busName","Company","N","N","int","0",""));
+		fieldList.add(new FieldResource("locnNbr","Division","N","N","int","0",""));
+		fieldList.add(new FieldResource("company","Company","N","N","int","0",""));
+		fieldList.add(new FieldResource("division","Division","N","N","int","0",""));
+		fieldList.add(new FieldResource("locnBrcd","Locn Brcd","N","N","string","20",""));
+		fieldList.add(new FieldResource("itemBrcd","Item Brcd","N","N","string","20",""));
+		fieldList.add(new FieldResource("qty","Qty","N","N","int","0",""));
+		fieldList.add(new FieldResource("locked","Locked","N","N","int","0",""));
+		fieldList.add(new FieldResource("trackByIlpn","Track By LPN?","N","N","string","1","Y,N"));
+		
+		List<String> searchFieldList = new ArrayList(); 
+		searchFieldList.add("locnBrcd");
+		searchFieldList.add("itemBrcd");
+		
+		List<String> displayRecordFieldList = new ArrayList();
+		displayRecordFieldList.add("id");
+		displayRecordFieldList.add("company");
+		displayRecordFieldList.add("division");
+		displayRecordFieldList.add("locnBrcd");
+		displayRecordFieldList.add("itemBrcd");
+		displayRecordFieldList.add("qty");
+		displayRecordFieldList.add("ilpn");
+		displayRecordFieldList.add("locked");
+		displayRecordFieldList.add("trackByIlpn");
+		
+		inventoryHdrResource.setFieldList(fieldList);
+		inventoryHdrResource.setSearchFieldList(searchFieldList);
+		inventoryHdrResource.setListDisplayFieldList(displayRecordFieldList);
+		inventoryHdrResource.setAddRecordFieldList(displayRecordFieldList);
+		inventoryHdrResource.setUpdateRecordFieldList(displayRecordFieldList);
+		inventoryScreen.setHdrResource(inventoryHdrResource);
+		screenResourceList.add(inventoryScreen);
 		inventoryMenu.setScreenResourceList(screenResourceList);
-		screenResourceList.add(screenResource);
 		return inventoryMenu;
 	}
-	
+
+	/*	private MenuResource createSampleInventoryMenu(String busName, Integer locnNbr) {
+		MenuResource inventoryMenu = new MenuResource();
+		inventoryMenu.setMenuName("Inventory");
+		List<ScreenResource> screenResourceList = new ArrayList();
+
+		ScreenResource inventoryScreen = new ScreenResource("InventoryMaintenance", "Inventory Maintenance","Item Inventory", "RW", null, null);
+		String invnListUrl = "https://inventory.the3dsoft.com/inventory/v1/"+busName+"/" + locnNbr + "/inventory";
+		String invnGetRecordUrl = "https://inventory.the3dsoft.com/inventory/v1/"+busName+"/" + locnNbr + "/inventory/{id}";
+		String invnAddRecordUrl = "https://inventory.the3dsoft.com/inventory/v1/"+busName+"/" + locnNbr + "/inventory";
+		String updateRecordUrl = "https://inventory.the3dsoft.com/inventory/v1/"+busName+"/" + locnNbr + "/inventory"+"/{id}";
+		String deleteRecordUrl = "https://inventory.the3dsoft.com/inventory/v1/"+busName+"/" + locnNbr + "/inventory"+"/{id}";
+		RecordResource inventoryHdrResource = new RecordResource("Inventory", "Inventory", invnListUrl, invnGetRecordUrl, invnAddRecordUrl, updateRecordUrl, deleteRecordUrl, null, null, null, null, null);
+		
+		List<FieldResource> searchFieldList = new ArrayList(); 
+		searchFieldList.add(new FieldResource("locnBrcd", "Locn Brcd","N","N","int","20",""));
+		searchFieldList.add(new FieldResource("itemBrcd","","Locn Brcd","N","int","20",""));
+		
+		List<FieldResource> listDisplayFieldList = new ArrayList();
+		listDisplayFieldList.add(new FieldResource("id","id","N","N","int","0",""));
+		listDisplayFieldList.add(new FieldResource("busName","Company","N","N","int","0",""));
+		listDisplayFieldList.add(new FieldResource("locnNbr","Division","N","N","int","0",""));
+		listDisplayFieldList.add(new FieldResource("company","Company","N","N","int","0",""));
+		listDisplayFieldList.add(new FieldResource("division","Division","N","N","int","0",""));
+		listDisplayFieldList.add(new FieldResource("locnBrcd","Locn Brcd","N","N","string","20",""));
+		listDisplayFieldList.add(new FieldResource("itemBrcd","Item Brcd","N","N","string","20",""));
+		listDisplayFieldList.add(new FieldResource("qty","Qty","N","N","int","0",""));
+		listDisplayFieldList.add(new FieldResource("locked","Locked","N","N","int","0",""));
+		listDisplayFieldList.add(new FieldResource("trackByIlpn","Track By LPN?","N","N","string","1","Y,N"));
+		
+		List<FieldResource> recordDetailFieldList = new ArrayList();
+		recordDetailFieldList.add(new FieldResource("id","id","N","N","int","0",""));
+		recordDetailFieldList.add(new FieldResource("company","Company","Y","N","int","0",""));
+		recordDetailFieldList.add(new FieldResource("division","Division","Y","N","int","0",""));
+		recordDetailFieldList.add(new FieldResource("locnBrcd","Locn Brcd","N","N","string","20",""));
+		recordDetailFieldList.add(new FieldResource("itemBrcd","Item Brcd","N","N","string","20",""));
+		recordDetailFieldList.add(new FieldResource("qty","Qty","N","N","int","0",""));
+		recordDetailFieldList.add(new FieldResource("ilpn","ilpn","Ilpn","N","int","0",""));
+		recordDetailFieldList.add(new FieldResource("locked","Locked","N","N","int","0",""));
+		recordDetailFieldList.add(new FieldResource("trackByIlpn","Track By LPN?","N","N","string","1","Y,N"));
+		
+		List<FieldResource> updateRecordFieldList = new ArrayList();
+		updateRecordFieldList.add(new FieldResource("qty","id","Qty","N","int","0",""));
+		updateRecordFieldList.add(new FieldResource("ilpn","id","Qty","N","int","0",""));
+		updateRecordFieldList.add(new FieldResource("locked","id","Qty","N","int","0",""));
+		updateRecordFieldList.add(new FieldResource("trackByIlpn","id","Qty","N","int","0",""));
+		inventoryHdrResource.setSearchFieldList(searchFieldList);
+		inventoryHdrResource.setListDisplayFieldList(listDisplayFieldList);
+		inventoryHdrResource.setAddRecordFieldList(recordDetailFieldList);
+		inventoryHdrResource.setUpdateRecordFieldList(updateRecordFieldList);
+		inventoryScreen.setHdrResource(inventoryHdrResource);
+		screenResourceList.add(inventoryScreen);
+		inventoryMenu.setScreenResourceList(screenResourceList);
+		return inventoryMenu;
+	}
+*/	
 
 }
