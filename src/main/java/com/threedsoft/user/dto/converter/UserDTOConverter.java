@@ -121,10 +121,10 @@ public class UserDTOConverter {
 
 		ScreenResource orderPlannerScreen = new ScreenResource("OrderPlannerMaintenance", "Order Planner Maintenance","Order Planning", "RW", null, null);
 		String invnListUrl = "https://orderplanner.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order";
-		String invnGetRecordUrl = "https://inventory.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order/{id}";
-		String invnAddRecordUrl = "https://inventory.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order";
-		String updateRecordUrl = "https://inventory.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
-		String deleteRecordUrl = "https://inventory.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
+		String invnGetRecordUrl = "https://orderplanner.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order/{id}";
+		String invnAddRecordUrl = "https://orderplanner.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order";
+		String updateRecordUrl = "https://orderplanner.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
+		String deleteRecordUrl = "https://orderplanner.the3dsoft.com/orderplanner/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
 		RecordResource orderHdrResource = new RecordResource("Orderplanner", "Planned Orders", invnListUrl, invnGetRecordUrl, invnAddRecordUrl, updateRecordUrl, deleteRecordUrl, null, null, null, null, null, null);
 		
 		List<FieldResource> fieldList = new ArrayList();
@@ -171,10 +171,10 @@ public class UserDTOConverter {
 	}	
 	public RecordResource getOrderDetailResource(String busName, Integer locnNbr) {
 		String invnListUrl = "https://orderplanner.the3dsoft.com/orderplanner/dtl/v1/"+busName+"/" + locnNbr + "/order";
-		String invnGetRecordUrl = "https://inventory.the3dsoft.com/orderplanner/dtl/v1/"+busName+"/" + locnNbr + "/order/{id}";
-		String invnAddRecordUrl = "https://inventory.the3dsoft.com/orderplanner/dtl/v1/"+busName+"/" + locnNbr + "/order";
-		String updateRecordUrl = "https://inventory.the3dsoft.com/orderplanner/dtl/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
-		String deleteRecordUrl = "https://inventory.the3dsoft.com/orderplanner/dtl/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
+		String invnGetRecordUrl = "https://orderplanner.the3dsoft.com/orderplanner/dtl/v1/"+busName+"/" + locnNbr + "/order/{id}";
+		String invnAddRecordUrl = "https://orderplanner.the3dsoft.com/orderplanner/dtl/v1/"+busName+"/" + locnNbr + "/order";
+		String updateRecordUrl = "https://orderplanner.the3dsoft.com/orderplanner/dtl/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
+		String deleteRecordUrl = "https://orderplanner.the3dsoft.com/orderplanner/dtl/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
 		RecordResource orderDtlResource = new RecordResource("OrderDtl", "Planned Order Details", invnListUrl, invnGetRecordUrl, invnAddRecordUrl, updateRecordUrl, deleteRecordUrl, null, null, null, null, null, null);
 		
 		List<FieldResource> fieldList = new ArrayList();
@@ -229,8 +229,8 @@ public class UserDTOConverter {
 		
 		List<FieldResource> fieldList = new ArrayList();
 		fieldList.add(new FieldResource("id","id","N","N","int","0",""));
-		fieldList.add(new FieldResource("busName","Company","N","N","int","0",""));
-		fieldList.add(new FieldResource("locnNbr","Division","N","N","int","0",""));
+		fieldList.add(new FieldResource("busName","Bus Name","N","N","int","0",""));
+		fieldList.add(new FieldResource("locnNbr","Locn Nbr","N","N","int","0",""));
 		fieldList.add(new FieldResource("company","Company","N","N","int","0",""));
 		fieldList.add(new FieldResource("division","Division","N","N","int","0",""));
 		fieldList.add(new FieldResource("locnBrcd","Locn Brcd","N","N","string","20",""));
@@ -320,5 +320,97 @@ public class UserDTOConverter {
 		return inventoryMenu;
 	}
 */	
+	
+	private MenuResource createSampleCustomerOrderMenu(String busName, Integer locnNbr) {
+		MenuResource orderMenu = new MenuResource();
+		orderMenu.setMenuName("Customer Orders");
+		List<ScreenResource> screenResourceList = new ArrayList();
 
+		ScreenResource orderPlannerScreen = new ScreenResource("CustomerOrderMaintenance", "Customer Order Maintenance","Customer Orders", "RW", null, null);
+		String custOrdersListUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order";
+		String custOrdersRecordUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order/{id}";
+		String custOrdersAddRecordUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order";
+		String custOrdersUpdateRecordUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
+		String custOrdersDeleteRecordUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
+		RecordResource customerOrderHdrResource = new RecordResource("Customer Orders", "Customer Orders", custOrdersListUrl, custOrdersRecordUrl, custOrdersAddRecordUrl, custOrdersUpdateRecordUrl, custOrdersDeleteRecordUrl, null, null, null, null, null, null);
+		
+		List<FieldResource> fieldList = new ArrayList();
+		fieldList.add(new FieldResource("id","id","Y","N","int","0",""));
+		fieldList.add(new FieldResource("busName","Bus Name","Y","N","int","0",""));
+		fieldList.add(new FieldResource("locnNbr","Locn Nbr","Y","N","int","0",""));
+		fieldList.add(new FieldResource("company","Company","Y","N","int","0",""));
+		fieldList.add(new FieldResource("division","Division","Y","N","int","0",""));
+		fieldList.add(new FieldResource("orderNbr","Order Nbr","Y","N","int","0",""));
+		fieldList.add(new FieldResource("batchNbr","Batch Nbr","N","N","int","0",""));
+		fieldList.add(new FieldResource("orderDttm","Order Date/Time","Y","N","string","20",""));
+		fieldList.add(new FieldResource("deliveryDttm","Delivery Dttm","N","N","string","20",""));
+		fieldList.add(new FieldResource("deliveryType","Delivery Type","N","N","int","0",""));
+
+		List<String> searchFieldList = new ArrayList(); 
+		searchFieldList.add("orderNbr");
+		searchFieldList.add("batchNbr");
+		
+		List<String> listDisplayFieldList = new ArrayList();
+		listDisplayFieldList.add("id");
+		listDisplayFieldList.add("busName");
+		listDisplayFieldList.add("locnNbr");
+		listDisplayFieldList.add("company");
+		listDisplayFieldList.add("division");
+		listDisplayFieldList.add("orderNbr");
+		listDisplayFieldList.add("batchNbr");
+		listDisplayFieldList.add("orderDttm");
+		listDisplayFieldList.add("deliveryDttm");
+		listDisplayFieldList.add("deliveryType");
+		
+		customerOrderHdrResource.setFieldList(fieldList);
+		customerOrderHdrResource.setSearchFieldList(searchFieldList);
+		customerOrderHdrResource.setListDisplayFieldList(listDisplayFieldList);
+		customerOrderHdrResource.setAddRecordFieldList(listDisplayFieldList);
+		customerOrderHdrResource.setUpdateRecordFieldList(listDisplayFieldList);
+		orderPlannerScreen.setHdrResource(customerOrderHdrResource);
+		List<RecordResource> dtlResources = new ArrayList();
+		dtlResources.add(getCustomerOrderDetailResource(busName, locnNbr));
+		orderPlannerScreen.setDtlResources(dtlResources);
+		screenResourceList.add(orderPlannerScreen);
+		orderMenu.setScreenResourceList(screenResourceList);
+		return orderMenu;
+	
+	}	
+	public RecordResource getCustomerOrderDetailResource(String busName, Integer locnNbr) {
+		String custOrderDtlListUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order/{id}/dtl";
+		String custOrderDtlRecordUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order/{id}/dtl/{dtlId}";
+		String custOrderDtlAddRecordUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order/{id}/dtl";
+		String custOrderDtlupdateRecordUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order/{id}/dtl/{dtlId}";
+		String custOrderDtldeleteRecordUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order/{id}/dtl/{dtlId}";
+		RecordResource orderDtlResource = new RecordResource("CustomerOrderDtl", "Customer Order Details", custOrderDtlListUrl, custOrderDtlRecordUrl, custOrderDtlAddRecordUrl,custOrderDtlupdateRecordUrl, custOrderDtldeleteRecordUrl, null, null, null, null, null, null);
+		
+		List<FieldResource> fieldList = new ArrayList();
+		fieldList.add(new FieldResource("id","id","Y","N","int","0",""));
+		fieldList.add(new FieldResource("orderId","Order Id","Y","N","int","0",""));
+		fieldList.add(new FieldResource("orderLineNbr","Line Nbr","Y","N","int","0",""));
+		fieldList.add(new FieldResource("company","Company","Y","N","int","0",""));
+		fieldList.add(new FieldResource("division","Division","Y","N","int","0",""));
+		fieldList.add(new FieldResource("orderNbr","Order Nbr","Y","N","int","0",""));
+		fieldList.add(new FieldResource("origOrderQty","Orig Order Qty","N","N","int","0",""));
+		fieldList.add(new FieldResource("orderQty","Qty","Y","N","string","20",""));
+
+		List<String> searchFieldList = new ArrayList(); 
+		
+		List<String> listDisplayFieldList = new ArrayList();
+		listDisplayFieldList.add("id");
+		listDisplayFieldList.add("busName");
+		listDisplayFieldList.add("locnNbr");
+		listDisplayFieldList.add("company");
+		listDisplayFieldList.add("division");
+		listDisplayFieldList.add("orderNbr");
+		listDisplayFieldList.add("origOrderQty");
+		listDisplayFieldList.add("orderQty");
+		
+		orderDtlResource.setFieldList(fieldList);
+		orderDtlResource.setSearchFieldList(searchFieldList);
+		orderDtlResource.setListDisplayFieldList(listDisplayFieldList);
+		orderDtlResource.setAddRecordFieldList(listDisplayFieldList);
+		orderDtlResource.setUpdateRecordFieldList(listDisplayFieldList);
+		return orderDtlResource;
+	}
 }
