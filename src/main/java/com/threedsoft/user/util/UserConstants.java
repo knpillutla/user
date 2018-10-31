@@ -9,5 +9,7 @@ public class UserConstants {
 	public static String GOOGLE_AUTH_TYPE="google";
 	public static String FACEBOOK_AUTH_TYPE="facebook";
 	public static String USER_AUTH_TYPE="user";
+	public static String MAINTENANCE_SCREEN = "MaintenanceScreen";
+	public static String RF_SCREEN = "RFScreen";
 
 }
