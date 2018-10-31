@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.threedsoft.user.dto.requests.UserCreationRequestDTO;
 import com.threedsoft.user.dto.requests.UserLoginInRequestDTO;
+import com.threedsoft.user.dto.responses.UserResourceDTO;
 import com.threedsoft.user.exception.UserException;
 import com.threedsoft.user.service.UserService;
+import com.threedsoft.util.dto.ErrorResourceDTO;
 
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -56,7 +58,7 @@ public class UserRestEndPoint {
 		} catch (UserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return ResponseEntity.badRequest().body(new ErrorRestResponse(HttpStatus.NOT_FOUND.value(), "Error occured while getting the user:" + e.getMessage()));
+			return ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.NOT_FOUND.value(), "Error occured while getting the user:" + e.getMessage()));
 		}
 	}
 
@@ -69,7 +71,7 @@ public class UserRestEndPoint {
 			resEntity = ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(userService.createUser(userCreationReq));
 		} catch (UserException ex) {
 			log.error("CreateUser Error:", ex.getEvent(), ex);
-			resEntity = ResponseEntity.badRequest().body(ex.getEvent());
+			resEntity = ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), "User Creation Error:" + ex.getMessage()));
 		}
 		long endTime = System.currentTimeMillis();
 		log.info("Completed User Create request for : " + userCreationReq.toString() + ": at :" + LocalDateTime.now() + " : total time:" + (endTime-startTime)/1000.00 + " secs");
@@ -78,11 +80,15 @@ public class UserRestEndPoint {
 
 	@PostMapping("/user/signin")
 	public ResponseEntity userSignIn(@RequestBody UserLoginInRequestDTO userLoginReq) throws IOException {
+		UserResourceDTO userResourceDTO = null;
 		try {
-			return ResponseEntity.ok(userService.login(userLoginReq));
+			log.info("Received signin request:" + userLoginReq);
+			userResourceDTO = userService.login(userLoginReq);
+			log.info("Completed signin request:" + userLoginReq);
+			return ResponseEntity.ok(userResourceDTO);
 		} catch (UserException e) {
-			log.error("User Login Error:", e);
-			return ResponseEntity.badRequest().body(new ErrorRestResponse(HttpStatus.UNAUTHORIZED.value(), "User Login Error:" + e.getMessage()));
+			log.error("Error:", e);
+			return ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.UNAUTHORIZED.value(), e.getMessage()));
 		}
 	}
 

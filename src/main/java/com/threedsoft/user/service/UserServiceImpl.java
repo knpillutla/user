@@ -58,6 +58,8 @@ public class UserServiceImpl implements UserService {
 	public UserResourceDTO createUser(UserCreationRequestDTO userCreationReq) throws UserException {
 		UserResourceDTO userResourceDTO = null;
 		try {
+			if(userCreationReq.getAuthType() == null)
+				userCreationReq.setAuthType("");
 			User newUser = userDTOConverter.getUserEntity(userCreationReq);
 			newUser.setUserStatus(UserStatus.CREATED.getUserStatus());
 			User existingUserEntity = userDAO.findByUserName(newUser.getUserName());
@@ -104,6 +106,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserResourceDTO login(UserLoginInRequestDTO userLoginReq) throws UserException {
+		log.info("UserServiceImpl::login::Received request:" + userLoginReq.toString());
 		User userEntity = userDAO.findByUserName(userLoginReq.getUserName());
 		if(userEntity == null) {
 			log.error("UserName does not exist. Signup Required");
@@ -113,7 +116,9 @@ public class UserServiceImpl implements UserService {
 			UserException userException = new UserException(event);
 			throw userException;
 		}
-		if(userEntity.getAuthType().equalsIgnoreCase(UserConstants.USER_AUTH_TYPE) && !userEntity.getAuthToken().equals(userLoginReq.getAuthToken())) {
+		if(!userEntity.getAuthType().toLowerCase().equalsIgnoreCase(UserConstants.GOOGLE_AUTH_TYPE.toLowerCase()) &&
+				!userEntity.getAuthType().toLowerCase().equalsIgnoreCase(UserConstants.FACEBOOK_AUTH_TYPE.toLowerCase()) &&
+					!userEntity.getAuthToken().equals(userLoginReq.getAuthToken())) {
 			log.error("Invalid UserName/Password");
 			UserLoginFailedEvent event = new UserLoginFailedEvent(userLoginReq,UserConstants.USER_SERVICE_NAME,
 					"User Login Error:" + "Invalid UserName/Password");
@@ -121,6 +126,7 @@ public class UserServiceImpl implements UserService {
 			UserException userException = new UserException(event);
 			throw userException;
 		}
+		log.info("User logged in successfully");
 		return userDTOConverter.getUserResourceDTO(userEntity);
 	}
 	
