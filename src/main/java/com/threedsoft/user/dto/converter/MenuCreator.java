@@ -63,12 +63,13 @@ public class MenuCreator {
 
 	private ScreenResource createSinglesRFPickScreen(String busName, Integer locnNbr) {
 		ScreenResource rfScreen = new ScreenResource("SinglesRFPicking", "Singles RFPicking","Singles RFPicking", "RW",UserConstants.RF_SCREEN, null, null);
+		String searchUrl = "";
 		String listUrl = "";
 		String getRecordUrl = "https://picking.the3dsoft.com/picking/v1/"+busName+"/" + locnNbr + "/picks/next/{userId}";
 		String addRecordUrl = "";
 		String updateRecordUrl = "https://picking.the3dsoft.com/picking/v1/"+busName+"/" + locnNbr + "/picks"+"/{id}";
 		String deleteRecordUrl = "";
-		RecordResource hdrResource = new RecordResource("RFPicking", "Pick To Tote (Singles)", listUrl, getRecordUrl, addRecordUrl, updateRecordUrl, deleteRecordUrl, null, null, null, null, null, null);
+		RecordResource hdrResource = new RecordResource("RFPicking", "Pick To Tote (Singles)", searchUrl, listUrl, getRecordUrl, addRecordUrl, updateRecordUrl, deleteRecordUrl, null, null, null, null, null, null);
 		
 		List<FieldResource> fieldList = new ArrayList();
 		fieldList.add(new FieldResource("id","Pick Id","N","N","int","10","","update"));
@@ -90,12 +91,13 @@ public class MenuCreator {
 
 	private ScreenResource createRFPackScreen(String busName, Integer locnNbr) {
 		ScreenResource rfScreen = new ScreenResource("RFPacking", "RFPackinge","RFPacking", "RW",UserConstants.RF_SCREEN, null, null);
+		String searchUrl = "";
 		String listUrl = "";
 		String getRecordUrl = "https://packing.the3dsoft.com/packing/v1/"+busName+"/" + locnNbr + "/packs"+"/{id}";
 		String addRecordUrl = "";
 		String updateRecordUrl = "https://packing.the3dsoft.com/packing/v1/"+busName+"/" + locnNbr + "/packs"+"/{id}";
 		String deleteRecordUrl = "";
-		RecordResource hdrResource = new RecordResource("RFPacking", "Pack from Tote", listUrl, getRecordUrl, addRecordUrl, updateRecordUrl, deleteRecordUrl, null, null, null, null, null, null);
+		RecordResource hdrResource = new RecordResource("RFPacking", "Pack from Tote", searchUrl, listUrl, getRecordUrl, addRecordUrl, updateRecordUrl, deleteRecordUrl, null, null, null, null, null, null);
 		
 		List<FieldResource> fieldList = new ArrayList();
 		fieldList.add(new FieldResource("toteNbr","From Tote","N","N","string","20","","update"));
@@ -117,12 +119,13 @@ public class MenuCreator {
 
 	private ScreenResource createInventoryScreen(String busName, Integer locnNbr) {
 		ScreenResource inventoryScreen = new ScreenResource("InventoryMaintenance", "Inventory Maintenance","Item Inventory", "RW",UserConstants.MAINTENANCE_SCREEN, null, null);
+		String searchUrl = "https://inventory.the3dsoft.com/inventory/v1/"+busName+"/" + locnNbr + "/inventory/search";
 		String invnListUrl = "https://inventory.the3dsoft.com/inventory/v1/"+busName+"/" + locnNbr + "/inventory";
 		String invnGetRecordUrl = "https://inventory.the3dsoft.com/inventory/v1/"+busName+"/" + locnNbr + "/inventory/{id}";
 		String invnAddRecordUrl = "https://inventory.the3dsoft.com/inventory/v1/"+busName+"/" + locnNbr + "/inventory";
 		String updateRecordUrl = "https://inventory.the3dsoft.com/inventory/v1/"+busName+"/" + locnNbr + "/inventory"+"/{id}";
 		String deleteRecordUrl = "https://inventory.the3dsoft.com/inventory/v1/"+busName+"/" + locnNbr + "/inventory"+"/{id}";
-		RecordResource inventoryHdrResource = new RecordResource("Inventory", "Inventory", invnListUrl, invnGetRecordUrl, invnAddRecordUrl, updateRecordUrl, deleteRecordUrl, null, null, null, null, null, null);
+		RecordResource inventoryHdrResource = new RecordResource("Inventory", "Inventory", searchUrl,invnListUrl, invnGetRecordUrl, invnAddRecordUrl, updateRecordUrl, deleteRecordUrl, null, null, null, null, null, null);
 		
 		List<FieldResource> fieldList = new ArrayList();
 		fieldList.add(new FieldResource("id","id","N","N","int","10","","list,detail,add,update"));
@@ -147,12 +150,13 @@ public class MenuCreator {
 
 	private ScreenResource createPickingScreen(String busName, Integer locnNbr) {
 		ScreenResource screen = new ScreenResource("PickingMaintenance", "Picking Maintenance","Picking Maintenance", "R",UserConstants.MAINTENANCE_SCREEN, null, null);
+		String searchUrl = "https://picking.the3dsoft.com/picking/v1/"+busName+"/" + locnNbr + "/picks/search";
 		String listUrl = "https://picking.the3dsoft.com/picking/v1/"+busName+"/" + locnNbr + "/picks";
 		String getRecordUrl = "https://picking.the3dsoft.com/picking/v1/"+busName+"/" + locnNbr + "/picks/{id}";
 		String addRecordUrl = "";
 		String updateRecordUrl = "https://picking.the3dsoft.com/picking/v1/"+busName+"/" + locnNbr + "/picks"+"/{id}";
 		String deleteRecordUrl = "";
-		RecordResource hdrResource = new RecordResource("Picks", "Picks", listUrl, getRecordUrl, addRecordUrl, updateRecordUrl, deleteRecordUrl, null, null, null, null, null, null);
+		RecordResource hdrResource = new RecordResource("Picks", "Picks", searchUrl,listUrl, getRecordUrl, addRecordUrl, updateRecordUrl, deleteRecordUrl, null, null, null, null, null, null);
 		
 		List<FieldResource> fieldList = new ArrayList();
 		fieldList.add(new FieldResource("id","id","N","N","int","10","","list,detail,add,update"));
@@ -177,12 +181,13 @@ public class MenuCreator {
 
 	private ScreenResource createPackingScreen(String busName, Integer locnNbr) {
 		ScreenResource screen = new ScreenResource("PackingMaintenance", "Packing Maintenance","Packing Maintenance", "R",UserConstants.MAINTENANCE_SCREEN, null, null);
+		String searchUrl = "https://packing.the3dsoft.com/packing/v1/"+busName+"/" + locnNbr + "/packs/search";
 		String listUrl = "https://packing.the3dsoft.com/packing/v1/"+busName+"/" + locnNbr + "/packs";
 		String getRecordUrl = "https://packing.the3dsoft.com/packing/v1/"+busName+"/" + locnNbr + "/packs/{id}";
 		String addRecordUrl = "";
 		String updateRecordUrl = "https://packing.the3dsoft.com/packing/v1/"+busName+"/" + locnNbr + "/packs"+"/{id}";
 		String deleteRecordUrl = "";
-		RecordResource hdrResource = new RecordResource("Packs", "Packs", listUrl, getRecordUrl, addRecordUrl, updateRecordUrl, deleteRecordUrl, null, null, null, null, null, null);
+		RecordResource hdrResource = new RecordResource("Packs", "Packs", searchUrl, listUrl, getRecordUrl, addRecordUrl, updateRecordUrl, deleteRecordUrl, null, null, null, null, null, null);
 		
 		List<FieldResource> fieldList = new ArrayList();
 		fieldList.add(new FieldResource("id","id","N","N","int","10","","list,detail,add,update"));
@@ -206,12 +211,13 @@ public class MenuCreator {
 	}
 	private ScreenResource createCustomerOrdersScreen(String busName, Integer locnNbr) {
 		ScreenResource customerOrdersScreen = new ScreenResource("CustomerOrderMaintenance", "Customer Order Maintenance","Customer Orders", "RW",UserConstants.MAINTENANCE_SCREEN, null, null);
+		String searchUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order/search";
 		String custOrdersListUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order";
 		String custOrdersRecordUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order/{id}";
 		String custOrdersAddRecordUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order";
 		String custOrdersUpdateRecordUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
 		String custOrdersDeleteRecordUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order"+"/{id}";
-		RecordResource customerOrderHdrResource = new RecordResource("Customer Orders", "Customer Orders", custOrdersListUrl, custOrdersRecordUrl, custOrdersAddRecordUrl, custOrdersUpdateRecordUrl, custOrdersDeleteRecordUrl, null, null, null, null, null, null);
+		RecordResource customerOrderHdrResource = new RecordResource("Customer Orders", "Customer Orders", searchUrl, custOrdersListUrl, custOrdersRecordUrl, custOrdersAddRecordUrl, custOrdersUpdateRecordUrl, custOrdersDeleteRecordUrl, null, null, null, null, null, null);
 		
 		List<FieldResource> fieldList = new ArrayList();
 		fieldList.add(new FieldResource("id","id","Y","N","int","10","","list,detail,add,update"));
@@ -238,12 +244,13 @@ public class MenuCreator {
 	
 	}	
 	public RecordResource getCustomerOrderDetailResource(String busName, Integer locnNbr) {
+		String searchUrl = "";
 		String custOrderDtlListUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order/{id}/dtl";
 		String custOrderDtlRecordUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order/{id}/dtl/{dtlId}";
 		String custOrderDtlAddRecordUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order/{id}/dtl";
 		String custOrderDtlupdateRecordUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order/{id}/dtl/{dtlId}";
 		String custOrderDtldeleteRecordUrl = "https://customer-orders.the3dsoft.com/customer-orders/v1/"+busName+"/" + locnNbr + "/order/{id}/dtl/{dtlId}";
-		RecordResource orderDtlResource = new RecordResource("CustomerOrderDtl", "Customer Order Details", custOrderDtlListUrl, custOrderDtlRecordUrl, custOrderDtlAddRecordUrl,custOrderDtlupdateRecordUrl, custOrderDtldeleteRecordUrl, null, null, null, null, null, null);
+		RecordResource orderDtlResource = new RecordResource("CustomerOrderDtl", "Customer Order Details", searchUrl,custOrderDtlListUrl, custOrderDtlRecordUrl, custOrderDtlAddRecordUrl,custOrderDtlupdateRecordUrl, custOrderDtldeleteRecordUrl, null, null, null, null, null, null);
 		
 		List<FieldResource> fieldList = new ArrayList();
 		fieldList.add(new FieldResource("id","id","Y","N","int","10","","list,detail,add,update"));

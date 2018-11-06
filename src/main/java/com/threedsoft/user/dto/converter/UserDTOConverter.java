@@ -117,7 +117,7 @@ public class UserDTOConverter {
 	
 	}*/
 	
-	private MenuResource createSampleOrderMenu(String busName, Integer locnNbr) {
+/*	private MenuResource createSampleOrderMenu(String busName, Integer locnNbr) {
 		MenuResource orderMenu = new MenuResource();
 		orderMenu.setMenuName("Orders");
 		List<ScreenResource> screenResourceList = new ArrayList();
@@ -146,7 +146,7 @@ public class UserDTOConverter {
 		searchFieldList.add("orderNbr");
 		searchFieldList.add("batchNbr");
 		
-/*		List<String> listDisplayFieldList = new ArrayList();
+		List<String> listDisplayFieldList = new ArrayList();
 		listDisplayFieldList.add("id");
 		listDisplayFieldList.add("busName");
 		listDisplayFieldList.add("locnNbr");
@@ -157,7 +157,7 @@ public class UserDTOConverter {
 		listDisplayFieldList.add("orderDttm");
 		listDisplayFieldList.add("deliveryDttm");
 		listDisplayFieldList.add("deliveryType");
-*/		
+		
 		orderHdrResource.setFieldList(fieldList);
 		orderHdrResource.setSearchFieldList(searchFieldList);
 		//orderHdrResource.setListDisplayFieldList(listDisplayFieldList);
@@ -196,7 +196,7 @@ public class UserDTOConverter {
 		searchFieldList.add("orderNbr");
 		searchFieldList.add("batchNbr");
 		
-/*		List<String> listDisplayFieldList = new ArrayList();
+		List<String> listDisplayFieldList = new ArrayList();
 		listDisplayFieldList.add("id");
 		listDisplayFieldList.add("busName");
 		listDisplayFieldList.add("locnNbr");
@@ -207,7 +207,7 @@ public class UserDTOConverter {
 		listDisplayFieldList.add("orderDttm");
 		listDisplayFieldList.add("deliveryDttm");
 		listDisplayFieldList.add("deliveryType");
-*/		
+		
 		orderDtlResource.setFieldList(fieldList);
 		orderDtlResource.setSearchFieldList(searchFieldList);
 		//orderDtlResource.setListDisplayFieldList(listDisplayFieldList);
@@ -217,4 +217,4 @@ public class UserDTOConverter {
 
 	}
 	
-}
+*/}
