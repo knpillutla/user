@@ -27,6 +27,8 @@ public class MenuCreator {
 		screenResourceList.add(createCustomerOrdersScreen(busName, locnNbr));
 		//screenResourceList.add(orderPlannerScreen);
 		screenResourceList.add(createInventoryScreen(busName, locnNbr));
+		screenResourceList.add(createPickingScreen(busName, locnNbr));
+		screenResourceList.add(createPackingScreen(busName, locnNbr));
 		inventoryMenu.setScreenResourceList(screenResourceList);
 		return inventoryMenu;
 	}
@@ -143,7 +145,7 @@ public class MenuCreator {
 		return inventoryScreen;
 	}
 
-	private ScreenResource createPicksScreen(String busName, Integer locnNbr) {
+	private ScreenResource createPickingScreen(String busName, Integer locnNbr) {
 		ScreenResource screen = new ScreenResource("PickingMaintenance", "Picking Maintenance","Picking Maintenance", "R",UserConstants.MAINTENANCE_SCREEN, null, null);
 		String listUrl = "https://picking.the3dsoft.com/picking/v1/"+busName+"/" + locnNbr + "/picks";
 		String getRecordUrl = "https://picking.the3dsoft.com/picking/v1/"+busName+"/" + locnNbr + "/picks/{id}";

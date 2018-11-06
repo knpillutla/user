@@ -10,6 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import com.threedsoft.user.streams.UserStreams;
 import com.threedsoft.util.service.EventPublisher;
@@ -43,4 +46,28 @@ public class UserApplication {
 		return () -> MessageBuilder.withPayload("hello").build();
 	}	
 */	
-}
+	@Bean
+	public CorsFilter corsFilter() {
+
+	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	    CorsConfiguration config = new CorsConfiguration();
+	    config.setAllowCredentials(true); 
+	    config.addAllowedOrigin("http://*the3dsoft.com");
+	    config.addAllowedOrigin("http://localhost");
+	    config.addAllowedOrigin("https://localhost:5000");
+	    config.addAllowedHeader("*");
+	    config.addAllowedMethod("*");
+	    source.registerCorsConfiguration("/**", config);
+	    return new CorsFilter(source);
+	}
+	
+/*    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurerAdapter() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("*");
+            }
+        };
+    }	
+*/}
