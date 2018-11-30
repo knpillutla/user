@@ -19,6 +19,7 @@ CREATE TABLE USER_MASTER
     ZIPCODE character varying(50),
     STATUS character varying(50),
     LOCALE character varying(50),
+    THEME character varying(15),
 	SOURCE character varying(50),
 	TRANSACTION_NAME character varying(50),
 	REF_FIELD_1  character varying(50),
@@ -30,5 +31,3 @@ CREATE TABLE USER_MASTER
     UPDATED_BY character varying(25),
     VERSION INTEGER
 );
-
-

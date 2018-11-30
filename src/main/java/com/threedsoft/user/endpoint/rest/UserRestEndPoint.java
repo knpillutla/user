@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.threedsoft.user.dto.requests.UserCreationRequestDTO;
 import com.threedsoft.user.dto.requests.UserLoginInRequestDTO;
+import com.threedsoft.user.dto.requests.UserUpdateRequestDTO;
 import com.threedsoft.user.dto.responses.UserResourceDTO;
 import com.threedsoft.user.exception.UserException;
 import com.threedsoft.user.service.UserService;
@@ -92,4 +93,17 @@ public class UserRestEndPoint {
 		}
 	}
 
+	@PostMapping("/user/id/{id}")
+	public ResponseEntity updateUser(@RequestBody UserUpdateRequestDTO userUpdateReq) throws IOException {
+		UserResourceDTO userResourceDTO = null;
+		try {
+			log.info("Received update request:" + userUpdateReq);
+			userResourceDTO = userService.updateUser(userUpdateReq);
+			log.info("Completed update request:" + userUpdateReq);
+			return ResponseEntity.ok(userResourceDTO);
+		} catch (UserException e) {
+			log.error("Error:", e);
+			return ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
+		}
+	}
 }

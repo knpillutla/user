@@ -10,6 +10,5 @@ public class UserConstants {
 	public static String FACEBOOK_AUTH_TYPE="facebook";
 	public static String USER_AUTH_TYPE="user";
 	public static String MAINTENANCE_SCREEN = "MaintenanceScreen";
-	public static String RF_SCREEN = "RFScreen";
-
+	public static String CONFIG_SCREEN = "ConfigurationScreen";
 }

@@ -73,6 +73,9 @@ public class User  implements Serializable{
 	@Column(name="COUNTRY")
 	String country;
 
+	@Column(name="THEME")
+	String theme;
+
 	@Column(name="LOCALE")
 	String locale;
 

@@ -1,11 +1,8 @@
 package com.threedsoft.user.service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +14,7 @@ import com.threedsoft.user.dto.events.UserCreationFailedEvent;
 import com.threedsoft.user.dto.events.UserLoginFailedEvent;
 import com.threedsoft.user.dto.requests.UserCreationRequestDTO;
 import com.threedsoft.user.dto.requests.UserLoginInRequestDTO;
+import com.threedsoft.user.dto.requests.UserUpdateRequestDTO;
 import com.threedsoft.user.dto.responses.UserResourceDTO;
 import com.threedsoft.user.exception.UserException;
 import com.threedsoft.user.util.UserConstants;
@@ -99,9 +97,15 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public UserResourceDTO updateUser(UserCreationRequestDTO userUpdateReq) throws UserException {
-		// TODO Auto-generated method stub
-		return null;
+	public UserResourceDTO updateUser(UserUpdateRequestDTO userUpdateReq) throws UserException {
+		User returnEntity = null;
+		Optional<User> userEntityOptional = userDAO.findById(userUpdateReq.getId());
+		if(userEntityOptional.isPresent()) {
+			User userEntity = userEntityOptional.get();
+			userEntity.setTheme(userUpdateReq.getTheme());
+			returnEntity = userDAO.save(userEntity);
+		}
+		return userDTOConverter.getUserResourceDTO(returnEntity);
 	}
 
 	@Override

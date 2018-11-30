@@ -9,9 +9,10 @@ import com.threedsoft.user.db.User;
 import com.threedsoft.user.dto.requests.UserCreationRequestDTO;
 import com.threedsoft.user.dto.responses.FieldResource;
 import com.threedsoft.user.dto.responses.MenuResource;
-import com.threedsoft.user.dto.responses.RecordResource;
+import com.threedsoft.user.dto.responses.DataResource;
 import com.threedsoft.user.dto.responses.ScreenResource;
 import com.threedsoft.user.dto.responses.UserResourceDTO;
+import com.threedsoft.user.menu.MenuCreator;
 import com.threedsoft.user.util.UserConstants;
 
 @Component
@@ -26,6 +27,7 @@ public class UserDTOConverter {
 		userEntity.setUserName(userCreationReq.getUserName());
 		userEntity.setCreatedBy(userCreationReq.getUserId());
 		userEntity.setUpdatedBy(userCreationReq.getUserId());
+		userEntity.setTheme(userCreationReq.getTheme());
 		if(userCreationReq.getAuthType()== null || userCreationReq.getAuthType().trim().equals("")) {
 			userEntity.setAuthType(UserConstants.USER_AUTH_TYPE);
 		}
