@@ -14,7 +14,7 @@ import com.threedsoft.user.util.UserConstants;
 public class UserProfileScreen {
 	public static ScreenResource createUserProfileScreen(Long id) {
 		ScreenResource screen = new ScreenResource("userProfile", "User Profile", "User Profile",
-				"RW", UserConstants.MAINTENANCE_SCREEN, null);
+				"RW", UserConstants.CONFIG_SCREEN, null);
 		String updateRecordUrl = "https://the3dsoft.com/users/v1/user/id/" + id;
 		
 		DataResource userDataResource = new DataResource("User", "User", "", "", 

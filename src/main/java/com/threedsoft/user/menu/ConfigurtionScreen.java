@@ -15,8 +15,8 @@ public class ConfigurtionScreen {
 	public static ScreenResource createPickingScreen(String busName, Integer locnNbr) {
 		ScreenResource screen = new ScreenResource("PickingMaintenance", "Picking Maintenance", "Picking Maintenance",
 				"R", UserConstants.CONFIG_SCREEN, null);
-		String listRecordUrl = "https://the3dsoft.com/api/v1/configs" + busName + "/" + locnNbr;
-		String updateRecordUrl = "https://the3dsoft.com/picking/v1/" + busName + "/" + locnNbr;
+		String listRecordUrl = "https://the3dsoft.com/api/v1/configs/" + busName + "/" + locnNbr;
+		String updateRecordUrl = "https://the3dsoft.com/api/v1/configs/" + busName + "/" + locnNbr;
 		
 		DataResource pickDataResource = new DataResource("systemConfig", "System Configuration", "", listRecordUrl, 
 				"", updateRecordUrl, "");
