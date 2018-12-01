@@ -12,6 +12,7 @@ import com.threedsoft.user.dto.responses.MenuResource;
 import com.threedsoft.user.dto.responses.DataResource;
 import com.threedsoft.user.dto.responses.ScreenResource;
 import com.threedsoft.user.dto.responses.UserResourceDTO;
+import com.threedsoft.user.menu.DashboardScreen;
 import com.threedsoft.user.menu.MenuCreator;
 import com.threedsoft.user.util.UserConstants;
 
@@ -65,9 +66,10 @@ public class UserDTOConverter {
 					userEntity.getFirstName(), userEntity.getLastName(), userEntity.getMiddleName(),
 					userEntity.getRoleName(), userEntity.getAddr1(), userEntity.getAddr2(), userEntity.getAddr3(),
 					userEntity.getCity(), userEntity.getState(), userEntity.getCountry(), userEntity.getZipCode(),
-					userEntity.getLocale(), userEntity.getCreatedBy(), null);
+					userEntity.getLocale(), userEntity.getCreatedBy(), null, null);
 			MenuCreator menuCreator = new MenuCreator();
 			userResourceDTO.setMenuResourceList(menuCreator.createWMSMenus(userResourceDTO.getBusName(), userResourceDTO.getDefLocnNbr()));
+			userResourceDTO.setDashboardResource(DashboardScreen.createDashboardScreen(userResourceDTO.getBusName(), userResourceDTO.getDefLocnNbr()));
 			return userResourceDTO;
 		}
 		return null;
