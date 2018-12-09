@@ -29,14 +29,14 @@ public class MenuCreator {
 		inventoryMenu.setMenuName("Fullfillment Maintenance");
 		List<ScreenResource> screenResourceList = new ArrayList();
 		screenResourceList.add(CustomerOrderScreen.createCustomerOrdersScreen(busName, locnNbr));
-		if(UserApplicationProperties.isHomeStore.equalsIgnoreCase("N")) {
+		//if(UserApplicationProperties.isHomeStore.equalsIgnoreCase("N")) {
 			screenResourceList.add(OrderPlannerScreen.createOrdersScreen(busName, locnNbr));
 			// screenResourceList.add(orderPlannerScreen);
 			screenResourceList.add(InventoryScreen.createInventoryScreen(busName, locnNbr));
 			screenResourceList.add(PickingScreen.createPickingScreen(busName, locnNbr));
 			screenResourceList.add(PackingScreen.createPackingScreen(busName, locnNbr));
 			inventoryMenu.setScreenResourceList(screenResourceList);
-		}
+		//}
 		return inventoryMenu;
 	}
 

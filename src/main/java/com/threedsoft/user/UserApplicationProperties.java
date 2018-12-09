@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import lombok.Data;
 
 public class UserApplicationProperties {
-	@Value("${homestore: N}")
+	@Value("${fulfillment.homestore: N}")
 	public static String isHomeStore;
 
 }

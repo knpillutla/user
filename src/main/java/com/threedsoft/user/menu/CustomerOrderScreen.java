@@ -40,11 +40,12 @@ public class CustomerOrderScreen {
 		fieldList.add(FieldResource.createPrimaryField("locnNbr", "locnNbr", "Locn Nbr", "int", "10"));
 		fieldList.add(FieldResource.createField("company","Company", "string", "15"));
 		fieldList.add(FieldResource.createField("division","Division", "string", "10"));
-		if(UserApplicationProperties.isHomeStore.equalsIgnoreCase("Y")) {
+/*		if(UserApplicationProperties.isHomeStore.equalsIgnoreCase("Y")) {
 			fieldList.add(FieldResource.createField("batchNbr","Picklist Nbr", "string", "25"));
 		}else {
 			fieldList.add(FieldResource.createField("batchNbr","Batch Nbr", "string", "25"));
 		}
+*/		fieldList.add(FieldResource.createField("batchNbr","Batch Nbr", "string", "25"));
 		fieldList.add(FieldResource.createField("orderDttm","Order Date/Time", "datetime", "20"));
 		fieldList.add(FieldResource.createField("deliveryDttm","Delivery Dttm", "date", "20"));
 		fieldList.add(FieldResource.createField("deliveryType","Delivery Type", "string", "1"));
@@ -115,14 +116,15 @@ public class CustomerOrderScreen {
 		customerOrderDataResource.setEditResourceFieldList(editRecordFieldList);
 		
 		List actionList = new ArrayList();
-		if(UserApplicationProperties.isHomeStore.equalsIgnoreCase("Y")) {
+//		if(UserApplicationProperties.isHomeStore.equalsIgnoreCase("Y")) {
 			actionList.add(printPickListAction);
 			actionList.add(packAndPrintAction);
 			actionList.add(reprintLabelAction);
-		}
+//		}
 		customerOrderDataResource.setRecordActionList(actionList);
 		customerOrderDataResource.setDtlResources(Arrays.asList(getCustomerOrderDetailResource(busName, locnNbr)));
 		customerOrdersScreen.setDataResource(customerOrderDataResource);
+		customerOrderDataResource.setPrimaryDtlResource(getCustomerOrderDetailResource(busName, locnNbr));
 		return customerOrdersScreen;
 
 	}

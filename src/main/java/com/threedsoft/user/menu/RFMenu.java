@@ -46,7 +46,7 @@ public class RFMenu {
 	}
 
 	private static RFScreenResource createRFPackScreen(String busName, Integer locnNbr) {
-		RFScreenResource rfScreen = new RFScreenResource("packFromTote", "Pack From Tote", "RW",0,30,15,null,null);
+		RFScreenResource rfScreen = new RFScreenResource("packFromTote", "Pack From Tote", "Pack From Tote","RW",0,30,15);
 		String toteDetailsUrl = "https://the3dsoft.com/packing/v1/" + busName + "/" + locnNbr + "/tote" + "/{tote}";
 		String updateRecordUrl = "https://the3dsoft.com/packing/v1/" + busName + "/" + locnNbr + "/packs" + "/{id}";
 		List<RFFieldResource> fieldList = new ArrayList();
@@ -67,7 +67,7 @@ public class RFMenu {
 	}
 
 	private static RFScreenResource createRFShipScreen(String busName, Integer locnNbr) {
-		RFScreenResource rfScreen = new RFScreenResource("shipping", "Ship Package", "RW",0,30,15,null,null);
+		RFScreenResource rfScreen = new RFScreenResource("shipping", "Ship Package","Ship Package", "RW",0,30,15);
 		String packageDetailsUrl = "https://the3dsoft.com/shipping/v1/" + busName + "/" + locnNbr + "/package" + "/{packageNbr}";
 		String shipPackageUrl = "https://the3dsoft.com/shipping/v1/" + busName + "/" + locnNbr + "/package" + "/{packageNbr}";
 		List<RFFieldResource> fieldList = new ArrayList();

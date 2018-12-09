@@ -114,6 +114,7 @@ public class OrderPlannerScreen {
 		OrderDataResource.setRecordActionList(Arrays.asList(startFullfillmentAction));
 		OrdersScreen.setDataResource(OrderDataResource);
 		OrderDataResource.setDtlResources(Arrays.asList(getOrderDetailResource(busName, locnNbr)));
+		OrderDataResource.setPrimaryDtlResource(getOrderDetailResource(busName, locnNbr));
 		return OrdersScreen;
 
 	}

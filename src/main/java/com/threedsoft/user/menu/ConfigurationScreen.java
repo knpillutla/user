@@ -11,7 +11,7 @@ import com.threedsoft.user.dto.responses.ScreenResource;
 import com.threedsoft.user.dto.responses.ViewEditFieldResource;
 import com.threedsoft.user.util.UserConstants;
 
-public class ConfigurtionScreen {
+public class ConfigurationScreen {
 	public static ScreenResource createPickingScreen(String busName, Integer locnNbr) {
 		ScreenResource screen = new ScreenResource("PickingMaintenance", "Picking Maintenance", "Picking Maintenance",
 				"R", UserConstants.CONFIG_SCREEN, null);
