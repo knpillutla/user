@@ -8,6 +8,7 @@ import com.threedsoft.user.dto.responses.ActionResource;
 import com.threedsoft.user.dto.responses.DataResource;
 import com.threedsoft.user.dto.responses.FieldResource;
 import com.threedsoft.user.dto.responses.ScreenResource;
+import com.threedsoft.user.dto.responses.SearchFieldResource;
 import com.threedsoft.user.dto.responses.ViewEditFieldResource;
 import com.threedsoft.user.util.UserConstants;
 
@@ -72,8 +73,14 @@ public class PackingScreen {
 		editRecordFieldList.add(ViewEditFieldResource.createTextField("toContainer"));
 		editRecordFieldList.add(ViewEditFieldResource.createTextField("locked"));
 
+		List<SearchFieldResource> searchFieldList = new ArrayList();
+		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("busName",busName));
+		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("locnNbr",locnNbr.toString()));
+		searchFieldList.add(SearchFieldResource.createSearchField("locnBrcd"));
+		searchFieldList.add(SearchFieldResource.createSearchField("itemBrcd"));
+
 		packDataResource.setFieldList(fieldList);
-		packDataResource.setSearchFields("busName,locnNbr,locnBrcd,itemBrcd");
+		packDataResource.setSearchFieldList(searchFieldList);
 		packDataResource.setListFields("id, batchNbr,itemBrcd,qty,fromContainer,toContainer,locked, ordeId, orderNbr");
 		packDataResource.setRecordActionList(Arrays.asList(packConfirmPickingAction));
 		screen.setDataResource(packDataResource);

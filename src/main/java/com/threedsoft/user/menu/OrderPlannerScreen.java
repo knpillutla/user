@@ -8,6 +8,7 @@ import com.threedsoft.user.dto.responses.ActionResource;
 import com.threedsoft.user.dto.responses.DataResource;
 import com.threedsoft.user.dto.responses.FieldResource;
 import com.threedsoft.user.dto.responses.ScreenResource;
+import com.threedsoft.user.dto.responses.SearchFieldResource;
 import com.threedsoft.user.dto.responses.ViewEditFieldResource;
 import com.threedsoft.user.util.UserConstants;
 
@@ -104,8 +105,14 @@ public class OrderPlannerScreen {
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("company"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("division"));
 
+		List<SearchFieldResource> searchFieldList = new ArrayList();
+		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("busName",busName));
+		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("locnNbr",locnNbr.toString()));
+		searchFieldList.add(SearchFieldResource.createSearchField("orderNbr"));
+		searchFieldList.add(SearchFieldResource.createSearchField("batchNbr"));
+		
 		OrderDataResource.setFieldList(fieldList);
-		OrderDataResource.setSearchFields("busName,locnNbr,orderNbr,batchNbr");
+		OrderDataResource.setSearchFieldList(searchFieldList);
 		OrderDataResource.setListFields("id,orderNbr,batchNbr,busName,locnNbr,company,division");
 		// OrderDataResource.setAddRecordFields("busName,locnNbr,orderNbr,company,division");
 		// OrderDataResource.setEditRecordFields("id,busName,locnNbr,orderNbr,company,division");

@@ -8,6 +8,7 @@ import com.threedsoft.user.dto.responses.ActionResource;
 import com.threedsoft.user.dto.responses.DataResource;
 import com.threedsoft.user.dto.responses.FieldResource;
 import com.threedsoft.user.dto.responses.ScreenResource;
+import com.threedsoft.user.dto.responses.SearchFieldResource;
 import com.threedsoft.user.dto.responses.ViewEditFieldResource;
 import com.threedsoft.user.util.UserConstants;
 
@@ -59,9 +60,14 @@ public class PickingScreen {
 		editRecordFieldList.add(ViewEditFieldResource.createTextField("qtyPicked"));
 		editRecordFieldList.add(ViewEditFieldResource.createTextField("locked"));
 		
+		List<SearchFieldResource> searchFieldList = new ArrayList();
+		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("busName",busName));
+		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("locnNbr",locnNbr.toString()));
+		searchFieldList.add(SearchFieldResource.createSearchField("locnBrcd"));
+		searchFieldList.add(SearchFieldResource.createSearchField("itemBrcd"));
 
 		pickDataResource.setFieldList(fieldList);
-		pickDataResource.setSearchFields("busName,locnNbr,locnBrcd,itemBrcd");
+		pickDataResource.setSearchFieldList(searchFieldList);
 		pickDataResource.setListFields("id,batchNbr,locnBrcd,itemBrcd,qty,qtyPicked,locked");
 		pickDataResource.setEditResourceFieldList(editRecordFieldList);
 		pickDataResource.setRecordActionList(Arrays.asList(pickConfirmPickingAction));

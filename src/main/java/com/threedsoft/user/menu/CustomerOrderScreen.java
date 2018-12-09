@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.threedsoft.user.UserApplicationProperties;
 import com.threedsoft.user.dto.responses.ActionResource;
 import com.threedsoft.user.dto.responses.AddFieldResource;
 import com.threedsoft.user.dto.responses.DataResource;
 import com.threedsoft.user.dto.responses.FieldResource;
 import com.threedsoft.user.dto.responses.ScreenResource;
+import com.threedsoft.user.dto.responses.SearchFieldResource;
 import com.threedsoft.user.dto.responses.ViewEditFieldResource;
 import com.threedsoft.user.util.UserConstants;
 
@@ -105,8 +105,14 @@ public class CustomerOrderScreen {
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("company"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("division"));
 
+		List<SearchFieldResource> searchFieldList = new ArrayList();
+		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("busName",busName));
+		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("locnNbr",locnNbr.toString()));
+		searchFieldList.add(SearchFieldResource.createSearchField("orderNbr"));
+		searchFieldList.add(SearchFieldResource.createSearchField("batchNbr"));
+
 		customerOrderDataResource.setFieldList(fieldList);
-		customerOrderDataResource.setSearchFields("busName,locnNbr,orderNbr,batchNbr");
+		customerOrderDataResource.setSearchFieldList(searchFieldList);
 		customerOrderDataResource.setListFields("id,orderNbr,batchNbr,busName,locnNbr,company,division");
 		//customerOrderDataResource.setAddRecordFields("busName,locnNbr,orderNbr,company,division");
 		//customerOrderDataResource.setEditRecordFields("id,busName,locnNbr,orderNbr,company,division");
