@@ -41,10 +41,11 @@ public class PickingScreen {
 		fieldList.add(FieldResource.createPrimaryField("batchNbr","Batch Nbr", "string", "25"));
 		fieldList.add(FieldResource.createField("company","Company", "string", "15"));
 		fieldList.add(FieldResource.createField("division","Division", "string", "10"));
-		fieldList.add(FieldResource.createField("locnBrcd", "Locn Brcd","string", "20"));
-		fieldList.add(FieldResource.createField("itemBrcd", "Item Brcd","string", "20"));
-		fieldList.add(FieldResource.createField("qty", "Qty", "int", "2"));
-		fieldList.add(FieldResource.createField("qtyPicked", "Picked Qty", "int", "2"));
+		fieldList.add(FieldResource.createMandotoryField("busUnit","Bus Unit", "string", "2"));
+		fieldList.add(FieldResource.createMandotoryField("locnBrcd", "Locn Brcd","string", "20"));
+		fieldList.add(FieldResource.createMandotoryField("itemBrcd", "Item Brcd","string", "20"));
+		fieldList.add(FieldResource.createMandotoryField("qty", "Qty", "int", "2"));
+		fieldList.add(FieldResource.createMandotoryField("qtyPicked", "Picked Qty", "int", "2"));
 		fieldList.add(FieldResource.createDropDownField("locked", "Locked", "string", "1","Y,N","N"));
 		fieldList.add(FieldResource.createField("userId", "userId", "int", "2"));
 

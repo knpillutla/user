@@ -40,16 +40,16 @@ public class CustomerOrderScreen {
 		fieldList.add(FieldResource.createPrimaryField("locnNbr", "Locn Nbr", "int", "10"));
 		fieldList.add(FieldResource.createField("company","Company", "string", "15"));
 		fieldList.add(FieldResource.createField("division","Division", "string", "10"));
-		fieldList.add(FieldResource.createField("busUnit","Bus Unit", "string", "10"));
+		fieldList.add(FieldResource.createMandotoryField("busUnit","Bus Unit", "string", "2"));
 /*		if(UserApplicationProperties.isHomeStore.equalsIgnoreCase("Y")) {
 			fieldList.add(FieldResource.createField("batchNbr","Picklist Nbr", "string", "25"));
 		}else {
 			fieldList.add(FieldResource.createField("batchNbr","Batch Nbr", "string", "25"));
 		}
 */		fieldList.add(FieldResource.createField("batchNbr","Batch Nbr", "string", "25"));
-		fieldList.add(FieldResource.createField("orderDttm","Order Date/Time", "datetime", "20"));
-		fieldList.add(FieldResource.createField("expectedDeliveryDttm","Delivery Date", "date", "20"));
-		fieldList.add(FieldResource.createField("shipByDttm","Ship By Date", "date", "20"));
+		fieldList.add(FieldResource.createMandotoryField("orderDttm","Order Date/Time", "datetime", "20"));
+		fieldList.add(FieldResource.createMandotoryField("expectedDeliveryDttm","Delivery Date", "date", "20"));
+		fieldList.add(FieldResource.createMandotoryField("shipByDttm","Ship By Date", "date", "20"));
 		fieldList.add(FieldResource.createField("deliveryType","Delivery Type", "string", "1"));
 		ActionResource packAndPrintAction = new ActionResource();
 		packAndPrintAction.setActionName("packAndPrint");

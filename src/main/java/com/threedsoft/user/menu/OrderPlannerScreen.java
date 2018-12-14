@@ -35,10 +35,11 @@ public class OrderPlannerScreen {
 		fieldList.add(FieldResource.createPrimaryField("locnNbr", "Locn Nbr", "int", "10"));
 		fieldList.add(FieldResource.createField("company", "Company", "string", "15"));
 		fieldList.add(FieldResource.createField("division", "Division", "string", "10"));
-		fieldList.add(FieldResource.createField("busUnit", "Bus Unit", "string", "10"));
+		fieldList.add(FieldResource.createMandotoryField("busUnit","Bus Unit", "string", "2"));
 		fieldList.add(FieldResource.createField("batchNbr", "Batch Nbr", "string", "25"));
-		fieldList.add(FieldResource.createField("orderDttm", "Order Date/Time", "datetime", "20"));
-		fieldList.add(FieldResource.createField("deliveryDttm", "Delivery Dttm", "date", "20"));
+		fieldList.add(FieldResource.createMandotoryField("orderDttm","Order Date/Time", "datetime", "20"));
+		fieldList.add(FieldResource.createMandotoryField("expectedDeliveryDttm","Delivery Date", "date", "20"));
+		fieldList.add(FieldResource.createMandotoryField("shipByDttm","Ship By Date", "date", "20"));
 		fieldList.add(FieldResource.createField("deliveryType", "Delivery Type", "string", "1"));
 		String startFullfillmentActionUrl = "https://the3dsoft.com/orderplanner/v1/" + busName + "/" + locnNbr
 				+ "/order" + "/{id}";
@@ -149,10 +150,9 @@ public class OrderPlannerScreen {
 		fieldList.add(FieldResource.createField("orderLineNbr", "Line Nbr", "int", "2"));
 		fieldList.add(FieldResource.createField("company", "Company", "string", "15"));
 		fieldList.add(FieldResource.createField("division", "Division", "string", "10"));
-		fieldList.add(FieldResource.createField("busUnit", "Bus Unit", "string", "10"));
-		fieldList.add(FieldResource.createField("orderNbr", "Order Nbr", "string", "10"));
-		fieldList.add(FieldResource.createField("origOrderQty", "Orig Order Qty", "int", "4"));
-		fieldList.add(FieldResource.createField("orderQty", "Order Qty", "int", "4"));
+		fieldList.add(FieldResource.createMandotoryField("orderNbr", "Order Nbr", "string", "10"));
+		fieldList.add(FieldResource.createMandotoryField("origOrderQty", "Orig Order Qty", "int", "4"));
+		fieldList.add(FieldResource.createMandotoryField("orderQty", "Order Qty", "int", "4"));
 		fieldList.add(FieldResource.createField("allocatedQty", "Allocated Qty", "int", "4"));
 		fieldList.add(FieldResource.createField("pickedQty", "Picked Qty", "int", "4"));
 		fieldList.add(FieldResource.createField("packedQty", "Packed Qty", "int", "4"));

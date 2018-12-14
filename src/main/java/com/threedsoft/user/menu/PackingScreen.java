@@ -50,11 +50,12 @@ public class PackingScreen {
 		fieldList.add(FieldResource.createField("orderId","Order Id", "string", "15"));
 		fieldList.add(FieldResource.createField("company","Company", "string", "15"));
 		fieldList.add(FieldResource.createField("division","Division", "string", "10"));
+		fieldList.add(FieldResource.createMandotoryField("busUnit","Bus Unit", "string", "2"));
 		fieldList.add(FieldResource.createField("itemBrcd", "Item Brcd","string", "20"));
-		fieldList.add(FieldResource.createField("qty", "Qty", "int", "2"));
-		fieldList.add(FieldResource.createField("packedQty", "Packed Qty", "int", "2"));
-		fieldList.add(FieldResource.createField("fromContainer", "From Container", "string", "20"));
-		fieldList.add(FieldResource.createField("toContainer", "To Container", "string", "20"));
+		fieldList.add(FieldResource.createMandotoryField("qty", "Qty", "int", "2"));
+		fieldList.add(FieldResource.createMandotoryField("packedQty", "Packed Qty", "int", "2"));
+		fieldList.add(FieldResource.createMandotoryField("fromContainer", "From Container", "string", "20"));
+		fieldList.add(FieldResource.createMandotoryField("toContainer", "To Container", "string", "20"));
 		fieldList.add(FieldResource.createDropDownField("locked", "Locked", "string", "1","Y,N","N"));
 
 		List<ViewEditFieldResource> editRecordFieldList = new ArrayList();
