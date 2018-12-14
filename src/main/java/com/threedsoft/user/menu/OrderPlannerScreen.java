@@ -197,6 +197,7 @@ public class OrderPlannerScreen {
 				"id,orderId,orderNbr,orderLineNbr,origOrderQty, orderQty, allocatedQty, pickedQty, packedQty, shippedQty");
 */		
 		orderDtlResource.setViewResourceFieldList(viewRecordFieldList);
+		orderDtlResource.setHdrDisplayFields("id,orderNbr,company,division,busUnit,orderDttm,shipByDttm");
 		return orderDtlResource;
 	}
 

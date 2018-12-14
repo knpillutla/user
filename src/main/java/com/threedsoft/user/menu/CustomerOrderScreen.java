@@ -51,6 +51,7 @@ public class CustomerOrderScreen {
 		fieldList.add(FieldResource.createMandotoryField("expectedDeliveryDttm","Delivery Date", "date", "20"));
 		fieldList.add(FieldResource.createMandotoryField("shipByDttm","Ship By Date", "date", "20"));
 		fieldList.add(FieldResource.createField("deliveryType","Delivery Type", "string", "1"));
+		
 		ActionResource packAndPrintAction = new ActionResource();
 		packAndPrintAction.setActionName("packAndPrint");
 		packAndPrintAction.setActionDisplayName("PackAndPrint");
@@ -216,6 +217,7 @@ public class CustomerOrderScreen {
 		orderDtlResource.setAddResourceFieldList(addRecordFieldList);
 		orderDtlResource.setEditResourceFieldList(editRecordFieldList);
 		orderDtlResource.setViewResourceFieldList(viewRecordFieldList);
+		orderDtlResource.setHdrDisplayFields("id,orderNbr,company,division,busUnit,orderDttm,shipByDttm");
 		return orderDtlResource;
 	}
 
