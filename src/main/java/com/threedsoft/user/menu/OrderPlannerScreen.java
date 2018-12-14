@@ -29,12 +29,13 @@ public class OrderPlannerScreen {
 				ordersAddRecordUrl, ordersUpdateRecordUrl, ordersDeleteRecordUrl);
 
 		List<FieldResource> fieldList = new ArrayList();
-		fieldList.add(FieldResource.createPrimaryField("id", "orderId", "id", "int", "10"));
-		fieldList.add(FieldResource.createPrimaryField("orderNbr", "orderNbr", "Order Nbr", "string", "10"));
-		fieldList.add(FieldResource.createPrimaryField("busName", "busName", "Bus Name", "string", "25"));
-		fieldList.add(FieldResource.createPrimaryField("locnNbr", "locnNbr", "Locn Nbr", "int", "10"));
+		fieldList.add(FieldResource.createPrimaryField("id", "id", "int", "10"));
+		fieldList.add(FieldResource.createPrimaryField("orderNbr", "Order Nbr", "string", "10"));
+		fieldList.add(FieldResource.createPrimaryField("busName", "Bus Name", "string", "25"));
+		fieldList.add(FieldResource.createPrimaryField("locnNbr", "Locn Nbr", "int", "10"));
 		fieldList.add(FieldResource.createField("company", "Company", "string", "15"));
 		fieldList.add(FieldResource.createField("division", "Division", "string", "10"));
+		fieldList.add(FieldResource.createField("busUnit", "Bus Unit", "string", "10"));
 		fieldList.add(FieldResource.createField("batchNbr", "Batch Nbr", "string", "25"));
 		fieldList.add(FieldResource.createField("orderDttm", "Order Date/Time", "datetime", "20"));
 		fieldList.add(FieldResource.createField("deliveryDttm", "Delivery Dttm", "date", "20"));
@@ -104,6 +105,7 @@ public class OrderPlannerScreen {
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderNbr"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("company"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("division"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("busUnit"));
 
 		List<SearchFieldResource> searchFieldList = new ArrayList();
 		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("busName",busName));
@@ -113,7 +115,7 @@ public class OrderPlannerScreen {
 		
 		OrderDataResource.setFieldList(fieldList);
 		OrderDataResource.setSearchFieldList(searchFieldList);
-		OrderDataResource.setListFields("id,orderNbr,batchNbr,busName,locnNbr,company,division");
+		OrderDataResource.setListFields("id,orderNbr,batchNbr,busName,locnNbr,company,division,busUnit");
 		// OrderDataResource.setAddRecordFields("busName,locnNbr,orderNbr,company,division");
 		// OrderDataResource.setEditRecordFields("id,busName,locnNbr,orderNbr,company,division");
 		// OrderDataResource.setViewFields("id,busName,locnNbr,orderNbr,company,division");
@@ -142,11 +144,12 @@ public class OrderPlannerScreen {
 				custOrderDtlAddRecordUrl, custOrderDtlupdateRecordUrl, custOrderDtldeleteRecordUrl);
 
 		List<FieldResource> fieldList = new ArrayList();
-		fieldList.add(FieldResource.createPrimaryField("id", "orderDtlId", "id", "int", "10"));
+		fieldList.add(FieldResource.createPrimaryField("id", "id", "int", "10"));
 		fieldList.add(FieldResource.createField("orderId", "Order Id", "int", "10"));
 		fieldList.add(FieldResource.createField("orderLineNbr", "Line Nbr", "int", "2"));
 		fieldList.add(FieldResource.createField("company", "Company", "string", "15"));
 		fieldList.add(FieldResource.createField("division", "Division", "string", "10"));
+		fieldList.add(FieldResource.createField("busUnit", "Bus Unit", "string", "10"));
 		fieldList.add(FieldResource.createField("orderNbr", "Order Nbr", "string", "10"));
 		fieldList.add(FieldResource.createField("origOrderQty", "Orig Order Qty", "int", "4"));
 		fieldList.add(FieldResource.createField("orderQty", "Order Qty", "int", "4"));
@@ -175,10 +178,8 @@ public class OrderPlannerScreen {
 		 */
 		List<ViewEditFieldResource> viewRecordFieldList = new ArrayList();
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("id"));
-		viewRecordFieldList.add(ViewEditFieldResource.createHiddenField("busName"));
-		viewRecordFieldList.add(ViewEditFieldResource.createHiddenField("locnNbr"));
-		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderNbr"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderId"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderNbr"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderLineNbr"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("origOrderQty"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderQty"));
@@ -186,6 +187,8 @@ public class OrderPlannerScreen {
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("pickedQty"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("packedQty"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("shippedQty"));
+		viewRecordFieldList.add(ViewEditFieldResource.createHiddenField("busName"));
+		viewRecordFieldList.add(ViewEditFieldResource.createHiddenField("locnNbr"));
 		orderDtlResource.setFieldList(fieldList);
 		// orderDtlResource.setSearchFieldList(searchFieldList);
 		orderDtlResource.setListFields(

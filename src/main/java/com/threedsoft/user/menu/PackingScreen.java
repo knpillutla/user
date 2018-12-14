@@ -42,9 +42,9 @@ public class PackingScreen {
 				addRecordUrl, updateRecordUrl, deleteRecordUrl);
 
 		List<FieldResource> fieldList = new ArrayList();
-		fieldList.add(FieldResource.createPrimaryField("id", "packId","pack id", "int", "10"));
-		fieldList.add(FieldResource.createPrimaryField("busName","busName","Bus Name", "string", "25"));
-		fieldList.add(FieldResource.createPrimaryField("locnNbr", "locnNbr", "Locn Nbr", "int", "10"));
+		fieldList.add(FieldResource.createPrimaryField("id", "pack id", "int", "10"));
+		fieldList.add(FieldResource.createPrimaryField("busName","Bus Name", "string", "25"));
+		fieldList.add(FieldResource.createPrimaryField("locnNbr", "Locn Nbr", "int", "10"));
 		fieldList.add(FieldResource.createField("batchNbr","Batch Nbr", "string", "15"));
 		fieldList.add(FieldResource.createField("orderNbr","Order Nbr", "string", "15"));
 		fieldList.add(FieldResource.createField("orderId","Order Id", "string", "15"));

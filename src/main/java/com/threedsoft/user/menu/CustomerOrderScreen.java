@@ -34,12 +34,13 @@ public class CustomerOrderScreen {
 				custOrdersListUrl, custOrdersAddRecordUrl, custOrdersUpdateRecordUrl, custOrdersDeleteRecordUrl);
 
 		List<FieldResource> fieldList = new ArrayList();
-		fieldList.add(FieldResource.createPrimaryField("id", "orderId","id", "int", "10"));
-		fieldList.add(FieldResource.createPrimaryField("orderNbr", "orderNbr","Order Nbr", "string", "10"));
-		fieldList.add(FieldResource.createPrimaryField("busName","busName","Bus Name", "string", "25"));
-		fieldList.add(FieldResource.createPrimaryField("locnNbr", "locnNbr", "Locn Nbr", "int", "10"));
+		fieldList.add(FieldResource.createPrimaryField("id", "Id", "int", "10"));
+		fieldList.add(FieldResource.createPrimaryField("orderNbr", "Order Nbr", "string", "10"));
+		fieldList.add(FieldResource.createPrimaryField("busName","Bus Name", "string", "25"));
+		fieldList.add(FieldResource.createPrimaryField("locnNbr", "Locn Nbr", "int", "10"));
 		fieldList.add(FieldResource.createField("company","Company", "string", "15"));
 		fieldList.add(FieldResource.createField("division","Division", "string", "10"));
+		fieldList.add(FieldResource.createField("busUnit","Bus Unit", "string", "10"));
 /*		if(UserApplicationProperties.isHomeStore.equalsIgnoreCase("Y")) {
 			fieldList.add(FieldResource.createField("batchNbr","Picklist Nbr", "string", "25"));
 		}else {
@@ -47,7 +48,8 @@ public class CustomerOrderScreen {
 		}
 */		fieldList.add(FieldResource.createField("batchNbr","Batch Nbr", "string", "25"));
 		fieldList.add(FieldResource.createField("orderDttm","Order Date/Time", "datetime", "20"));
-		fieldList.add(FieldResource.createField("deliveryDttm","Delivery Dttm", "date", "20"));
+		fieldList.add(FieldResource.createField("expectedDeliveryDttm","Delivery Date", "date", "20"));
+		fieldList.add(FieldResource.createField("shipByDttm","Ship By Date", "date", "20"));
 		fieldList.add(FieldResource.createField("deliveryType","Delivery Type", "string", "1"));
 		ActionResource packAndPrintAction = new ActionResource();
 		packAndPrintAction.setActionName("packAndPrint");
@@ -88,14 +90,22 @@ public class CustomerOrderScreen {
 		addRecordFieldList.add(AddFieldResource.createTextField("orderNbr"));
 		addRecordFieldList.add(AddFieldResource.createTextField("company"));
 		addRecordFieldList.add(AddFieldResource.createTextField("division"));
+		addRecordFieldList.add(AddFieldResource.createTextField("busUnit"));
+		addRecordFieldList.add(AddFieldResource.createTextField("orderDttm"));
+		addRecordFieldList.add(AddFieldResource.createTextField("expectedDeliveryDttm"));
+		addRecordFieldList.add(AddFieldResource.createTextField("shipByDttm"));
 		
 		List<ViewEditFieldResource> editRecordFieldList = new ArrayList();
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("id"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("busName"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("locnNbr"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderNbr"));
-		editRecordFieldList.add(ViewEditFieldResource.createTextField("company"));
-		editRecordFieldList.add(ViewEditFieldResource.createTextField("division"));
+		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("company"));
+		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("division"));
+		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("busUnit"));
+		editRecordFieldList.add(ViewEditFieldResource.createTextField("orderDttm"));
+		editRecordFieldList.add(ViewEditFieldResource.createTextField("expectedDeliveryDttm"));
+		editRecordFieldList.add(ViewEditFieldResource.createTextField("shipByDttm"));
 
 		List<ViewEditFieldResource> viewRecordFieldList = new ArrayList();
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("id"));
@@ -104,6 +114,10 @@ public class CustomerOrderScreen {
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderNbr"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("company"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("division"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("busUnit"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderDttm"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("expectedDeliveryDttm"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("shipByDttm"));
 
 		List<SearchFieldResource> searchFieldList = new ArrayList();
 		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("busName",busName));
@@ -151,7 +165,7 @@ public class CustomerOrderScreen {
 				custOrderDtlListUrl, custOrderDtlAddRecordUrl, custOrderDtlupdateRecordUrl, custOrderDtldeleteRecordUrl);
 
 		List<FieldResource> fieldList = new ArrayList();
-		fieldList.add(FieldResource.createPrimaryField("id", "orderDtlId","id", "int", "10"));
+		fieldList.add(FieldResource.createPrimaryField("id", "id", "int", "10"));
 		fieldList.add(FieldResource.createField("orderId", "Order Id", "int", "10"));
 		fieldList.add(FieldResource.createField("orderLineNbr", "Line Nbr", "int", "2"));
 		fieldList.add(FieldResource.createField("company", "Company", "string", "15"));
@@ -167,7 +181,7 @@ public class CustomerOrderScreen {
 		List<AddFieldResource> addRecordFieldList = new ArrayList();
 		addRecordFieldList.add(AddFieldResource.createHiddenFieldWithDefaultValue("busName",busName));
 		addRecordFieldList.add(AddFieldResource.createHiddenFieldWithDefaultValue("locnNbr",locnNbr));
-		addRecordFieldList.add(AddFieldResource.createDisabledFieldWithDefaultValue("orderId", "{orderId}"));
+		addRecordFieldList.add(AddFieldResource.createHdrReferenceField("orderId", "id"));
 		addRecordFieldList.add(AddFieldResource.createTextField("origOrderQty"));
 		addRecordFieldList.add(AddFieldResource.createTextField("orderQty"));
 		addRecordFieldList.add(AddFieldResource.createTextField("allocatedQty"));

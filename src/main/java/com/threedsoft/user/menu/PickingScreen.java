@@ -35,10 +35,10 @@ public class PickingScreen {
 				addRecordUrl, updateRecordUrl, deleteRecordUrl);
 
 		List<FieldResource> fieldList = new ArrayList();
-		fieldList.add(FieldResource.createPrimaryField("id", "pickId","pick id", "int", "10"));
-		fieldList.add(FieldResource.createPrimaryField("busName","busName","Bus Name", "string", "25"));
-		fieldList.add(FieldResource.createPrimaryField("locnNbr", "locnNbr", "Locn Nbr", "int", "10"));
-		fieldList.add(FieldResource.createPrimaryField("batchNbr","batchNbr","Batch Nbr", "string", "25"));
+		fieldList.add(FieldResource.createPrimaryField("id", "pick id", "int", "10"));
+		fieldList.add(FieldResource.createPrimaryField("busName","Bus Name", "string", "25"));
+		fieldList.add(FieldResource.createPrimaryField("locnNbr", "Locn Nbr", "int", "10"));
+		fieldList.add(FieldResource.createPrimaryField("batchNbr","Batch Nbr", "string", "25"));
 		fieldList.add(FieldResource.createField("company","Company", "string", "15"));
 		fieldList.add(FieldResource.createField("division","Division", "string", "10"));
 		fieldList.add(FieldResource.createField("locnBrcd", "Locn Brcd","string", "20"));
