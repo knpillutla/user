@@ -185,10 +185,10 @@ public class CustomerOrderScreen {
 		addRecordFieldList.add(AddFieldResource.createHdrReferenceField("orderId", "id"));
 		addRecordFieldList.add(AddFieldResource.createTextField("origOrderQty"));
 		addRecordFieldList.add(AddFieldResource.createTextField("orderQty"));
-		addRecordFieldList.add(AddFieldResource.createTextField("allocatedQty"));
-		addRecordFieldList.add(AddFieldResource.createTextField("pickedQty"));
-		addRecordFieldList.add(AddFieldResource.createTextField("packedQty"));
-		addRecordFieldList.add(AddFieldResource.createTextField("shippedQty"));
+//		addRecordFieldList.add(AddFieldResource.createTextField("allocatedQty"));
+//		addRecordFieldList.add(AddFieldResource.createTextField("pickedQty"));
+//		addRecordFieldList.add(AddFieldResource.createTextField("packedQty"));
+//		addRecordFieldList.add(AddFieldResource.createTextField("shippedQty"));
 
 		List<ViewEditFieldResource> editRecordFieldList = new ArrayList();
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("id"));
@@ -198,6 +198,10 @@ public class CustomerOrderScreen {
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderId"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderLineNbr"));
 		editRecordFieldList.add(ViewEditFieldResource.createTextField("orderQty"));
+		editRecordFieldList.add(ViewEditFieldResource.createTextField("allocatedQty"));
+		editRecordFieldList.add(ViewEditFieldResource.createTextField("pickedQty"));
+		editRecordFieldList.add(ViewEditFieldResource.createTextField("packedQty"));
+		editRecordFieldList.add(ViewEditFieldResource.createTextField("shippedQty"));
 
 		List<ViewEditFieldResource> viewRecordFieldList = new ArrayList();
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("id"));
@@ -207,6 +211,10 @@ public class CustomerOrderScreen {
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderId"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderLineNbr"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderQty"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("allocatedQty"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("pickedQty"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("packedQty"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("shippedQty"));
 
 		orderDtlResource.setFieldList(fieldList);
 		//orderDtlResource.setSearchFieldList(searchFieldList);
