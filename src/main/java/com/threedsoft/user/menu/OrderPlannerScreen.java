@@ -35,11 +35,11 @@ public class OrderPlannerScreen {
 		fieldList.add(FieldResource.createPrimaryField("locnNbr", "Locn Nbr", "int", "10"));
 		fieldList.add(FieldResource.createField("company", "Company", "string", "15"));
 		fieldList.add(FieldResource.createField("division", "Division", "string", "10"));
-		fieldList.add(FieldResource.createMandotoryField("busUnit","Bus Unit", "string", "2"));
+		fieldList.add(FieldResource.createField("busUnit","Bus Unit", "string", "2"));
 		fieldList.add(FieldResource.createField("batchNbr", "Batch Nbr", "string", "25"));
-		fieldList.add(FieldResource.createMandotoryField("orderDttm","Order Date/Time", "datetime", "20"));
-		fieldList.add(FieldResource.createMandotoryField("expectedDeliveryDttm","Delivery Date", "date", "20"));
-		fieldList.add(FieldResource.createMandotoryField("shipByDttm","Ship By Date", "date", "20"));
+		fieldList.add(FieldResource.createField("orderDttm","Order Date/Time", "datetime", "20"));
+		fieldList.add(FieldResource.createField("expectedDeliveryDttm","Delivery Date", "date", "20"));
+		fieldList.add(FieldResource.createField("shipByDttm","Ship By Date", "date", "20"));
 		fieldList.add(FieldResource.createField("deliveryType", "Delivery Type", "string", "1"));
 		String startFullfillmentActionUrl = "https://the3dsoft.com/orderplanner/v1/" + busName + "/" + locnNbr
 				+ "/order" + "/{id}";
@@ -150,9 +150,10 @@ public class OrderPlannerScreen {
 		fieldList.add(FieldResource.createField("orderLineNbr", "Line Nbr", "int", "2"));
 		fieldList.add(FieldResource.createField("company", "Company", "string", "15"));
 		fieldList.add(FieldResource.createField("division", "Division", "string", "10"));
-		fieldList.add(FieldResource.createMandotoryField("orderNbr", "Order Nbr", "string", "10"));
-		fieldList.add(FieldResource.createMandotoryField("origOrderQty", "Orig Order Qty", "int", "4"));
-		fieldList.add(FieldResource.createMandotoryField("orderQty", "Order Qty", "int", "4"));
+		fieldList.add(FieldResource.createField("orderNbr", "Order Nbr", "string", "10"));
+		fieldList.add(FieldResource.createField("itemBrcd", "UPC", "string", "20"));
+		fieldList.add(FieldResource.createField("origOrderQty", "Orig Order Qty", "int", "4"));
+		fieldList.add(FieldResource.createField("orderQty", "Order Qty", "int", "4"));
 		fieldList.add(FieldResource.createField("allocatedQty", "Allocated Qty", "int", "4"));
 		fieldList.add(FieldResource.createField("pickedQty", "Picked Qty", "int", "4"));
 		fieldList.add(FieldResource.createField("packedQty", "Packed Qty", "int", "4"));
@@ -178,17 +179,17 @@ public class OrderPlannerScreen {
 		 */
 		List<ViewEditFieldResource> viewRecordFieldList = new ArrayList();
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("id"));
-		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderId"));
+		viewRecordFieldList.add(ViewEditFieldResource.createHiddenField("busName"));
+		viewRecordFieldList.add(ViewEditFieldResource.createHiddenField("locnNbr"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderNbr"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderId"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderLineNbr"));
-		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("origOrderQty"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("itemBrcd"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderQty"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("allocatedQty"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("pickedQty"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("packedQty"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("shippedQty"));
-		viewRecordFieldList.add(ViewEditFieldResource.createHiddenField("busName"));
-		viewRecordFieldList.add(ViewEditFieldResource.createHiddenField("locnNbr"));
 		orderDtlResource.setFieldList(fieldList);
 		// orderDtlResource.setSearchFieldList(searchFieldList);
 		orderDtlResource.setListFields(

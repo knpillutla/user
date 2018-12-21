@@ -20,6 +20,8 @@ CREATE TABLE USER_MASTER
     STATUS character varying(50),
     LOCALE character varying(50),
     THEME character varying(15),
+    MENU_TYPE character varying(10),
+    USER_TYPE character varying(10),
 	SOURCE character varying(50),
 	TRANSACTION_NAME character varying(50),
 	REF_FIELD_1  character varying(50),

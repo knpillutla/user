@@ -18,6 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.threedsoft.user.dto.requests.UserCreationRequestDTO;
 import com.threedsoft.user.dto.requests.UserLoginInRequestDTO;
+import com.threedsoft.user.dto.requests.UserMenuTypeUpdateRequestDTO;
+import com.threedsoft.user.dto.requests.UserPasswordUpdateRequestDTO;
+import com.threedsoft.user.dto.requests.UserThemeUpdateRequestDTO;
+import com.threedsoft.user.dto.requests.UserTypeUpdateRequestDTO;
 import com.threedsoft.user.dto.requests.UserUpdateRequestDTO;
 import com.threedsoft.user.dto.responses.UserResourceDTO;
 import com.threedsoft.user.exception.UserException;
@@ -106,4 +110,60 @@ public class UserRestEndPoint {
 			return ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
 		}
 	}
+
+	@PostMapping("/user/theme/id/{id}")
+	public ResponseEntity updateUserTheme(@RequestBody UserThemeUpdateRequestDTO userThemeUpdateReq) throws IOException {
+		UserResourceDTO userResourceDTO = null;
+		try {
+			log.info("Received updateUserTheme request:" + userThemeUpdateReq);
+			userResourceDTO = userService.updateUserTheme(userThemeUpdateReq);
+			log.info("Completed updateUserTheme request:" + userThemeUpdateReq);
+			return ResponseEntity.ok(userResourceDTO);
+		} catch (Exception e) {
+			log.error("Error:", e);
+			return ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
+		}
+	}
+	
+	@PostMapping("/user/authtoken/id/{id}")
+	public ResponseEntity updateUserAuthToken(@RequestBody UserPasswordUpdateRequestDTO userPwdUpdateReq) throws IOException {
+		UserResourceDTO userResourceDTO = null;
+		try {
+			log.info("Received updateUserAuthToken request:" + userPwdUpdateReq);
+			userResourceDTO = userService.updateUserAuthToken(userPwdUpdateReq);
+			log.info("Completed updateUserAuthToken request:" + userPwdUpdateReq);
+			return ResponseEntity.ok(userResourceDTO);
+		} catch (Exception e) {
+			log.error("Error updating authToken:", e);
+			return ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
+		}
+	}	
+	
+	@PostMapping("/user/menutype/id/{id}")
+	public ResponseEntity updateUserMenuType(@RequestBody UserMenuTypeUpdateRequestDTO userMenuTypeUpdateReq) throws IOException {
+		UserResourceDTO userResourceDTO = null;
+		try {
+			log.info("Received updateUserMenuType request:" + userMenuTypeUpdateReq);
+			userResourceDTO = userService.updateUserMenuType(userMenuTypeUpdateReq);
+			log.info("Completed updateUserMenuType request:" + userMenuTypeUpdateReq);
+			return ResponseEntity.ok(userResourceDTO);
+		} catch (Exception e) {
+			log.error("Error updating menuType:", e);
+			return ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
+		}
+	}		
+	
+	@PostMapping("/user/type/id/{id}")
+	public ResponseEntity updateUserType(@RequestBody UserTypeUpdateRequestDTO userTypeUpdateReq) throws IOException {
+		UserResourceDTO userResourceDTO = null;
+		try {
+			log.info("Received updateUserType request:" + userTypeUpdateReq);
+			userResourceDTO = userService.updateUserType(userTypeUpdateReq);
+			log.info("Completed updateUserType request:" + userTypeUpdateReq);
+			return ResponseEntity.ok(userResourceDTO);
+		} catch (Exception e) {
+			log.error("Error updateUserType:", e);
+			return ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
+		}
+	}	
 }

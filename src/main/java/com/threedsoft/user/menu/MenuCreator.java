@@ -1,22 +1,16 @@
 package com.threedsoft.user.menu;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import com.threedsoft.user.UserApplicationProperties;
-import com.threedsoft.user.dto.responses.ActionResource;
-import com.threedsoft.user.dto.responses.DataResource;
-import com.threedsoft.user.dto.responses.FieldResource;
 import com.threedsoft.user.dto.responses.MenuResource;
-import com.threedsoft.user.dto.responses.RequestFieldResource;
 import com.threedsoft.user.dto.responses.ScreenResource;
-import com.threedsoft.user.util.UserConstants;
 
 public class MenuCreator {
 
 	public List<MenuResource> createWMSMenus(String busName, Integer locnNbr) {
 		List<MenuResource> menuList = new ArrayList<MenuResource>();
+		menuList.add(createConfigurationMenu(busName, locnNbr));
 		menuList.add(createFulfillmentMenu(busName, locnNbr));
 		// menuList.add(createCustomerOrdersMenu(busName, locnNbr));
 		// menuList.add(createInventoryMenu(busName, locnNbr));
@@ -40,7 +34,16 @@ public class MenuCreator {
 		return inventoryMenu;
 	}
 
-/*	private MenuResource createCustomerOrdersMenu(String busName, Integer locnNbr) {
+	private MenuResource createConfigurationMenu(String busName, Integer locnNbr) {
+		MenuResource configScreen = new MenuResource();
+		configScreen.setMenuName("System Configuration");
+		List<ScreenResource> screenResourceList = new ArrayList();
+		screenResourceList.add(ConfigurationScreen.createConfigScreen(busName, locnNbr));
+		configScreen.setScreenResourceList(screenResourceList);
+		return configScreen;
+	}
+	
+	/*	private MenuResource createCustomerOrdersMenu(String busName, Integer locnNbr) {
 		MenuResource customerOrdersMenu = new MenuResource();
 		customerOrdersMenu.setMenuName("Customer Orders");
 		List<ScreenResource> screenResourceList = new ArrayList();

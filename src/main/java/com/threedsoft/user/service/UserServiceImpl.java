@@ -14,6 +14,10 @@ import com.threedsoft.user.dto.events.UserCreationFailedEvent;
 import com.threedsoft.user.dto.events.UserLoginFailedEvent;
 import com.threedsoft.user.dto.requests.UserCreationRequestDTO;
 import com.threedsoft.user.dto.requests.UserLoginInRequestDTO;
+import com.threedsoft.user.dto.requests.UserMenuTypeUpdateRequestDTO;
+import com.threedsoft.user.dto.requests.UserPasswordUpdateRequestDTO;
+import com.threedsoft.user.dto.requests.UserThemeUpdateRequestDTO;
+import com.threedsoft.user.dto.requests.UserTypeUpdateRequestDTO;
 import com.threedsoft.user.dto.requests.UserUpdateRequestDTO;
 import com.threedsoft.user.dto.responses.UserResourceDTO;
 import com.threedsoft.user.exception.UserException;
@@ -102,7 +106,20 @@ public class UserServiceImpl implements UserService {
 		Optional<User> userEntityOptional = userDAO.findById(userUpdateReq.getId());
 		if(userEntityOptional.isPresent()) {
 			User userEntity = userEntityOptional.get();
-			userEntity.setTheme(userUpdateReq.getTheme());
+			//userEntity.setTheme(userUpdateReq.getTheme());
+			userEntity.setFirstName(userUpdateReq.getFirstName());
+			userEntity.setLastName(userUpdateReq.getLastName());
+			userEntity.setMiddleName(userUpdateReq.getMiddleName());
+			userEntity.setAddr1(userUpdateReq.getAddr1());
+			userEntity.setAddr2(userUpdateReq.getAddr2());
+			userEntity.setAddr3(userUpdateReq.getAddr3());
+			userEntity.setCity(userUpdateReq.getCity());
+			userEntity.setCountry(userUpdateReq.getCountry());
+			userEntity.setZipCode(userUpdateReq.getZipCode());
+			userEntity.setBusName(userUpdateReq.getBusName());
+			userEntity.setDefLocnNbr(userUpdateReq.getDefLocnNbr());
+			userEntity.setLocale(userUpdateReq.getLocale());
+			
 			returnEntity = userDAO.save(userEntity);
 		}
 		return userDTOConverter.getUserResourceDTO(returnEntity);
@@ -130,8 +147,60 @@ public class UserServiceImpl implements UserService {
 			UserException userException = new UserException(event);
 			throw userException;
 		}
-		log.info("User logged in successfully");
-		return userDTOConverter.getUserResourceDTO(userEntity);
+		UserResourceDTO userResourceDTO = userDTOConverter.getUserResourceDTO(userEntity);
+		//userDTOConverter.addUserMenu(userResourceDTO);
+		log.info("User logged in successfully:" + userResourceDTO);
+		return userResourceDTO;
+	}
+
+	@Override
+	public UserResourceDTO updateUserTheme(UserThemeUpdateRequestDTO userThemeUpdateReq) throws Exception{
+		User returnEntity = null;
+		Optional<User> userEntityOptional = userDAO.findById(userThemeUpdateReq.getId());
+		if(userEntityOptional.isPresent()) {
+			User userEntity = userEntityOptional.get();
+			userEntity.setTheme(userThemeUpdateReq.getTheme());
+			returnEntity = userDAO.save(userEntity);
+		}
+		return userDTOConverter.getUserResourceDTO(returnEntity);
+	}
+
+	@Override
+	public UserResourceDTO updateUserAuthToken(UserPasswordUpdateRequestDTO userPwdUpdateReq) throws Exception{
+		User returnEntity = null;
+		Optional<User> userEntityOptional = userDAO.findByIdAndAuthToken(userPwdUpdateReq.getId(), userPwdUpdateReq.getOldPassword());
+		if(userEntityOptional.isPresent()) {
+			User userEntity = userEntityOptional.get();
+			userEntity.setAuthToken(userPwdUpdateReq.getNewPassword());
+			returnEntity = userDAO.save(userEntity);
+		}else {
+			throw new Exception("Unable to Change password. Incorrect User/Password Combination entered");
+		}
+		return userDTOConverter.getUserResourceDTO(returnEntity);
+	}
+
+	@Override
+	public UserResourceDTO updateUserMenuType(UserMenuTypeUpdateRequestDTO userMenuTypeUpdateReq) {
+		User returnEntity = null;
+		Optional<User> userEntityOptional = userDAO.findById(userMenuTypeUpdateReq.getId());
+		if(userEntityOptional.isPresent()) {
+			User userEntity = userEntityOptional.get();
+			userEntity.setMenuType(userMenuTypeUpdateReq.getMenuType());
+			returnEntity = userDAO.save(userEntity);
+		}
+		return userDTOConverter.getUserResourceDTO(returnEntity);
+	}
+
+	@Override
+	public UserResourceDTO updateUserType(UserTypeUpdateRequestDTO userTypeUpdateReq) {
+		User returnEntity = null;
+		Optional<User> userEntityOptional = userDAO.findById(userTypeUpdateReq.getId());
+		if(userEntityOptional.isPresent()) {
+			User userEntity = userEntityOptional.get();
+			userEntity.setUserType(userTypeUpdateReq.getUserType());
+			returnEntity = userDAO.save(userEntity);
+		}
+		return userDTOConverter.getUserResourceDTO(returnEntity);
 	}
 	
 }

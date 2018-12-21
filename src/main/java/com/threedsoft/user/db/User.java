@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -22,6 +23,7 @@ import lombok.Data;
 @Data
 @Table(name="USER_MASTER")
 @EntityListeners(AuditingEntityListener.class)
+@DynamicUpdate
 public class User  implements Serializable{
 	@Column(name="ID")
 	@Id
@@ -84,6 +86,12 @@ public class User  implements Serializable{
 
 	@Column(name="STATUS")
 	String userStatus;
+
+	@Column(name="MENU_TYPE")
+	String menuType;
+
+	@Column(name="USER_TYPE")
+	String userType;
 
 	@Column(name="SOURCE")
 	String source;

@@ -12,22 +12,22 @@ import com.threedsoft.user.dto.responses.ViewEditFieldResource;
 import com.threedsoft.user.util.UserConstants;
 
 public class ConfigurationScreen {
-	public static ScreenResource createPickingScreen(String busName, Integer locnNbr) {
-		ScreenResource screen = new ScreenResource("PickingMaintenance", "Picking Maintenance", "Picking Maintenance",
-				"R", UserConstants.CONFIG_SCREEN, null);
+	public static ScreenResource createConfigScreen(String busName, Integer locnNbr) {
+		ScreenResource screen = new ScreenResource("systemConfiguration", "System Configuration", "System Configuration",
+				"RW", UserConstants.CONFIG_SCREEN, null);
 		String listRecordUrl = "https://the3dsoft.com/api/v1/configs/" + busName + "/" + locnNbr;
 		String updateRecordUrl = "https://the3dsoft.com/api/v1/configs/" + busName + "/" + locnNbr;
 		
-		DataResource pickDataResource = new DataResource("systemConfig", "System Configuration", "", listRecordUrl, 
+		DataResource configDataResource = new DataResource("systemConfig", "System Configuration", "", listRecordUrl, 
 				"", updateRecordUrl, "");
 
 		List<FieldResource> fieldList = new ArrayList();
 		fieldList.add(FieldResource.createHiddenField("id", "config id", "int", "10"));
 		fieldList.add(FieldResource.createHiddenField("wbcId", "bus config id", "int", "10"));
 		fieldList.add(FieldResource.createHiddenField("wblcId", "bus locn config id", "int", "10"));
-		fieldList.add(FieldResource.createField("busName","Bus Name", "string", "25"));
-		fieldList.add(FieldResource.createField("locnNbr","Locn Nbr", "int", "10"));
-		fieldList.add(FieldResource.createField("moduleName","Module", "string", "25"));
+		fieldList.add(FieldResource.createHiddenField("busName","Bus Name", "string", "25"));
+		fieldList.add(FieldResource.createHiddenField("locnNbr","Locn Nbr", "int", "10"));
+		fieldList.add(FieldResource.createField("module","Module", "string", "25"));
 		fieldList.add(FieldResource.createField("key","name", "string", "15"));
 		fieldList.add(FieldResource.createField("value","Value", "string", "10"));
 		fieldList.add(FieldResource.createField("busOverride", "Business Override","string", "20"));
@@ -46,15 +46,28 @@ public class ConfigurationScreen {
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("key"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("value"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("busOverride"));
-		editRecordFieldList.add(ViewEditFieldResource.createTextField("busLocnOverride"));
+		editRecordFieldList.add(ViewEditFieldResource.createField("busLocnOverride"));
 		
 
-		pickDataResource.setFieldList(fieldList);
+		List<ViewEditFieldResource> viewRecordFieldList = new ArrayList();
+		viewRecordFieldList.add(ViewEditFieldResource.createHiddenField("id"));
+		viewRecordFieldList.add(ViewEditFieldResource.createHiddenField("wbcId"));
+		viewRecordFieldList.add(ViewEditFieldResource.createHiddenField("wblcId"));
+		viewRecordFieldList.add(ViewEditFieldResource.createHiddenField("busName"));
+		viewRecordFieldList.add(ViewEditFieldResource.createHiddenField("locnNbr"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("module"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("key"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("value"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("busOverride"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("busLocnOverride"));
+
+		configDataResource.setFieldList(fieldList);
 //		pickDataResource.setSearchFields("busName,locnNbr,locnBrcd,itemBrcd");
-		pickDataResource.setListFields("module,key,value,busOverride,busLocnOverride");
-		pickDataResource.setEditResourceFieldList(editRecordFieldList);
+		configDataResource.setListFields("module,key,value,busOverride,busLocnOverride");
+		configDataResource.setEditResourceFieldList(editRecordFieldList);
+		configDataResource.setViewResourceFieldList(viewRecordFieldList);
 //		pickDataResource.setRecordActionList(Arrays.asList(pickConfirmPickingAction));
-		screen.setDataResource(pickDataResource);
+		screen.setDataResource(configDataResource);
 		return screen;
 	}
 

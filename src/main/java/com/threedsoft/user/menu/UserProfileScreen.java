@@ -26,7 +26,7 @@ public class UserProfileScreen {
 
 		List<ViewEditFieldResource> editRecordFieldList = new ArrayList();
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("id"));
-		editRecordFieldList.add(ViewEditFieldResource.createTextField("theme"));
+		editRecordFieldList.add(ViewEditFieldResource.createField("theme"));
 		
 		userDataResource.setFieldList(fieldList);
 		userDataResource.setEditResourceFieldList(editRecordFieldList);
