@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDTOConverter userDTOConverter;
-
+	
 	public enum UserStatus {
 		LOCKED("Locked"), CREATED("Created");
 		UserStatus(String userStatus) {
@@ -168,13 +168,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserResourceDTO updateUserAuthToken(UserPasswordUpdateRequestDTO userPwdUpdateReq) throws Exception{
 		User returnEntity = null;
-		Optional<User> userEntityOptional = userDAO.findByIdAndAuthToken(userPwdUpdateReq.getId(), userPwdUpdateReq.getOldPassword());
+		Optional<User> userEntityOptional = userDAO.findByIdAndAuthTokenAndAuthType(userPwdUpdateReq.getId(), userPwdUpdateReq.getOldPassword(),UserConstants.USER_AUTH_TYPE);
 		if(userEntityOptional.isPresent()) {
 			User userEntity = userEntityOptional.get();
 			userEntity.setAuthToken(userPwdUpdateReq.getNewPassword());
 			returnEntity = userDAO.save(userEntity);
 		}else {
-			throw new Exception("Unable to Change password. Incorrect User/Password Combination entered");
+			throw new Exception("Unable to Change password. Incorrect User/Password/Social Login Combination entered");
 		}
 		return userDTOConverter.getUserResourceDTO(returnEntity);
 	}
