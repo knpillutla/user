@@ -1,6 +1,7 @@
 package com.threedsoft.user.menu;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.threedsoft.user.dto.responses.DataResource;
@@ -40,11 +41,11 @@ public class RFMenu {
 		fieldList.add(RFFieldResource.createLabelField("upc", "UPC","string", "20"));
 		fieldList.add(RFFieldResource.createTextFieldWithValidation("scanUpc", "Enter UPC:","string", "20","upc","invalid upc"));
 		fieldList.add(RFFieldResource.createLabelField("qty", "Qty:","int", "3"));
-		fieldList.add(RFFieldResource.createActionTextFieldWithValidation("scanQty", "Enter Qty:","string", "3","qty","invalid qty",updateRecordUrl,"id:id,toteNbr:toteNbr,locnBrcd:locnBrcd,upc:upc,scanQty:qty","Y"));
+		fieldList.add(RFFieldResource.createActionTextFieldWithValidation("scanQty", "Enter Qty:","string", "3","qty","invalid qty",updateRecordUrl,"id:id,toteNbr:toteNbr,locnBrcd:locnBrcd,scanUpc:upc,scanQty:qty","Y"));
 
 		rfScreen.setRfFieldResourceList(fieldList);
-		RFButtonResource buttonResource = new RFButtonResource("endTote","End Tote","Are you sure you want to end tote?",endToteUrl, "id:id,toteNbr:toteNbr","toteNumber","N");
-		rfScreen.setButtonResource(buttonResource);
+		RFButtonResource buttonResource = new RFButtonResource("endTote","End Tote","Are you sure you want to end tote?",endToteUrl, "id:id,toteNbr:toteNbr","toteNbr","N");
+		rfScreen.setButtonResources(Arrays.asList(buttonResource));
 		return rfScreen;
 	}
 
@@ -65,7 +66,7 @@ public class RFMenu {
 
 		rfScreen.setRfFieldResourceList(fieldList);
 		RFButtonResource buttonResource = new RFButtonResource("exit","Exit","Are you sure you want to Exit?","", "","","Y");
-		rfScreen.setButtonResource(buttonResource);
+		rfScreen.setButtonResources(Arrays.asList(buttonResource));
 		return rfScreen;
 	}
 
@@ -81,7 +82,7 @@ public class RFMenu {
 		fieldList.add(RFFieldResource.createTextField("actualWt", "ActualWt:","numeric", "3,2"));
 		rfScreen.setRfFieldResourceList(fieldList);
 		RFButtonResource buttonResource = new RFButtonResource("ship","Ship Package","",shipPackageUrl, "packageNbr:packageNbr,estimatedWt:estimatedWt,actualWt:actualWt","packageNbr","N");
-		rfScreen.setButtonResource(buttonResource);
+		rfScreen.setButtonResources(Arrays.asList(buttonResource));
 		return rfScreen;
 	}
 }
