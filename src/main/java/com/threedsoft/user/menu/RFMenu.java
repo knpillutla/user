@@ -19,12 +19,14 @@ public class RFMenu {
 		List<RFScreenResource> rfScreenResourceList = new ArrayList();
 		rfScreenResourceList.add(createSinglesRFPickScreen(busName, locnNbr));
 		rfScreenResourceList.add(createRFPackScreen(busName, locnNbr));
+		rfScreenResourceList.add(createRFShipScreen(busName, locnNbr));
 		rfMenu.setRfScreenResourceList(rfScreenResourceList);
 		return rfMenu;
 	}
 
 	private static RFScreenResource createSinglesRFPickScreen(String busName, Integer locnNbr) {
-		RFScreenResource rfScreen = new RFScreenResource("pickToTote", "Pick To Tote", "RW",0,30,15,null,null);
+		RFScreenResource rfScreen = new RFScreenResource("pickToTote", "Pick To Tote", "Pick To Tote","RW",0,30,15);
+				//new RFScreenResource("pickToTote", "Pick To Tote", "RW",0,30,15,null,null);
 		String nextPickUrl = "https://the3dsoft.com/picking/v1/" + busName + "/" + locnNbr + "/picks/next/{userId}";
 		String updateRecordUrl = "https://the3dsoft.com/picking/v1/" + busName + "/" + locnNbr + "/picks" + "/{id}";
 		List<RFFieldResource> fieldList = new ArrayList();
