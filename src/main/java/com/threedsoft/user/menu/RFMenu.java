@@ -60,7 +60,7 @@ public class RFMenu {
 		fieldList.add(RFFieldResource.createTextFieldWithValidation("scanUpc", "Enter UPC:","string", "20","upc","invalid upc"));
 		fieldList.add(RFFieldResource.createLabelField("id", "Pack Id:","int", "20"));
 		fieldList.add(RFFieldResource.createLabelField("qty", "Qty:","int", "3"));
-		fieldList.add(RFFieldResource.createActionTextFieldWithValidation("scanQty", "Enter Qty:","string", "3","Y","qty","",updateRecordUrl,"id:id,toteNbr:toteNbr,locnBrcd:locnBrcd,upc:upc,scanQty:qty"));
+		fieldList.add(RFFieldResource.createTextFieldWithValidation("scanQty", "Enter Qty:","string", "3","qty","invalid qty"));
 		fieldList.add(RFFieldResource.createLabelField("packageNbr", "Package Number:","string", "20"));
 		fieldList.add(RFFieldResource.createActionTextFieldWithValidation("scanPackageNbr", "Enter Package Nbr:","string", "20","packageNbr","invalid package",updateRecordUrl,"id:id,toteNbr:toteNbr,upc:upc,scanQty:qty,packageNbr:packageNbr","Y"));
 
