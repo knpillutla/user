@@ -19,8 +19,8 @@ public class MenuCreator {
 	}
 
 	private MenuResource createFulfillmentMenu(String busName, Integer locnNbr) {
-		MenuResource inventoryMenu = new MenuResource();
-		inventoryMenu.setMenuName("Fullfillment Maintenance");
+		MenuResource orderFulfillmentMenu = new MenuResource();
+		orderFulfillmentMenu.setMenuName("Fullfillment Maintenance");
 		List<ScreenResource> screenResourceList = new ArrayList();
 		screenResourceList.add(CustomerOrderScreen.createCustomerOrdersScreen(busName, locnNbr));
 		//if(UserApplicationProperties.isHomeStore.equalsIgnoreCase("N")) {
@@ -29,9 +29,10 @@ public class MenuCreator {
 			screenResourceList.add(InventoryScreen.createInventoryScreen(busName, locnNbr));
 			screenResourceList.add(PickingScreen.createPickingScreen(busName, locnNbr));
 			screenResourceList.add(PackingScreen.createPackingScreen(busName, locnNbr));
-			inventoryMenu.setScreenResourceList(screenResourceList);
+			screenResourceList.add(ShippingScreen.createShippingScreen(busName, locnNbr));
+			orderFulfillmentMenu.setScreenResourceList(screenResourceList);
 		//}
-		return inventoryMenu;
+		return orderFulfillmentMenu;
 	}
 
 	private MenuResource createConfigurationMenu(String busName, Integer locnNbr) {
