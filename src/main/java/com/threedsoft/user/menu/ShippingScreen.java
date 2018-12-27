@@ -34,7 +34,7 @@ public class ShippingScreen {
 		fieldList.add(FieldResource.createField("busUnit","Bus Unit", "string", "2"));
 		fieldList.add(FieldResource.createField("batchNbr", "Batch Nbr","string", "20"));
 		fieldList.add(FieldResource.createField("orderId", "Order Id","string", "20"));
-		fieldList.add(FieldResource.createField("orderNbr", "Order Nbr", "int", "2"));
+		fieldList.add(FieldResource.createField("orderNbr", "Order Nbr", "string", "15"));
 		fieldList.add(FieldResource.createField("statCode", "Status", "string", "10"));
 		fieldList.add(FieldResource.createField("orderDttm", "Order Date/Time", "datetime", "20"));
 		fieldList.add(FieldResource.createField("shipByDttm", "ShipBy Date", "date", "20"));
