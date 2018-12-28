@@ -32,6 +32,7 @@ public class FacilityCarrierScreen {
 		//fieldList.add(FieldResource.createDropDownField("carrierCode","Carrier Code", "string", "15","stamps_com,usps,fedex","stamps_com"));
 		fieldList.add(FieldResource.createField("carrierCode","Carrier Code", "string", "15"));
 		fieldList.add(FieldResource.createField("accountNbr","Account Number", "string", "10"));
+		fieldList.add(FieldResource.createField("isEnabled","Enabled?", "string", "1"));
 		fieldList.add(FieldResource.createField("updatedBy", "User", "int", "25"));
 
 		//List<SearchFieldResource> searchFieldList = new ArrayList();
@@ -41,6 +42,7 @@ public class FacilityCarrierScreen {
 		addRecordFieldList.add(AddFieldResource.createHiddenFieldWithDefaultValue("locnNbr",locnNbr));
 		addRecordFieldList.add(AddFieldResource.createField("carrierCode"));
 		addRecordFieldList.add(AddFieldResource.createField("accountNbr"));
+		addRecordFieldList.add(AddFieldResource.createField("isEnabled"));
 
 		List<ViewEditFieldResource> editRecordFieldList = new ArrayList();
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("id"));
@@ -48,6 +50,7 @@ public class FacilityCarrierScreen {
 		editRecordFieldList.add(ViewEditFieldResource.createHiddenField("locnNbr"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("carrierCode"));
 		editRecordFieldList.add(ViewEditFieldResource.createField("accountNbr"));
+		editRecordFieldList.add(ViewEditFieldResource.createField("isEnabled"));
 
 		List<ViewEditFieldResource> viewRecordFieldList = new ArrayList();
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("id"));
@@ -55,10 +58,11 @@ public class FacilityCarrierScreen {
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("locnNbr"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("carrierCode"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("accountNbr"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("isEnabled"));
 
 		facilityCarrierDataResource.setFieldList(fieldList);
 		//facilityCarrierDataResource.setSearchFieldList(searchFieldList);
-		facilityCarrierDataResource.setListFields("id,carrierCode,accountNbr,updatedBy");
+		facilityCarrierDataResource.setListFields("id,carrierCode,accountNbr,isEnabled,updatedBy");
 		facilityCarrierDataResource.setAddResourceFieldList(addRecordFieldList);
 		facilityCarrierDataResource.setViewResourceFieldList(viewRecordFieldList);
 		facilityCarrierDataResource.setEditResourceFieldList(editRecordFieldList);
