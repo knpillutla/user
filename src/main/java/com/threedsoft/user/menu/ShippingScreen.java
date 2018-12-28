@@ -3,7 +3,7 @@ package com.threedsoft.user.menu;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.threedsoft.user.dto.responses.AddFieldResource;
+import com.threedsoft.user.dto.responses.BrowserViewerResource;
 import com.threedsoft.user.dto.responses.DataResource;
 import com.threedsoft.user.dto.responses.FieldResource;
 import com.threedsoft.user.dto.responses.ScreenResource;
@@ -55,6 +55,8 @@ public class ShippingScreen {
 		fieldList.add(FieldResource.createField("country", "Delivery Country", "string", "20"));
 		fieldList.add(FieldResource.createField("zipcode", "Delivery ZipCode", "string", "20"));
 		fieldList.add(FieldResource.createField("phoneNbr", "Delivery Phone", "string", "20"));
+		fieldList.add(FieldResource.createField("shipLabelFormat", "Shipping Label Format", "string", "3"));
+		fieldList.add(FieldResource.createField("shipLabel", "Shipping Label", "byte[]", "10000"));
 		fieldList.add(FieldResource.createField("userId", "userId", "int", "25"));
 
 		List<SearchFieldResource> searchFieldList = new ArrayList();
@@ -121,6 +123,8 @@ public class ShippingScreen {
 		shippingDataResource.setListFields("id,orderNbr,deliveryType,shipCarrier,shipCarrierService,shipCost,zipcode,userId");
 		//shippingDataResource.setAddResourceFieldList(addRecordFieldList);
 		shippingDataResource.setViewResourceFieldList(viewRecordFieldList);
+		BrowserViewerResource shippingLabelViewer = new BrowserViewerResource("pdfViewer","View/Print Shipping Label", "pdf","shipLabel");
+		shippingDataResource.setBrowserViewerResource(shippingLabelViewer);
 		//shippingDataResource.setEditResourceFieldList(editRecordFieldList);
 		shippingScreen.setDataResource(shippingDataResource);
 		return shippingScreen;

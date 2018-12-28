@@ -40,6 +40,7 @@ public class MenuCreator {
 		configScreen.setMenuName("System Configuration");
 		List<ScreenResource> screenResourceList = new ArrayList();
 		screenResourceList.add(ConfigurationScreen.createConfigScreen(busName, locnNbr));
+		screenResourceList.add(FacilityCarrierScreen.createFacilityCarrierScreen(busName, locnNbr));
 		configScreen.setScreenResourceList(screenResourceList);
 		return configScreen;
 	}
