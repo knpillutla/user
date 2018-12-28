@@ -13,8 +13,8 @@ import com.threedsoft.user.util.UserConstants;
 
 public class FacilityCarrierScreen {
 	public static ScreenResource createFacilityCarrierScreen(String busName, Integer locnNbr) {
-		ScreenResource facilityCarrierScreen = new ScreenResource("facilityCarrierMaintenance", "Carrier Maintenance",
-				"Carrier Maintenance", "RW", UserConstants.MAINTENANCE_SCREEN, null);
+		ScreenResource facilityCarrierScreen = new ScreenResource("facilityShippingCarrierMaintenance", "Shipping Carrier Maintenance",
+				"Shipping Carrier Maintenance", "RW", UserConstants.MAINTENANCE_SCREEN, null);
 		String searchUrl = "";
 		String listUrl = "https://the3dsoft.com/shipping/v1/facility-carriers";
 		String getRecordUrl = "";
@@ -32,7 +32,7 @@ public class FacilityCarrierScreen {
 		//fieldList.add(FieldResource.createDropDownField("carrierCode","Carrier Code", "string", "15","stamps_com,usps,fedex","stamps_com"));
 		fieldList.add(FieldResource.createField("carrierCode","Carrier Code", "string", "15"));
 		fieldList.add(FieldResource.createField("accountNbr","Account Number", "string", "10"));
-		fieldList.add(FieldResource.createField("isEnabled","Enabled?", "string", "1"));
+		fieldList.add(FieldResource.createField("isEnabled","Active?", "string", "1"));
 		fieldList.add(FieldResource.createField("updatedBy", "User", "int", "25"));
 
 		//List<SearchFieldResource> searchFieldList = new ArrayList();
