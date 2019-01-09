@@ -23,6 +23,7 @@ public class UserProfileScreen {
 		List<FieldResource> fieldList = new ArrayList();
 		fieldList.add(FieldResource.createField("id","id", "string", "15"));
 		fieldList.add(FieldResource.createField("theme", "Theme", "string", "15"));
+		fieldList.add(FieldResource.createDropDownField("availableThemes", "Available Themes", "string", "15", "blue,indigo,purple,pink,red,orange,yellow,green,teal,cyan", "indigo"));
 
 		List<ViewEditFieldResource> editRecordFieldList = new ArrayList();
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("id"));
