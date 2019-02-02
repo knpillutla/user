@@ -46,6 +46,7 @@ public class PickingScreen {
 		fieldList.add(FieldResource.createField("itemBrcd", "Item Brcd","string", "20"));
 		fieldList.add(FieldResource.createField("qty", "Qty", "int", "2"));
 		fieldList.add(FieldResource.createField("qtyPicked", "Picked Qty", "int", "2"));
+		fieldList.add(FieldResource.createDropDownField("status", "Pick Status", "string", "10","None,Released,Assigned,Picked","None"));
 		fieldList.add(FieldResource.createDropDownField("locked", "Locked", "string", "1","Y,N","N"));
 		fieldList.add(FieldResource.createField("userId", "userId", "int", "2"));
 
@@ -57,19 +58,35 @@ public class PickingScreen {
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("division"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("locnBrcd"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("itemBrcd"));
+		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("status"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("qty"));
 		editRecordFieldList.add(ViewEditFieldResource.createMandatoryField("qtyPicked"));
 		editRecordFieldList.add(ViewEditFieldResource.createField("locked"));
+		
+		List<ViewEditFieldResource> viewRecordFieldList = new ArrayList();
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("id"));
+		viewRecordFieldList.add(ViewEditFieldResource.createHiddenField("busName"));
+		viewRecordFieldList.add(ViewEditFieldResource.createHiddenField("locnNbr"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("company"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("division"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("locnBrcd"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("itemBrcd"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("status"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("qty"));
+		viewRecordFieldList.add(ViewEditFieldResource.createMandatoryField("qtyPicked"));
+		viewRecordFieldList.add(ViewEditFieldResource.createField("locked"));
 		
 		List<SearchFieldResource> searchFieldList = new ArrayList();
 		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("busName",busName));
 		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("locnNbr",locnNbr.toString()));
 		searchFieldList.add(SearchFieldResource.createSearchField("locnBrcd"));
 		searchFieldList.add(SearchFieldResource.createSearchField("itemBrcd"));
+		searchFieldList.add(SearchFieldResource.createSearchField("status"));
 
 		pickDataResource.setFieldList(fieldList);
+		pickDataResource.setViewResourceFieldList(viewRecordFieldList);
 		pickDataResource.setSearchFieldList(searchFieldList);
-		pickDataResource.setListFields("id,batchNbr,locnBrcd,itemBrcd,qty,qtyPicked,locked");
+		pickDataResource.setListFields("id,batchNbr,locnBrcd,itemBrcd,status,qty,qtyPicked,locked");
 		pickDataResource.setEditResourceFieldList(editRecordFieldList);
 		pickDataResource.setRecordActionList(Arrays.asList(pickConfirmPickingAction));
 		screen.setDataResource(pickDataResource);

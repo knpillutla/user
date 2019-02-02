@@ -23,15 +23,17 @@ public class MenuCreator {
 		orderFulfillmentMenu.setMenuName("Fullfillment Maintenance");
 		List<ScreenResource> screenResourceList = new ArrayList();
 		screenResourceList.add(CustomerOrderScreen.createCustomerOrdersScreen(busName, locnNbr));
-		//if(UserApplicationProperties.isHomeStore.equalsIgnoreCase("N")) {
-			screenResourceList.add(OrderPlannerScreen.createOrdersScreen(busName, locnNbr));
-			// screenResourceList.add(orderPlannerScreen);
-			screenResourceList.add(InventoryScreen.createInventoryScreen(busName, locnNbr));
-			screenResourceList.add(PickingScreen.createPickingScreen(busName, locnNbr));
-			screenResourceList.add(PackingScreen.createPackingScreen(busName, locnNbr));
-			screenResourceList.add(ShippingScreen.createShippingScreen(busName, locnNbr));
-			orderFulfillmentMenu.setScreenResourceList(screenResourceList);
-		//}
+		// if(UserApplicationProperties.isHomeStore.equalsIgnoreCase("N")) {
+		screenResourceList.add(OrderPlannerScreen.createOrdersScreen(busName, locnNbr));
+		// screenResourceList.add(orderPlannerScreen);
+		screenResourceList.add(InventoryScreen.createInventoryScreen(busName, locnNbr));
+		screenResourceList.add(PickingScreen.createPickingScreen(busName, locnNbr));
+		screenResourceList.add(PackingScreen.createPackingScreen(busName, locnNbr));
+		screenResourceList.add(ShippingScreen.createShippingScreen(busName, locnNbr));
+		screenResourceList.add(CustomerOrderScreenNew.createCustomerOrdersScreen(busName, locnNbr.toString()));
+		screenResourceList.add(InventoryScreenNew.createInventoryScreen(busName, locnNbr.toString()));
+		orderFulfillmentMenu.setScreenResourceList(screenResourceList);
+		// }
 		return orderFulfillmentMenu;
 	}
 
@@ -44,23 +46,22 @@ public class MenuCreator {
 		configScreen.setScreenResourceList(screenResourceList);
 		return configScreen;
 	}
-	
-	/*	private MenuResource createCustomerOrdersMenu(String busName, Integer locnNbr) {
-		MenuResource customerOrdersMenu = new MenuResource();
-		customerOrdersMenu.setMenuName("Customer Orders");
-		List<ScreenResource> screenResourceList = new ArrayList();
-		screenResourceList.add(createCustomerOrdersScreen(busName, locnNbr));
-		customerOrdersMenu.setScreenResourceList(screenResourceList);
-		return customerOrdersMenu;
-	}
 
-	private MenuResource createInventoryMenu(String busName, Integer locnNbr) {
-		MenuResource inventoryMenu = new MenuResource();
-		inventoryMenu.setMenuName("Inventory");
-		List<ScreenResource> screenResourceList = new ArrayList();
-		screenResourceList.add(createInventoryScreen(busName, locnNbr));
-		inventoryMenu.setScreenResourceList(screenResourceList);
-		return inventoryMenu;
-	}
-*/
+	/*
+	 * private MenuResource createCustomerOrdersMenu(String busName, Integer
+	 * locnNbr) { MenuResource customerOrdersMenu = new MenuResource();
+	 * customerOrdersMenu.setMenuName("Customer Orders"); List<ScreenResource>
+	 * screenResourceList = new ArrayList();
+	 * screenResourceList.add(createCustomerOrdersScreen(busName, locnNbr));
+	 * customerOrdersMenu.setScreenResourceList(screenResourceList); return
+	 * customerOrdersMenu; }
+	 * 
+	 * private MenuResource createInventoryMenu(String busName, Integer locnNbr) {
+	 * MenuResource inventoryMenu = new MenuResource();
+	 * inventoryMenu.setMenuName("Inventory"); List<ScreenResource>
+	 * screenResourceList = new ArrayList();
+	 * screenResourceList.add(createInventoryScreen(busName, locnNbr));
+	 * inventoryMenu.setScreenResourceList(screenResourceList); return
+	 * inventoryMenu; }
+	 */
 }

@@ -51,6 +51,7 @@ public class CustomerOrderScreen {
 		fieldList.add(FieldResource.createField("expectedDeliveryDttm","Delivery Date", "date", "20"));
 		fieldList.add(FieldResource.createField("shipByDttm","Ship By Date", "date", "20"));
 		fieldList.add(FieldResource.createField("deliveryType","Delivery Type", "string", "1"));
+		fieldList.add(FieldResource.createDropDownField("status","Order Status", "string", "10","None,Created,Ready,Allocated,Picked,Packed,Shipped","None"));
 		
 		ActionResource packAndPrintAction = new ActionResource();
 		packAndPrintAction.setActionName("packAndPrint");
@@ -104,6 +105,7 @@ public class CustomerOrderScreen {
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("company"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("division"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("busUnit"));
+		editRecordFieldList.add(ViewEditFieldResource.createField("status"));
 		editRecordFieldList.add(ViewEditFieldResource.createField("orderDttm"));
 		editRecordFieldList.add(ViewEditFieldResource.createField("expectedDeliveryDttm"));
 		editRecordFieldList.add(ViewEditFieldResource.createField("shipByDttm"));
@@ -119,16 +121,18 @@ public class CustomerOrderScreen {
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderDttm"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("expectedDeliveryDttm"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("shipByDttm"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("status"));
 
 		List<SearchFieldResource> searchFieldList = new ArrayList();
 		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("busName",busName));
 		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("locnNbr",locnNbr.toString()));
 		searchFieldList.add(SearchFieldResource.createSearchField("orderNbr"));
 		searchFieldList.add(SearchFieldResource.createSearchField("batchNbr"));
+		searchFieldList.add(SearchFieldResource.createSearchField("status"));
 
 		customerOrderDataResource.setFieldList(fieldList);
 		customerOrderDataResource.setSearchFieldList(searchFieldList);
-		customerOrderDataResource.setListFields("id,orderNbr,batchNbr,busName,locnNbr,company,division");
+		customerOrderDataResource.setListFields("id,orderNbr,status,batchNbr,busName,locnNbr,company,division");
 		//customerOrderDataResource.setAddRecordFields("busName,locnNbr,orderNbr,company,division");
 		//customerOrderDataResource.setEditRecordFields("id,busName,locnNbr,orderNbr,company,division");
 		//customerOrderDataResource.setViewFields("id,busName,locnNbr,orderNbr,company,division");
