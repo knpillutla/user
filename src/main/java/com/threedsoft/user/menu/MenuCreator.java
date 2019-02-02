@@ -31,7 +31,11 @@ public class MenuCreator {
 		screenResourceList.add(PackingScreen.createPackingScreen(busName, locnNbr));
 		screenResourceList.add(ShippingScreen.createShippingScreen(busName, locnNbr));
 		screenResourceList.add(CustomerOrderScreenNew.createCustomerOrdersScreen(busName, locnNbr.toString()));
+		screenResourceList.add(OrderPlannerScreenNew.createOrderPlannerScreen(busName, locnNbr.toString()));
 		screenResourceList.add(InventoryScreenNew.createInventoryScreen(busName, locnNbr.toString()));
+		screenResourceList.add(PickScreenNew.createPickScreen(busName, locnNbr.toString()));
+		screenResourceList.add(PackScreenNew.createPackScreen(busName, locnNbr.toString()));
+		screenResourceList.add(ShipmentScreenNew.createShippingScreen(busName, locnNbr.toString()));
 		orderFulfillmentMenu.setScreenResourceList(screenResourceList);
 		// }
 		return orderFulfillmentMenu;
