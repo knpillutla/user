@@ -16,11 +16,13 @@ public class RFMenu {
 		rfMenu.setMenuName("RF Menu");
 		rfMenu.setMenuType("RF");
 		List<RFScreenResource> rfScreenResourceList = new ArrayList();
-		rfScreenResourceList.add(createSinglesRFPickScreen(busName, locnNbr));
-		rfScreenResourceList.add(createRFPackScreen(busName, locnNbr));
-		rfScreenResourceList.add(createRFShipScreen(busName, locnNbr));
+//		rfScreenResourceList.add(createSinglesRFPickScreen(busName, locnNbr));
+//		rfScreenResourceList.add(createRFPackScreen(busName, locnNbr));
+//		rfScreenResourceList.add(createRFShipScreen(busName, locnNbr));
 		rfScreenResourceList.add(createNewRFPickScreen(busName, locnNbr.toString()));
+		rfScreenResourceList.add(createNewRFPickByOrderScreen(busName, locnNbr.toString()));
 		rfScreenResourceList.add(createNewRFPackScreen(busName, locnNbr.toString()));
+		rfScreenResourceList.add(createNewRFShipScreen(busName, locnNbr.toString()));
 		rfMenu.setRfScreenResourceList(rfScreenResourceList);
 		return rfMenu;
 	}
@@ -35,16 +37,16 @@ public class RFMenu {
 		fieldList.add(RFFieldResource.createHiddenField("busName", busName));
 		fieldList.add(RFFieldResource.createHiddenField("locnNbr", locnNbr));
 		fieldList.add(RFFieldResource.createDataTriggerLabelField("id", "Pick Id", "int", "10", nextPickUrl, "POST",
-				"No Picks Found, try again..."));
+				"No Picks Found, try again...", "busName:busName,locnNbr:locnNbr"));
 		fieldList.add(RFFieldResource.createStickyTextField("toteNbr", "Enter Tote", "string", "20"));
 		fieldList.add(RFFieldResource.createLabelField("locnBrcd", "Location Brcd", "string", "7"));
-		fieldList.add(RFFieldResource.createTextFieldWithValidation("scanLocnBrcd", "Enter Location Barcode:", "int",
+		fieldList.add(RFFieldResource.createTextFieldWithValidation("scanLocnBrcd", "Enter Location Barcode:", "string",
 				"7", "locnBrcd", "invalid location barcode"));
 		fieldList.add(RFFieldResource.createLabelField("itemBrcd", "UPC", "string", "20"));
 		fieldList.add(RFFieldResource.createTextFieldWithValidation("scanUpc", "Enter UPC:", "string", "20", "itemBrcd",
 				"invalid upc"));
 		fieldList.add(RFFieldResource.createLabelField("qty", "Qty:", "int", "3"));
-		fieldList.add(RFFieldResource.createActionTextFieldWithValidation("scanQty", "Enter Qty:", "string", "3", "qty",
+		fieldList.add(RFFieldResource.createActionTextFieldWithValidation("scanQty", "Enter Qty:", "int", "3", "qty",
 				"invalid qty", updateRecordUrl,
 				"id:id,busName:busName,locnNbr:locnNbr,toContainer:toteNbr,locnBrcd:locnBrcd,scanUpc:itemBrcd,qtyPicked:scanQty,userId:userId",
 				"Y"));
@@ -72,7 +74,7 @@ public class RFMenu {
 				"invalid upc"));
 		fieldList.add(RFFieldResource.createLabelField("id", "Pack Id:", "int", "20"));
 		fieldList.add(RFFieldResource.createLabelField("qty", "Qty:", "int", "3"));
-		fieldList.add(RFFieldResource.createTextFieldWithValidation("scanQty", "Enter Qty:", "string", "3", "qty",
+		fieldList.add(RFFieldResource.createTextFieldWithValidation("scanQty", "Enter Qty:", "int", "3", "qty",
 				"invalid qty"));
 		fieldList.add(RFFieldResource.createLabelField("toContainer", "PackageNbr:", "string", "20"));
 //		fieldList.add(RFFieldResource.createActionTextFieldWithValidation("scanPackageNbr", "Enter Package Nbr:",
@@ -105,7 +107,7 @@ public class RFMenu {
 				"invalid upc"));
 		fieldList.add(RFFieldResource.createLabelField("id", "Pack Id:", "int", "20"));
 		fieldList.add(RFFieldResource.createLabelField("qty", "Qty:", "int", "3"));
-		fieldList.add(RFFieldResource.createTextFieldWithValidation("scanQty", "Enter Qty:", "string", "3", "qty",
+		fieldList.add(RFFieldResource.createTextFieldWithValidation("scanQty", "Enter Qty:", "int", "3", "qty",
 				"invalid qty"));
 		fieldList.add(RFFieldResource.createLabelField("toContainer", "PackageNbr:", "string", "20"));
 //		fieldList.add(RFFieldResource.createActionTextFieldWithValidation("scanPackageNbr", "Enter Package Nbr:",
@@ -143,6 +145,80 @@ public class RFMenu {
 		return rfScreen;
 	}
 
+	private static RFScreenResource createNewRFPickByOrderScreen(String busName, String facilityNbr) {
+		RFScreenResource rfScreen = new RFScreenResource("newpickToToteByOrder", "New Pick To Tote By Order",
+				"New Pick To Tote By Order", "RW", 0, 30, 15);
+		// new RFScreenResource("pickToTote", "Pick To Tote", "RW",0,30,15,null,null);
+		String nextPickUrl = "https://the3dsoft.com/pick/api/picks/assign/order";
+		String updateRecordUrl = "https://the3dsoft.com/pick/api/picks/confirm";
+		String endToteUrl = "https://the3dsoft.com/pick/api/picks/endTote";
+		List<RFFieldResource> fieldList = new ArrayList();
+		fieldList.add(RFFieldResource.createHiddenField("busName", busName));
+		fieldList.add(RFFieldResource.createHiddenField("facilityNbr", facilityNbr));
+		fieldList.add(RFFieldResource.createHiddenField("updatedBy", "testpicker"));
+		fieldList.add(RFFieldResource.createDataTriggerStickyTextField("orderNbr", "Order Nbr", "string", "20",
+				nextPickUrl, "POST", "No Picks Found, try again...",
+				"busName:busName,facilityNbr:facilityNbr,orderNbr:orderNbr,updatedBy:{userId}"));
+		fieldList.add(RFFieldResource.createHiddenField("userId", "{userId}"));
+		fieldList.add(RFFieldResource.createLabelField("id", "Pick Id", "int", "10"));
+		fieldList.add(RFFieldResource.createStickyTextField("toteNbr", "Enter Tote", "string", "20"));
+		fieldList.add(RFFieldResource.createLabelField("locnBrcd", "Location Brcd", "string", "7"));
+		fieldList.add(RFFieldResource.createTextFieldWithValidation("scanLocnBrcd", "Enter Location Barcode:", "string",
+				"7", "locnBrcd", "invalid location barcode"));
+		fieldList.add(RFFieldResource.createLabelField("itemBrcd", "UPC", "string", "20"));
+		fieldList.add(RFFieldResource.createTextFieldWithValidation("scanUpc", "Enter UPC:", "string", "20", "upc",
+				"invalid upc"));
+		fieldList.add(RFFieldResource.createLabelField("qty", "Qty:", "int", "3"));
+		fieldList.add(RFFieldResource.createActionTextFieldWithValidation("scanQty", "Enter Qty:", "int", "3", "qty",
+				"invalid qty", updateRecordUrl,
+				"id:id,busName:busName,facilityNbr:facilityNbr,toContainer:toteNbr,locnBrcd:locnBrcd,scanUpc:itemBrcd,pickedQty:scanQty,updatedBy:userId",
+				"Y"));
+
+		rfScreen.setRfFieldResourceList(fieldList);
+		RFButtonResource buttonResource = new RFButtonResource("endTote", "End Tote",
+				"Are you sure you want to end tote?", endToteUrl,
+				"busName:busName,facilityNbr:facilityNbr,toContainer:toteNbr", "toteNbr", "N");
+		rfScreen.setButtonResources(Arrays.asList(buttonResource));
+		return rfScreen;
+	}
+
+	private static RFScreenResource createNewRFPickByWaveScreen(String busName, String facilityNbr) {
+		RFScreenResource rfScreen = new RFScreenResource("newpickToToteByWave", "New Pick To Tote By Wave",
+				"New Pick To Tote By Wave", "RW", 0, 30, 15);
+		// new RFScreenResource("pickToTote", "Pick To Tote", "RW",0,30,15,null,null);
+		String nextPickUrl = "https://the3dsoft.com/pick/api/picks/assign/wave";
+		String updateRecordUrl = "https://the3dsoft.com/pick/api/picks/confirm";
+		String endToteUrl = "https://the3dsoft.com/pick/api/picks/endTote";
+		List<RFFieldResource> fieldList = new ArrayList();
+		fieldList.add(RFFieldResource.createHiddenField("busName", busName));
+		fieldList.add(RFFieldResource.createHiddenField("facilityNbr", facilityNbr));
+		fieldList.add(RFFieldResource.createHiddenField("updatedBy", "testpicker"));
+		fieldList.add(RFFieldResource.createTextField("waveNbr", "Wave Nbr", "string", "20"));
+		fieldList.add(RFFieldResource.createHiddenField("userId", "userId"));
+		fieldList.add(RFFieldResource.createDataTriggerLabelField("id", "Pick Id", "int", "10", nextPickUrl, "POST",
+				"No Picks Found, try again...",
+				"busName:busName,facilityNbr:facilityNbr,waveNbr:waveNbr,updatedBy:userId"));
+		fieldList.add(RFFieldResource.createStickyTextField("toteNbr", "Enter Tote", "string", "20"));
+		fieldList.add(RFFieldResource.createLabelField("locnBrcd", "Location Brcd", "string", "7"));
+		fieldList.add(RFFieldResource.createTextFieldWithValidation("scanLocnBrcd", "Enter Location Barcode:", "string",
+				"7", "locnBrcd", "invalid location barcode"));
+		fieldList.add(RFFieldResource.createLabelField("itemBrcd", "UPC", "string", "20"));
+		fieldList.add(RFFieldResource.createTextFieldWithValidation("scanUpc", "Enter UPC:", "string", "20", "upc",
+				"invalid upc"));
+		fieldList.add(RFFieldResource.createLabelField("qty", "Qty:", "int", "3"));
+		fieldList.add(RFFieldResource.createActionTextFieldWithValidation("scanQty", "Enter Qty:", "int", "3", "qty",
+				"invalid qty", updateRecordUrl,
+				"id:id,busName:busName,facilityNbr:facilityNbr,toContainer:toteNbr,locnBrcd:locnBrcd,scanUpc:itemBrcd,pickedQty:scanQty,updatedBy:userId",
+				"Y"));
+
+		rfScreen.setRfFieldResourceList(fieldList);
+		RFButtonResource buttonResource = new RFButtonResource("endTote", "End Tote",
+				"Are you sure you want to end tote?", endToteUrl,
+				"busName:busName,facilityNbr:facilityNbr,toContainer:toteNbr", "toteNbr", "N");
+		rfScreen.setButtonResources(Arrays.asList(buttonResource));
+		return rfScreen;
+	}
+
 	private static RFScreenResource createNewRFPickScreen(String busName, String facilityNbr) {
 		RFScreenResource rfScreen = new RFScreenResource("newpickToTote", "New Pick To Tote", "New Pick To Tote", "RW",
 				0, 30, 15);
@@ -153,17 +229,20 @@ public class RFMenu {
 		List<RFFieldResource> fieldList = new ArrayList();
 		fieldList.add(RFFieldResource.createHiddenField("busName", busName));
 		fieldList.add(RFFieldResource.createHiddenField("facilityNbr", facilityNbr));
+		fieldList.add(RFFieldResource.createHiddenField("updatedBy", "testpicker"));
+		// fieldList.add(RFFieldResource.createTextField("orderNbr", "orderNbr",
+		// "string", "20"));
 		fieldList.add(RFFieldResource.createDataTriggerLabelField("id", "Pick Id", "int", "10", nextPickUrl, "POST",
-				"No Picks Found, try again..."));
+				"No Picks Found, try again...", "busName:busName,facilityNbr:facilityNbr,updatedBy:userId"));
 		fieldList.add(RFFieldResource.createStickyTextField("toteNbr", "Enter Tote", "string", "20"));
 		fieldList.add(RFFieldResource.createLabelField("locnBrcd", "Location Brcd", "string", "7"));
-		fieldList.add(RFFieldResource.createTextFieldWithValidation("scanLocnBrcd", "Enter Location Barcode:", "int",
+		fieldList.add(RFFieldResource.createTextFieldWithValidation("scanLocnBrcd", "Enter Location Barcode:", "string",
 				"7", "locnBrcd", "invalid location barcode"));
 		fieldList.add(RFFieldResource.createLabelField("itemBrcd", "UPC", "string", "20"));
 		fieldList.add(RFFieldResource.createTextFieldWithValidation("scanUpc", "Enter UPC:", "string", "20", "upc",
 				"invalid upc"));
 		fieldList.add(RFFieldResource.createLabelField("qty", "Qty:", "int", "3"));
-		fieldList.add(RFFieldResource.createActionTextFieldWithValidation("scanQty", "Enter Qty:", "string", "3", "qty",
+		fieldList.add(RFFieldResource.createActionTextFieldWithValidation("scanQty", "Enter Qty:", "int", "3", "qty",
 				"invalid qty", updateRecordUrl,
 				"id:id,busName:busName,facilityNbr:facilityNbr,toContainer:toteNbr,locnBrcd:locnBrcd,scanUpc:itemBrcd,pickedQty:scanQty,updatedBy:userId",
 				"Y"));
@@ -202,12 +281,35 @@ public class RFMenu {
 //				"string", "20", "toContainer", "invalid package", updateRecordUrl,
 //				"id:id,busName:busName,locnNbr:locnNbr,fromContainer:toteNbr,toContainer:scanPackageNbr,itemBrcd:scanUpc,qtyPacked:scanQty,userId:userId", "Y"));
 		fieldList.add(RFFieldResource.createActionTextField("scanUpc", "Enter UPC:", "string", "20", updateRecordUrl,
-				"busName:busName,facilityNbr:facilityNbr,fromContainer:containerNbr,itemBrcd:scanUpc,packedQty:1,updatedBy:userId",
+				"busName:busName,facilityNbr:facilityNbr,fromContainer:containerNbr,itemBrcd:scanUpc,packedQty:1,updatedBy:uiUser",
 				"Y"));
 
 		rfScreen.setRfFieldResourceList(fieldList);
 		RFButtonResource buttonResource = new RFButtonResource("exit", "Exit", "Are you sure you want to Exit?", "", "",
 				"", "Y");
+		rfScreen.setButtonResources(Arrays.asList(buttonResource));
+		return rfScreen;
+	}
+
+	private static RFScreenResource createNewRFShipScreen(String busName, String facilityNbr) {
+		RFScreenResource rfScreen = new RFScreenResource("newRFShipping", "New Ship Package", "New Ship Package", "RW",
+				0, 30, 15);
+		String shipmentDetailsUrl = "https://the3dsoft.com/shipment/api/shipments/{id}";
+		String shipmentUpdateUrl = "https://the3dsoft.com/shipment/api/shipments/cwfm";
+		List<RFFieldResource> fieldList = new ArrayList();
+		fieldList.add(RFFieldResource.createHiddenField("busName", busName));
+		fieldList.add(RFFieldResource.createHiddenField("facilityNbr", facilityNbr));
+		fieldList.add(RFFieldResource.createDataTriggerTextField("id", "Enter Shipment Id:", "string", "20",
+				shipmentDetailsUrl, "GET", "No Shipment Found, try again"));
+		fieldList.add(RFFieldResource.createLabelField("id", "shipmentId:", "numeric", "3,2"));
+		fieldList.add(RFFieldResource.createLabelField("estimatedWt", "EstimatedWt:", "numeric", "3,2"));
+		fieldList.add(RFFieldResource.createTextField("actualWt", "ActualWt:", "numeric", "3,2"));
+		fieldList.add(RFFieldResource.createLabelField("estimatedVol", "EstimatedVol:", "numeric", "3,2"));
+		fieldList.add(RFFieldResource.createTextField("actualVol", "ActualVol:", "numeric", "3,2"));
+		rfScreen.setRfFieldResourceList(fieldList);
+		RFButtonResource buttonResource = new RFButtonResource("ship", "Ship Package", "", shipmentUpdateUrl,
+				"busName:busName,facilityNbr:facilityNbr,id:id,shipmentNbr:shipmentNbr,estimatedWt:estimatedWt,actualWt:actualWt,estimatedVol:estimatedVol,actualVol:actualVol,updatedBy:userId",
+				"shipmentNbr", "N");
 		rfScreen.setButtonResources(Arrays.asList(buttonResource));
 		return rfScreen;
 	}

@@ -19,7 +19,7 @@ public class ShipmentScreenNew {
 		// even if we donot specify size=20, default size is 20.no page is specified
 		// here
 		String shipListUrl = "https://the3dsoft.com/shipment/api/shipments?busName.equals=" + busName
-				+ "&facilityNbr.equals=" + facilityNbr + "&statCode.equals=100&size=20";
+				+ "&facilityNbr.equals=" + facilityNbr + "&size=100";
 		String shipAddRecordUrl = "https://the3dsoft.com/shipment/api/shipments";
 		String updateRecordUrl = "https://the3dsoft.com/shipment/api/shipments";
 		String deleteRecordUrl = "https://the3dsoft.com/shipment/api/shipments/{id}";

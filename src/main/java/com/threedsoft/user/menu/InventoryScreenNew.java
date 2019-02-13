@@ -17,7 +17,7 @@ public class InventoryScreenNew {
 				"New Item Inventory", "RW", UserConstants.MAINTENANCE_SCREEN, null);
 		String searchUrl = "https://the3dsoft.com/inventory/api/inventories";
 		String invnListUrl = "https://the3dsoft.com/inventory/api/inventories?busName.equals=" + busName
-				+ "&facilityNbr.equals=" + facilityNbr + "&statCode.equals=100&size=20";
+				+ "&facilityNbr.equals=" + facilityNbr + "&size=100";
 		String invnAddRecordUrl = "https://the3dsoft.com/inventory/api/inventories";
 		String updateRecordUrl = "https://the3dsoft.com/inventory/api/inventories";
 		String deleteRecordUrl = "https://the3dsoft.com/inventory/api/inventories/{id}";

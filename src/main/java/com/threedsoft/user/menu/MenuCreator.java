@@ -22,14 +22,12 @@ public class MenuCreator {
 		MenuResource orderFulfillmentMenu = new MenuResource();
 		orderFulfillmentMenu.setMenuName("Fullfillment Maintenance");
 		List<ScreenResource> screenResourceList = new ArrayList();
-		screenResourceList.add(CustomerOrderScreen.createCustomerOrdersScreen(busName, locnNbr));
-		// if(UserApplicationProperties.isHomeStore.equalsIgnoreCase("N")) {
-		screenResourceList.add(OrderPlannerScreen.createOrdersScreen(busName, locnNbr));
-		// screenResourceList.add(orderPlannerScreen);
-		screenResourceList.add(InventoryScreen.createInventoryScreen(busName, locnNbr));
-		screenResourceList.add(PickingScreen.createPickingScreen(busName, locnNbr));
-		screenResourceList.add(PackingScreen.createPackingScreen(busName, locnNbr));
-		screenResourceList.add(ShippingScreen.createShippingScreen(busName, locnNbr));
+//		screenResourceList.add(CustomerOrderScreen.createCustomerOrdersScreen(busName, locnNbr));
+//		screenResourceList.add(OrderPlannerScreen.createOrdersScreen(busName, locnNbr));
+//		screenResourceList.add(InventoryScreen.createInventoryScreen(busName, locnNbr));
+//		screenResourceList.add(PickingScreen.createPickingScreen(busName, locnNbr));
+//		screenResourceList.add(PackingScreen.createPackingScreen(busName, locnNbr));
+//		screenResourceList.add(ShippingScreen.createShippingScreen(busName, locnNbr));
 		screenResourceList.add(CustomerOrderScreenNew.createCustomerOrdersScreen(busName, locnNbr.toString()));
 		screenResourceList.add(OrderPlannerScreenNew.createOrderPlannerScreen(busName, locnNbr.toString()));
 		screenResourceList.add(InventoryScreenNew.createInventoryScreen(busName, locnNbr.toString()));

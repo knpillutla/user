@@ -20,7 +20,7 @@ public class PackScreenNew {
 		// even if we donot specify size=20, default size is 20.no page is specified
 		// here
 		String listUrl = "https://the3dsoft.com/pack/api/packs?busName.equals=" + busName + "&facilityNbr.equals="
-				+ facilityNbr + "&statCode.equals=100&size=20";
+				+ facilityNbr + "&size=100";
 		String addRecordUrl = "";// https://the3dsoft.com/pack/api/packs";
 		String updateRecordUrl = "";// "https://the3dsoft.com/pack/api/packs";
 		String deleteRecordUrl = "";// "https://the3dsoft.com/pack/api/packs/{id}";
@@ -64,6 +64,22 @@ public class PackScreenNew {
 		fieldList.add(FieldResource.createField("updatedBy", "User Id", "String", "20"));
 		fieldList.add(FieldResource.createDropDownField("locked", "Locked", "string", "1", "Y,N", "N"));
 
+		List<ViewEditFieldResource> viewResourceFieldList = new ArrayList();
+		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("id"));
+		viewResourceFieldList.add(ViewEditFieldResource.createHiddenField("busName"));
+		viewResourceFieldList.add(ViewEditFieldResource.createHiddenField("facilityNbr"));
+		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("company"));
+		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("division"));
+		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("batchNbr"));
+		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("orderNbr"));
+		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("orderId"));
+		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("itemBrcd"));
+		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("qty"));
+		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("fromContainer"));
+		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("packedQty"));
+		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("toContainer"));
+		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("locked"));
+
 		List<ViewEditFieldResource> editRecordFieldList = new ArrayList();
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("id"));
 		editRecordFieldList.add(ViewEditFieldResource.createHiddenField("busName"));
@@ -90,8 +106,10 @@ public class PackScreenNew {
 
 		packDataResource.setFieldList(fieldList);
 		packDataResource.setSearchFieldList(searchFieldList);
+		packDataResource.setViewResourceFieldList(viewResourceFieldList);
+		packDataResource.setEditResourceFieldList(editRecordFieldList);
 		packDataResource.setListFields(
-				"id, batchNbr,itemBrcd,qty,packedQty,fromContainer,toContainer,locked, orderId, orderNbr,updatedBy");
+				"id, batchNbr,itemBrcd,qty,packedQty,fromContainer,toContainer,locked, orderNbr,updatedBy");
 		packDataResource.setRecordActionList(Arrays.asList(packConfirmPickingAction));
 		screen.setDataResource(packDataResource);
 		return screen;

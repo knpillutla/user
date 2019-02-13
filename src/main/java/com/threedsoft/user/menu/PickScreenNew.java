@@ -20,7 +20,7 @@ public class PickScreenNew {
 		// even if we donot specify size=20, default size is 20.no page is specified
 		// here
 		String listUrl = "https://the3dsoft.com/pick/api/picks?busName.equals=" + busName + "&facilityNbr.equals="
-				+ facilityNbr + "&statCode.equals=100&size=20";
+				+ facilityNbr + "&size=100";
 		String addRecordUrl = "";// https://the3dsoft.com/pick/api/picks";
 		String updateRecordUrl = "";// "https://the3dsoft.com/pick/api/picks";
 		String deleteRecordUrl = "";// "https://the3dsoft.com/pick/api/picks/{id}";

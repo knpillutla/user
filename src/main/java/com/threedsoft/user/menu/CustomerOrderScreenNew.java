@@ -21,7 +21,7 @@ public class CustomerOrderScreenNew {
 		// even if we donot specify size=20, default size is 20.no page is specified
 		// here
 		String custOrdersListUrl = "https://the3dsoft.com/customerorder/api/customer-orders?busName.equals=" + busName
-				+ "&facilityNbr.equals=" + facilityNbr + "&statCode.equals=100&size=20";
+				+ "&facilityNbr.equals=" + facilityNbr + "&size=100";
 		String custOrdersAddRecordUrl = "https://the3dsoft.com/customerorder/api/customer-orders";
 		String custOrdersUpdateRecordUrl = "https://the3dsoft.com/customerorder/api/customer-orders";
 		String custOrdersDeleteRecordUrl = "https://the3dsoft.com/customerorder/api/customer-orders/{id}";
