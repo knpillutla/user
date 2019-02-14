@@ -63,6 +63,8 @@ public class PackScreenNew {
 		fieldList.add(FieldResource.createField("toContainer", "To Container", "string", "20"));
 		fieldList.add(FieldResource.createField("updatedBy", "User Id", "String", "20"));
 		fieldList.add(FieldResource.createDropDownField("locked", "Locked", "string", "1", "Y,N", "N"));
+		fieldList.add(FieldResource.createDropDownField("statCode", "Pack Status", "string", "10",
+				"100,200,300,400,500", "None"));
 
 		List<ViewEditFieldResource> viewResourceFieldList = new ArrayList();
 		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("id"));
@@ -78,6 +80,7 @@ public class PackScreenNew {
 		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("fromContainer"));
 		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("packedQty"));
 		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("toContainer"));
+		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("statCode"));
 		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("locked"));
 
 		List<ViewEditFieldResource> editRecordFieldList = new ArrayList();
@@ -95,7 +98,7 @@ public class PackScreenNew {
 		editRecordFieldList.add(ViewEditFieldResource.createMandatoryField("packedQty"));
 		editRecordFieldList.add(ViewEditFieldResource.createMandatoryField("toContainer"));
 		editRecordFieldList.add(ViewEditFieldResource.createMandatoryField("locked"));
-
+		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("statCode"));
 		List<SearchFieldResource> searchFieldList = new ArrayList();
 		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("busName", ".equals", busName));
 		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("facilityNbr", ".equals",
@@ -109,7 +112,7 @@ public class PackScreenNew {
 		packDataResource.setViewResourceFieldList(viewResourceFieldList);
 		packDataResource.setEditResourceFieldList(editRecordFieldList);
 		packDataResource.setListFields(
-				"id, batchNbr,itemBrcd,qty,packedQty,fromContainer,toContainer,locked, orderNbr,updatedBy");
+				"id, batchNbr,itemBrcd,qty,packedQty,fromContainer,toContainer,statCode,locked, orderNbr,updatedBy");
 		packDataResource.setRecordActionList(Arrays.asList(packConfirmPickingAction));
 		screen.setDataResource(packDataResource);
 		return screen;

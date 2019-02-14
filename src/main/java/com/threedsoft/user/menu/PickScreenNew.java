@@ -39,6 +39,7 @@ public class PickScreenNew {
 		fieldList.add(FieldResource.createPrimaryField("id", "pick id", "int", "10"));
 		fieldList.add(FieldResource.createPrimaryField("busName", "Bus Name", "string", "25"));
 		fieldList.add(FieldResource.createPrimaryField("facilityNbr", "Facility Nbr", "int", "10"));
+		fieldList.add(FieldResource.createPrimaryField("orderNbr", "Order Nbr", "string", "25"));
 		fieldList.add(FieldResource.createPrimaryField("batchNbr", "Batch Nbr", "string", "25"));
 		fieldList.add(FieldResource.createField("company", "Company", "string", "15"));
 		fieldList.add(FieldResource.createField("division", "Division", "string", "10"));
@@ -57,6 +58,7 @@ public class PickScreenNew {
 		editRecordFieldList.add(ViewEditFieldResource.createHiddenField("facilityNbr"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("company"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("division"));
+		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderNbr"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("locnBrcd"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("itemBrcd"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("statCode"));
@@ -70,6 +72,7 @@ public class PickScreenNew {
 		viewRecordFieldList.add(ViewEditFieldResource.createHiddenField("facilityNbr"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("company"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("division"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderNbr"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("locnBrcd"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("itemBrcd"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("statCode"));
@@ -88,7 +91,7 @@ public class PickScreenNew {
 		pickDataResource.setFieldList(fieldList);
 		pickDataResource.setViewResourceFieldList(viewRecordFieldList);
 		pickDataResource.setSearchFieldList(searchFieldList);
-		pickDataResource.setListFields("id,batchNbr,locnBrcd,itemBrcd,status,qty,pickedQty,locked");
+		pickDataResource.setListFields("id,orderNbr,batchNbr,locnBrcd,itemBrcd,status,qty,pickedQty,statCode,locked");
 		pickDataResource.setEditResourceFieldList(editRecordFieldList);
 		pickDataResource.setRecordActionList(Arrays.asList(pickConfirmPickingAction));
 		screen.setDataResource(pickDataResource);
