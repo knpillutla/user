@@ -13,8 +13,8 @@ import com.threedsoft.user.util.UserConstants;
 
 public class InventoryScreenNew {
 	public static ScreenResource createInventoryScreen(String busName, String facilityNbr) {
-		ScreenResource inventoryScreen = new ScreenResource("NewInventoryMaintenance", "New Inventory Maintenance",
-				"New Item Inventory", "RW", UserConstants.MAINTENANCE_SCREEN, null);
+		ScreenResource inventoryScreen = new ScreenResource("InventoryMaintenance", "Inventory Maintenance",
+				"Item Inventory", "RW", UserConstants.MAINTENANCE_SCREEN, null);
 		String searchUrl = "https://the3dsoft.com/inventory/api/inventories";
 		String invnListUrl = "https://the3dsoft.com/inventory/api/inventories?busName.equals=" + busName
 				+ "&facilityNbr.equals=" + facilityNbr + "&size=100";

@@ -15,8 +15,8 @@ import com.threedsoft.user.util.UserConstants;
 
 public class OrderPlannerScreenNew {
 	public static ScreenResource createOrderPlannerScreen(String busName, String facilityNbr) {
-		ScreenResource wmsOrdersScreen = new ScreenResource("NewOrderPlanner", "New Order Planner", "New Order Planner",
-				"RW", UserConstants.MAINTENANCE_SCREEN, null);
+		ScreenResource wmsOrdersScreen = new ScreenResource("OrderPlanner", "Order Planner", "Order Planner", "RW",
+				UserConstants.MAINTENANCE_SCREEN, null);
 		String searchUrl = "https://the3dsoft.com/orderplanner/api/wms-orders";
 		// even if we donot specify size=20, default size is 20.no page is specified
 		// here

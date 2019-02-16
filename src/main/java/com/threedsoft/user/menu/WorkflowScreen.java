@@ -11,19 +11,19 @@ import com.threedsoft.user.dto.responses.SearchFieldResource;
 import com.threedsoft.user.dto.responses.ViewEditFieldResource;
 import com.threedsoft.user.util.UserConstants;
 
-public class ShipmentScreenNew {
+public class WorkflowScreen {
 	public static ScreenResource createShippingScreen(String busName, String facilityNbr) {
-		ScreenResource shippingScreen = new ScreenResource("ShipmentMaintenance", "Shipment Maintenance",
-				"Shipment Maintenance", "R", UserConstants.MAINTENANCE_SCREEN, null);
-		String searchUrl = "https://the3dsoft.com/shipment/api/shipments";
+		ScreenResource shippingScreen = new ScreenResource("Event Auditor", "Event Auditor", "Event Auditor", "R",
+				UserConstants.MAINTENANCE_SCREEN, null);
+		String searchUrl = "https://the3dsoft.com/shipment/api/workflow";
 		// even if we donot specify size=20, default size is 20.no page is specified
 		// here
 		String shipListUrl = "https://the3dsoft.com/shipment/api/shipments?busName.equals=" + busName
 				+ "&facilityNbr.equals=" + facilityNbr + "&size=100";
-		String shipAddRecordUrl = "https://the3dsoft.com/shipment/api/shipments";
-		String updateRecordUrl = "https://the3dsoft.com/shipment/api/shipments";
-		String deleteRecordUrl = "https://the3dsoft.com/shipment/api/shipments/{id}";
-		DataResource shippingDataResource = new DataResource("shipping", "shipping", searchUrl, shipListUrl,
+		String shipAddRecordUrl = "https://the3dsoft.com/shipment/api/workflow";
+		String updateRecordUrl = "https://the3dsoft.com/shipment/api/workflow";
+		String deleteRecordUrl = "https://the3dsoft.com/shipment/api/workflow/{id}";
+		DataResource shippingDataResource = new DataResource("events", "events", searchUrl, shipListUrl,
 				shipAddRecordUrl, updateRecordUrl, deleteRecordUrl);
 
 		List<FieldResource> fieldList = new ArrayList();

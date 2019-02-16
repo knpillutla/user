@@ -14,7 +14,7 @@ import com.threedsoft.user.util.UserConstants;
 
 public class PickScreenNew {
 	public static ScreenResource createPickScreen(String busName, String facilityNbr) {
-		ScreenResource screen = new ScreenResource("NewPickScreen", "New Pick Screen", "New Pick Screen", "RW",
+		ScreenResource screen = new ScreenResource("PickScreen", "Pick Screen", "Pick Screen", "RW",
 				UserConstants.MAINTENANCE_SCREEN, null);
 		String searchUrl = "https://the3dsoft.com/pick/api/picks";
 		// even if we donot specify size=20, default size is 20.no page is specified

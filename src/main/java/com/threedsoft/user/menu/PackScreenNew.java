@@ -14,8 +14,8 @@ import com.threedsoft.user.util.UserConstants;
 
 public class PackScreenNew {
 	public static ScreenResource createPackScreen(String busName, String facilityNbr) {
-		ScreenResource screen = new ScreenResource("NewPackingMaintenance", "New Packing Maintenance",
-				"New Packing Maintenance", "R", UserConstants.MAINTENANCE_SCREEN, null);
+		ScreenResource screen = new ScreenResource("PackingMaintenance", "Packing Maintenance", "Packing Maintenance",
+				"R", UserConstants.MAINTENANCE_SCREEN, null);
 		String searchUrl = "https://the3dsoft.com/pack/api/packs";
 		// even if we donot specify size=20, default size is 20.no page is specified
 		// here

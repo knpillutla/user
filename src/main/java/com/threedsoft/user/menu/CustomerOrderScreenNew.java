@@ -15,8 +15,8 @@ import com.threedsoft.user.util.UserConstants;
 
 public class CustomerOrderScreenNew {
 	public static ScreenResource createCustomerOrdersScreen(String busName, String facilityNbr) {
-		ScreenResource customerOrdersScreen = new ScreenResource("NewCustomerOrderMaintenance",
-				"New Customer Order Maintenance", "New Customer Orders", "RW", UserConstants.MAINTENANCE_SCREEN, null);
+		ScreenResource customerOrdersScreen = new ScreenResource("CustomerOrderMaintenance",
+				"Customer Order Maintenance", "Customer Orders", "RW", UserConstants.MAINTENANCE_SCREEN, null);
 		String searchUrl = "https://the3dsoft.com/customerorder/api/customer-orders";
 		// even if we donot specify size=20, default size is 20.no page is specified
 		// here
