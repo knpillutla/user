@@ -35,8 +35,9 @@ public class ShipmentScreenNew {
 		fieldList.add(FieldResource.createField("batchNbr", "Batch Nbr", "string", "20"));
 		fieldList.add(FieldResource.createField("orderId", "Order Id", "string", "20"));
 		fieldList.add(FieldResource.createField("orderNbr", "Order Nbr", "string", "15"));
-		fieldList.add(FieldResource.createDropDownField("statCode", "Pick Status", "string", "10",
+		fieldList.add(FieldResource.createDropDownField("statCode", "Stat Code", "string", "10",
 				"100,200,300,400,450,500,550,600,650,700,750,800,825,850,900,1000,1111,2222", "None"));
+		fieldList.add(FieldResource.createField("statCodeDesc", "Status Description", "string", "30"));
 		fieldList.add(FieldResource.createField("orderDttm", "Order Date/Time", "datetime", "20"));
 		fieldList.add(FieldResource.createField("shipByDttm", "ShipBy Date", "date", "20"));
 		fieldList.add(FieldResource.createField("expectedDeliveryDttm", "Expected Delivery Date", "date", "20"));
@@ -61,6 +62,10 @@ public class ShipmentScreenNew {
 		fieldList.add(FieldResource.createField("invoiceLabel", "Shipping Label", "byte[]", "10000"));
 		fieldList.add(FieldResource.createField("invoiceLabelContentType", "Invoice Label Format", "string", "3"));
 		fieldList.add(FieldResource.createField("updatedBy", "User Id", "String", "25"));
+		fieldList.add(FieldResource.createField("createdDttm", "Created Dttm", "date", "20"));
+		fieldList.add(FieldResource.createField("updatedDttm", "Updated Dttm", "date", "20"));
+		fieldList.add(FieldResource.createField("createdBy", "Created By", "string", "25"));
+		fieldList.add(FieldResource.createField("updatedBy", "Updated By", "string", "25"));
 
 		List<SearchFieldResource> searchFieldList = new ArrayList();
 		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("busName", ".equals", busName));
@@ -77,6 +82,7 @@ public class ShipmentScreenNew {
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("division"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("shipmentNbr"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("statCode"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("statCodeDesc"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("orderNbr"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("trackingNbr"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("shipCarrier"));
@@ -97,7 +103,7 @@ public class ShipmentScreenNew {
 		shippingDataResource.setFieldList(fieldList);
 		shippingDataResource.setSearchFieldList(searchFieldList);
 		shippingDataResource.setListFields(
-				"id,shipmentNbr,orderNbr,statCode,deliveryType,shipCarrier,shipCarrierService,shipCost,zipcode,userId");
+				"id,shipmentNbr,orderNbr,statCode,statCodeDesc,deliveryType,shipCarrier,shipCarrierService,shipCost,zipcode,createdDttm,updatedDttm,createdBy,updatedBy");
 		// shippingDataResource.setAddResourceFieldList(addRecordFieldList);
 		shippingDataResource.setViewResourceFieldList(viewRecordFieldList);
 		BrowserViewerResource shippingLabelViewer = new BrowserViewerResource("pdfViewer", "View/Print Shipping Label",

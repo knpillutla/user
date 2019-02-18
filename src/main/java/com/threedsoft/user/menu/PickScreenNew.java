@@ -14,8 +14,8 @@ import com.threedsoft.user.util.UserConstants;
 
 public class PickScreenNew {
 	public static ScreenResource createPickScreen(String busName, String facilityNbr) {
-		ScreenResource screen = new ScreenResource("PickScreen", "Pick Screen", "Pick Screen", "RW",
-				UserConstants.MAINTENANCE_SCREEN, null);
+		ScreenResource screen = new ScreenResource("Picking Maintenance", "Picking Maintenance", "Picking Maintenance",
+				"RW", UserConstants.MAINTENANCE_SCREEN, null);
 		String searchUrl = "https://the3dsoft.com/pick/api/picks";
 		// even if we donot specify size=20, default size is 20.no page is specified
 		// here
@@ -49,8 +49,13 @@ public class PickScreenNew {
 		fieldList.add(FieldResource.createField("pickedQty", "Picked Qty", "int", "2"));
 		fieldList.add(FieldResource.createDropDownField("statCode", "Pick Status", "string", "10",
 				"100,200,300,400,500", "None"));
+		fieldList.add(FieldResource.createField("statCodeDesc", "Status Description", "String", "20"));
 		fieldList.add(FieldResource.createDropDownField("locked", "Locked", "string", "1", "Y,N", "N"));
 		fieldList.add(FieldResource.createField("updatedBy", "User Id", "String", "20"));
+		fieldList.add(FieldResource.createField("createdDttm", "Created Dttm", "date", "20"));
+		fieldList.add(FieldResource.createField("updatedDttm", "Updated Dttm", "date", "20"));
+		fieldList.add(FieldResource.createField("createdBy", "Created By", "string", "25"));
+		fieldList.add(FieldResource.createField("updatedBy", "Updated By", "string", "25"));
 
 		List<ViewEditFieldResource> editRecordFieldList = new ArrayList();
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("id"));
@@ -62,6 +67,7 @@ public class PickScreenNew {
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("locnBrcd"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("itemBrcd"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("statCode"));
+		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("statCodeDesc"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("qty"));
 		editRecordFieldList.add(ViewEditFieldResource.createMandatoryField("pickedQty"));
 		editRecordFieldList.add(ViewEditFieldResource.createField("locked"));
@@ -76,6 +82,7 @@ public class PickScreenNew {
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("locnBrcd"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("itemBrcd"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("statCode"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("statCodeDesc"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("qty"));
 		viewRecordFieldList.add(ViewEditFieldResource.createMandatoryField("pickedQty"));
 		viewRecordFieldList.add(ViewEditFieldResource.createField("locked"));
@@ -91,7 +98,8 @@ public class PickScreenNew {
 		pickDataResource.setFieldList(fieldList);
 		pickDataResource.setViewResourceFieldList(viewRecordFieldList);
 		pickDataResource.setSearchFieldList(searchFieldList);
-		pickDataResource.setListFields("id,orderNbr,batchNbr,locnBrcd,itemBrcd,status,qty,pickedQty,statCode,locked");
+		pickDataResource.setListFields(
+				"id,orderNbr,batchNbr,statCode,statCodeDesc,locnBrcd,itemBrcd,qty,pickedQty,locked,createdDttm,updatedDttm,createdBy,updatedBy");
 		pickDataResource.setEditResourceFieldList(editRecordFieldList);
 		pickDataResource.setRecordActionList(Arrays.asList(pickConfirmPickingAction));
 		screen.setDataResource(pickDataResource);

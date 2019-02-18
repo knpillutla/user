@@ -65,6 +65,11 @@ public class PackScreenNew {
 		fieldList.add(FieldResource.createDropDownField("locked", "Locked", "string", "1", "Y,N", "N"));
 		fieldList.add(FieldResource.createDropDownField("statCode", "Pack Status", "string", "10",
 				"100,200,300,400,500", "None"));
+		fieldList.add(FieldResource.createField("statCodeDesc", "Status Desc", "string", "20"));
+		fieldList.add(FieldResource.createField("createdDttm", "Created Dttm", "date", "20"));
+		fieldList.add(FieldResource.createField("updatedDttm", "Updated Dttm", "date", "20"));
+		fieldList.add(FieldResource.createField("createdBy", "Created By", "string", "25"));
+		fieldList.add(FieldResource.createField("updatedBy", "Updated By", "string", "25"));
 
 		List<ViewEditFieldResource> viewResourceFieldList = new ArrayList();
 		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("id"));
@@ -81,6 +86,7 @@ public class PackScreenNew {
 		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("packedQty"));
 		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("toContainer"));
 		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("statCode"));
+		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("statCodeDesc"));
 		viewResourceFieldList.add(ViewEditFieldResource.createDisabledField("locked"));
 
 		List<ViewEditFieldResource> editRecordFieldList = new ArrayList();
@@ -99,6 +105,7 @@ public class PackScreenNew {
 		editRecordFieldList.add(ViewEditFieldResource.createMandatoryField("toContainer"));
 		editRecordFieldList.add(ViewEditFieldResource.createMandatoryField("locked"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("statCode"));
+		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("statCodeDesc"));
 		List<SearchFieldResource> searchFieldList = new ArrayList();
 		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("busName", ".equals", busName));
 		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("facilityNbr", ".equals",
@@ -112,7 +119,7 @@ public class PackScreenNew {
 		packDataResource.setViewResourceFieldList(viewResourceFieldList);
 		packDataResource.setEditResourceFieldList(editRecordFieldList);
 		packDataResource.setListFields(
-				"id, batchNbr,itemBrcd,qty,packedQty,fromContainer,toContainer,statCode,locked, orderNbr,updatedBy");
+				"id, batchNbr,orderNbr,statCode,statCodeDesc,itemBrcd,qty,packedQty,fromContainer,toContainer,locked, orderNbr,createdDttm,updatedDttm,createdBy,updatedBy");
 		packDataResource.setRecordActionList(Arrays.asList(packConfirmPickingAction));
 		screen.setDataResource(packDataResource);
 		return screen;

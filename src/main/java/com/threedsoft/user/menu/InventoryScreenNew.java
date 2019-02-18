@@ -34,9 +34,16 @@ public class InventoryScreenNew {
 		fieldList.add(FieldResource.createField("itemBrcd", "Item Brcd", "string", "20"));
 		fieldList.add(FieldResource.createField("qty", "Qty", "int", "2"));
 		fieldList.add(FieldResource.createDropDownField("locked", "Locked", "string", "1", "Y,N", "N"));
+		fieldList.add(
+				FieldResource.createDropDownField("statCode", "Stat Code", "Integer", "4", "100,200,300,400", "None"));
+		fieldList.add(FieldResource.createField("statCodeDesc", "Status Description", "string", "20"));
 		fieldList.add(FieldResource.createDropDownField("trackByLPN", "Track By LPN?", "string", "1", "Y,N", "N"));
 		fieldList.add(FieldResource.createField("ilpn", "Inbound LPN", "string", "20"));
 		fieldList.add(FieldResource.createField("userId", "userId", "int", "25"));
+		fieldList.add(FieldResource.createField("createdDttm", "Created Dttm", "date", "20"));
+		fieldList.add(FieldResource.createField("updatedDttm", "Updated Dttm", "date", "20"));
+		fieldList.add(FieldResource.createField("createdBy", "Created By", "string", "25"));
+		fieldList.add(FieldResource.createField("updatedBy", "Updated By", "string", "25"));
 
 		List<SearchFieldResource> searchFieldList = new ArrayList();
 		searchFieldList.add(SearchFieldResource.createHiddenFieldWithDefaultValue("busName", ".equals", busName));
@@ -66,6 +73,8 @@ public class InventoryScreenNew {
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("division"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("locnBrcd"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("itemBrcd"));
+		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("statCode"));
+		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("statCodeDesc"));
 		editRecordFieldList.add(ViewEditFieldResource.createMandatoryField("qty"));
 		editRecordFieldList.add(ViewEditFieldResource.createField("locked"));
 		editRecordFieldList.add(ViewEditFieldResource.createDisabledField("ilpn"));
@@ -79,6 +88,8 @@ public class InventoryScreenNew {
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("division"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("locnBrcd"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("itemBrcd"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("statCode"));
+		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("statCodeDesc"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("ilpn"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("qty"));
 		viewRecordFieldList.add(ViewEditFieldResource.createDisabledField("locked"));
@@ -86,7 +97,8 @@ public class InventoryScreenNew {
 
 		inventoryDataResource.setFieldList(fieldList);
 		inventoryDataResource.setSearchFieldList(searchFieldList);
-		inventoryDataResource.setListFields("id,locnBrcd,itemBrcd,qty,locked,trackByLPN,ilpn,userId");
+		inventoryDataResource.setListFields(
+				"id,locnBrcd,itemBrcd,qty,statCode,statCodeDesc,locked,trackByLPN,ilpn,createdDttm,updatedDttm,createdBy,updatedBy");
 		inventoryDataResource.setAddResourceFieldList(addRecordFieldList);
 		inventoryDataResource.setViewResourceFieldList(viewRecordFieldList);
 		inventoryDataResource.setEditResourceFieldList(editRecordFieldList);
