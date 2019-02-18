@@ -61,7 +61,6 @@ public class PackScreenNew {
 		fieldList.add(FieldResource.createField("packedQty", "Packed Qty", "int", "2"));
 		fieldList.add(FieldResource.createField("fromContainer", "From Container", "string", "20"));
 		fieldList.add(FieldResource.createField("toContainer", "To Container", "string", "20"));
-		fieldList.add(FieldResource.createField("updatedBy", "User Id", "String", "20"));
 		fieldList.add(FieldResource.createDropDownField("locked", "Locked", "string", "1", "Y,N", "N"));
 		fieldList.add(FieldResource.createDropDownField("statCode", "Pack Status", "string", "10",
 				"100,200,300,400,500", "None"));

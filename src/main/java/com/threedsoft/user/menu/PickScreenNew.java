@@ -51,7 +51,6 @@ public class PickScreenNew {
 				"100,200,300,400,500", "None"));
 		fieldList.add(FieldResource.createField("statCodeDesc", "Status Description", "String", "20"));
 		fieldList.add(FieldResource.createDropDownField("locked", "Locked", "string", "1", "Y,N", "N"));
-		fieldList.add(FieldResource.createField("updatedBy", "User Id", "String", "20"));
 		fieldList.add(FieldResource.createField("createdDttm", "Created Dttm", "date", "20"));
 		fieldList.add(FieldResource.createField("updatedDttm", "Updated Dttm", "date", "20"));
 		fieldList.add(FieldResource.createField("createdBy", "Created By", "string", "25"));

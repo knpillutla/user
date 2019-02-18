@@ -61,7 +61,6 @@ public class ShipmentScreenNew {
 		fieldList.add(FieldResource.createField("shippingLabel", "Shipping Label", "byte[]", "10000"));
 		fieldList.add(FieldResource.createField("invoiceLabel", "Shipping Label", "byte[]", "10000"));
 		fieldList.add(FieldResource.createField("invoiceLabelContentType", "Invoice Label Format", "string", "3"));
-		fieldList.add(FieldResource.createField("updatedBy", "User Id", "String", "25"));
 		fieldList.add(FieldResource.createField("createdDttm", "Created Dttm", "date", "20"));
 		fieldList.add(FieldResource.createField("updatedDttm", "Updated Dttm", "date", "20"));
 		fieldList.add(FieldResource.createField("createdBy", "Created By", "string", "25"));
@@ -103,7 +102,7 @@ public class ShipmentScreenNew {
 		shippingDataResource.setFieldList(fieldList);
 		shippingDataResource.setSearchFieldList(searchFieldList);
 		shippingDataResource.setListFields(
-				"id,shipmentNbr,orderNbr,statCode,statCodeDesc,deliveryType,shipCarrier,shipCarrierService,shipCost,zipcode,createdDttm,updatedDttm,createdBy,updatedBy");
+				"id,shipmentNbr,orderNbr,statCode,statCodeDesc,orderDttm,deliveryType,createdDttm,updatedDttm,createdBy,updatedBy");
 		// shippingDataResource.setAddResourceFieldList(addRecordFieldList);
 		shippingDataResource.setViewResourceFieldList(viewRecordFieldList);
 		BrowserViewerResource shippingLabelViewer = new BrowserViewerResource("pdfViewer", "View/Print Shipping Label",
