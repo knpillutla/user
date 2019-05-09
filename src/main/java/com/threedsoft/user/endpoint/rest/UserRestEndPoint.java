@@ -3,6 +3,8 @@ package com.threedsoft.user.endpoint.rest;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -30,32 +32,35 @@ import com.threedsoft.util.dto.ErrorResourceDTO;
 
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping("/users/v1")
-@Api(value="User Service", description="Operations pertaining to User")
+@Api(value = "User Service", description = "Operations pertaining to User")
 @RefreshScope
 @Slf4j
 public class UserRestEndPoint {
 
-    @Autowired
-    UserService userService;
-	
-    @Value("${wms.service.health.msg: User Service - Config Server is not working..please check}")
-    private String healthMsg;
-    
-    @Value("${wms.service.ready.msg: User Service - Not ready yet}")
-    private String readyMsg;
+	private final Logger log = LoggerFactory.getLogger(UserRestEndPoint.class);
+
+	@Autowired
+	UserService userService;
+
+	@Value("${wms.service.health.msg: User Service - Config Server is not working..please check}")
+	private String healthMsg;
+
+	@Value("${wms.service.ready.msg: User Service - Not ready yet}")
+	private String readyMsg;
 
 	@GetMapping("/ready")
 	public ResponseEntity ready() throws UserException {
 		return ResponseEntity.ok(readyMsg);
 	}
-	
+
 	@GetMapping("/health")
 	public ResponseEntity health() throws UserException {
 		return ResponseEntity.ok(healthMsg);
 	}
-	
+
 	@GetMapping("/user/{id}")
 	public ResponseEntity getById(@PathVariable("id") Long id) throws IOException {
 		try {
@@ -63,7 +68,8 @@ public class UserRestEndPoint {
 		} catch (UserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.NOT_FOUND.value(), "Error occured while getting the user:" + e.getMessage()));
+			return ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.NOT_FOUND.value(),
+					"Error occured while getting the user:" + e.getMessage()));
 		}
 	}
 
@@ -73,15 +79,18 @@ public class UserRestEndPoint {
 		log.info("Received User Create request for : " + userCreationReq.toString() + ": at :" + LocalDateTime.now());
 		ResponseEntity resEntity = null;
 		try {
-			resEntity = ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(userService.createUser(userCreationReq));
+			resEntity = ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
+					.body(userService.createUser(userCreationReq));
 		} catch (UserException ex) {
 			log.error("CreateUser Error:", ex.getEvent(), ex);
-			resEntity = ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), "User Creation Error:" + ex.getMessage()));
+			resEntity = ResponseEntity.badRequest().body(
+					new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), "User Creation Error:" + ex.getMessage()));
 		}
 		long endTime = System.currentTimeMillis();
-		log.info("Completed User Create request for : " + userCreationReq.toString() + ": at :" + LocalDateTime.now() + " : total time:" + (endTime-startTime)/1000.00 + " secs");
+		log.info("Completed User Create request for : " + userCreationReq.toString() + ": at :" + LocalDateTime.now()
+				+ " : total time:" + (endTime - startTime) / 1000.00 + " secs");
 		return resEntity;
-	}	
+	}
 
 	@PostMapping("/user/signin")
 	public ResponseEntity userSignIn(@RequestBody UserLoginInRequestDTO userLoginReq) throws IOException {
@@ -93,7 +102,8 @@ public class UserRestEndPoint {
 			return ResponseEntity.ok(userResourceDTO);
 		} catch (UserException e) {
 			log.error("Error:", e);
-			return ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.UNAUTHORIZED.value(), e.getMessage()));
+			return ResponseEntity.badRequest()
+					.body(new ErrorResourceDTO(HttpStatus.UNAUTHORIZED.value(), e.getMessage()));
 		}
 	}
 
@@ -107,12 +117,14 @@ public class UserRestEndPoint {
 			return ResponseEntity.ok(userResourceDTO);
 		} catch (UserException e) {
 			log.error("Error:", e);
-			return ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
+			return ResponseEntity.badRequest()
+					.body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
 		}
 	}
 
 	@PostMapping("/user/theme/id/{id}")
-	public ResponseEntity updateUserTheme(@RequestBody UserThemeUpdateRequestDTO userThemeUpdateReq) throws IOException {
+	public ResponseEntity updateUserTheme(@RequestBody UserThemeUpdateRequestDTO userThemeUpdateReq)
+			throws IOException {
 		UserResourceDTO userResourceDTO = null;
 		try {
 			log.info("Received updateUserTheme request:" + userThemeUpdateReq);
@@ -121,12 +133,14 @@ public class UserRestEndPoint {
 			return ResponseEntity.ok(userResourceDTO);
 		} catch (Exception e) {
 			log.error("Error:", e);
-			return ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
+			return ResponseEntity.badRequest()
+					.body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
 		}
 	}
-	
+
 	@PostMapping("/user/authtoken/id/{id}")
-	public ResponseEntity updateUserAuthToken(@RequestBody UserPasswordUpdateRequestDTO userPwdUpdateReq) throws IOException {
+	public ResponseEntity updateUserAuthToken(@RequestBody UserPasswordUpdateRequestDTO userPwdUpdateReq)
+			throws IOException {
 		UserResourceDTO userResourceDTO = null;
 		try {
 			log.info("Received updateUserAuthToken request:" + userPwdUpdateReq);
@@ -135,12 +149,14 @@ public class UserRestEndPoint {
 			return ResponseEntity.ok(userResourceDTO);
 		} catch (Exception e) {
 			log.error("Error updating authToken:", e);
-			return ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
+			return ResponseEntity.badRequest()
+					.body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
 		}
-	}	
-	
+	}
+
 	@PostMapping("/user/menutype/id/{id}")
-	public ResponseEntity updateUserMenuType(@RequestBody UserMenuTypeUpdateRequestDTO userMenuTypeUpdateReq) throws IOException {
+	public ResponseEntity updateUserMenuType(@RequestBody UserMenuTypeUpdateRequestDTO userMenuTypeUpdateReq)
+			throws IOException {
 		UserResourceDTO userResourceDTO = null;
 		try {
 			log.info("Received updateUserMenuType request:" + userMenuTypeUpdateReq);
@@ -149,10 +165,11 @@ public class UserRestEndPoint {
 			return ResponseEntity.ok(userResourceDTO);
 		} catch (Exception e) {
 			log.error("Error updating menuType:", e);
-			return ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
+			return ResponseEntity.badRequest()
+					.body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
 		}
-	}		
-	
+	}
+
 	@PostMapping("/user/type/id/{id}")
 	public ResponseEntity updateUserType(@RequestBody UserTypeUpdateRequestDTO userTypeUpdateReq) throws IOException {
 		UserResourceDTO userResourceDTO = null;
@@ -163,7 +180,8 @@ public class UserRestEndPoint {
 			return ResponseEntity.ok(userResourceDTO);
 		} catch (Exception e) {
 			log.error("Error updateUserType:", e);
-			return ResponseEntity.badRequest().body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
+			return ResponseEntity.badRequest()
+					.body(new ErrorResourceDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
 		}
-	}	
+	}
 }

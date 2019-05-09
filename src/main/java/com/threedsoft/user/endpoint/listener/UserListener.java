@@ -2,6 +2,8 @@ package com.threedsoft.user.endpoint.listener;
 
 import java.time.LocalDateTime;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.stereotype.Component;
@@ -21,12 +23,15 @@ public class UserListener {
 	@Autowired
 	UserDTOConverter userDTOConverter;
 
-	@StreamListener(target=UserStreams.USER_INPUT, condition = "headers['eventName']=='UserSignedUpEvent'")
+	private final Logger log = LoggerFactory.getLogger(UserListener.class);
+
+	@StreamListener(target = UserStreams.USER_INPUT, condition = "headers['eventName']=='UserSignedUpEvent'")
 	public void handleUserSignedUpEvent(String userId) {
-		log.info("Received UserSignedUpEvent, Allocation of User Started: {}" + ": at :" + LocalDateTime.now(), userId.toString());
+		log.info("Received UserSignedUpEvent, Allocation of User Started: {}" + ": at :" + LocalDateTime.now(),
+				userId.toString());
 		long startTime = System.currentTimeMillis();
 		long endTime = System.currentTimeMillis();
-		log.info("Completed UserSignedUpEvent for UserSignedUpEvent : " + userId + ": at :"
-				+ LocalDateTime.now() + " : total time:" + (endTime - startTime) / 1000.00 + " secs");
+		log.info("Completed UserSignedUpEvent for UserSignedUpEvent : " + userId + ": at :" + LocalDateTime.now()
+				+ " : total time:" + (endTime - startTime) / 1000.00 + " secs");
 	}
 }

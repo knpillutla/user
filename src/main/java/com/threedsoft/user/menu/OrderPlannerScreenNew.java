@@ -26,6 +26,8 @@ public class OrderPlannerScreenNew {
 		String custOrdersUpdateRecordUrl = "https://the3dsoft.com/orderplanner/api/wms-orders";
 		String custOrdersDeleteRecordUrl = "https://the3dsoft.com/orderplanner/api/wms-orders/{id}";
 		String releaseActionUrl = "https://the3dsoft.com/orderplanner/api/wms-orders/release";
+		String createWaveOrderListUrl = "https://the3dsoft.com/orderplanner/api/wms-orders/createWave";
+		String manualFulfillmentActionUrl = "https://the3dsoft.com/orderplanner/api/wms-orders/manualFulfillment";
 		String packAndPrintActionUrl = "";
 		String printPickListActionUrl = "";
 		String reprintLabelActionUrl = "";
@@ -58,6 +60,12 @@ public class OrderPlannerScreenNew {
 		fieldList.add(FieldResource.createField("createdBy", "Created By", "string", "25"));
 		fieldList.add(FieldResource.createField("updatedBy", "Updated By", "string", "25"));
 
+		ActionResource createPicklist = new ActionResource();
+		createPicklist.setActionName("createWave");
+		createPicklist.setActionDisplayName("Create Wave");
+		createPicklist.setActionUrl(createWaveOrderListUrl);
+		createPicklist.setRequestFields("busName,facilityNbr,wmsOrders{id}");
+
 		ActionResource releaseAction = new ActionResource();
 		releaseAction.setActionName("release");
 		releaseAction.setActionDisplayName("PackAndPrint");
@@ -81,6 +89,12 @@ public class OrderPlannerScreenNew {
 		reprintLabelAction.setActionDisplayName("Reprint Packing/Shipping Labels");
 		reprintLabelAction.setActionUrl(reprintLabelActionUrl);
 		reprintLabelAction.setRequestFields("busName,facilityNbr,id");
+		ActionResource manualFulfillmentAction = new ActionResource();
+		manualFulfillmentAction.setActionName("manualFulfillment");
+		manualFulfillmentAction.setActionDisplayName("Manual Fulfillment");
+		manualFulfillmentAction.setActionUrl(manualFulfillmentActionUrl);
+		manualFulfillmentAction.setRequestFields("busName,facilityNbr,id");
+
 		/*
 		 * List<SearchFieldResource> searchFieldList = new ArrayList();
 		 * searchFieldList.add(new SearchFieldResource("busName", "Y", "N", busName));
@@ -160,6 +174,7 @@ public class OrderPlannerScreenNew {
 		actionList.add(printPickListAction);
 		actionList.add(packAndPrintAction);
 		actionList.add(reprintLabelAction);
+		actionList.add(manualFulfillmentAction);
 //		}
 		customerOrderDataResource.setRecordActionList(actionList);
 		customerOrderDataResource.setDtlResources(Arrays.asList(getCustomerOrderDetailResource(busName, facilityNbr)));
